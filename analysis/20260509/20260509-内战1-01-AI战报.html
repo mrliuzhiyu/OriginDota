@@ -3,175 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="2026.5.9 原点 Dota2 内战 1 第 1 局 AI 战报 — 编织者一人 carry 51-24 大胜">
+<meta name="description" content="原点 Dota2 内战 AI 战报">
 <meta name="theme-color" content="#1a1a1a">
-<title>5.9 内战 1 第 1 局 · AI 战报 · 原点 Dota2</title>
-<style>
-  :root {
-    --ink: #1a1a1a; --ink-soft: #444; --ink-mute: #888;
-    --line: #e6e6e6; --line-soft: #f0f0f0;
-    --bg: #ffffff; --bg-card: #fafafa; --bg-soft: #f5f5f5;
-    --radiant: #2d5a3d; --radiant-bg: #f0f7f2;
-    --dire: #8b3a3a; --dire-bg: #fbf3f3;
-    --gold: #b8860b; --gold-bg: #fdf9ed;
-    --red: #c00; --voice-bg: #f5f1fa;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 14px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
-  .page { max-width: 1080px; margin: 0 auto; padding: 48px 40px 80px; }
-  .actions { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; margin-bottom: 32px; border-bottom: 1px solid var(--line); }
-  .actions .crumb { font-size: 12px; color: var(--ink-mute); letter-spacing: 1px; }
-  .actions .crumb a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px dotted var(--ink-mute); }
-  .actions .btns { display: flex; gap: 10px; }
-  .actions button, .actions a.btn { padding: 8px 14px; font-size: 12px; border: 1px solid var(--ink); background: var(--bg); color: var(--ink); cursor: pointer; font-family: inherit; letter-spacing: 1px; text-decoration: none; }
-  .actions button:hover, .actions a.btn:hover { background: var(--ink); color: #fff; }
-  .header { text-align: center; margin-bottom: 40px; padding-bottom: 28px; border-bottom: 2px solid var(--ink); }
-  .header .eyebrow { font-size: 11px; letter-spacing: 5px; color: var(--ink-mute); margin-bottom: 14px; }
-  .header h1 { font-size: 30px; font-weight: 600; letter-spacing: 1px; margin-bottom: 18px; }
-  .header .meta-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--ink-soft); }
-  .header .meta-row span { position: relative; }
-  .header .meta-row span + span::before { content: "·"; color: var(--ink-mute); position: absolute; left: -14px; }
-  .scoreboard { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; padding: 28px 32px; border: 1px solid var(--line); background: var(--bg-card); margin-bottom: 32px; }
-  .scoreboard .team-side { text-align: center; }
-  .scoreboard .team-side.radiant { color: var(--radiant); }
-  .scoreboard .team-side.dire { color: var(--dire); }
-  .scoreboard .team-side .label { font-size: 12px; letter-spacing: 3px; color: var(--ink-mute); margin-bottom: 6px; }
-  .scoreboard .team-side .name { font-size: 22px; font-weight: 700; letter-spacing: 2px; margin-bottom: 4px; }
-  .scoreboard .team-side .name.win::after { content: "胜"; display: inline-block; margin-left: 8px; font-size: 12px; background: var(--gold); color: #fff; padding: 2px 8px; letter-spacing: 1px; vertical-align: 4px; }
-  .scoreboard .score-num { font-size: 48px; font-weight: 800; font-feature-settings: "tnum"; line-height: 1; }
-  .scoreboard .vs { font-size: 16px; color: var(--ink-mute); letter-spacing: 4px; }
-  .tldr { background: var(--gold-bg); border-left: 4px solid var(--gold); padding: 18px 24px; margin-bottom: 40px; font-size: 15px; line-height: 1.85; }
-  .tldr strong { color: var(--ink); font-weight: 700; }
-  .tldr .label { font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 8px; font-weight: 700; }
-  section { margin-bottom: 48px; }
-  section h2 { font-size: 20px; font-weight: 700; letter-spacing: 2px; padding-bottom: 12px; margin-bottom: 24px; border-bottom: 2px solid var(--ink); }
-  section h2 .h2-meta { font-size: 12px; color: var(--ink-mute); letter-spacing: 1px; margin-left: 12px; font-weight: 400; }
-  section h3 { font-size: 15px; font-weight: 700; margin: 24px 0 14px; }
-  .lineup { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .lineup .team-block { border: 1px solid var(--line); }
-  .lineup .team-head { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; }
-  .lineup .team-block.radiant .team-head { background: var(--radiant-bg); border-bottom-color: var(--radiant); }
-  .lineup .team-block.dire .team-head { background: var(--dire-bg); border-bottom-color: var(--dire); }
-  .lineup .team-name { font-weight: 700; letter-spacing: 1px; font-size: 15px; }
-  .lineup .team-block.radiant .team-name { color: var(--radiant); }
-  .lineup .team-block.dire .team-name { color: var(--dire); }
-  .lineup .team-summary { font-size: 11px; color: var(--ink-mute); }
-  .lineup table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .lineup th, .lineup td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--line-soft); }
-  .lineup th { font-size: 10px; color: var(--ink-mute); letter-spacing: 1px; font-weight: 500; background: var(--bg-soft); }
-  .lineup tr:last-child td { border-bottom: none; }
-  .lineup .hero { font-weight: 600; }
-  .lineup .player { color: var(--ink-soft); font-size: 11px; }
-  .lineup td.num { text-align: right; font-feature-settings: "tnum"; }
-  .lineup td.kda { font-weight: 600; font-feature-settings: "tnum"; }
-  .lineup tr.mvp { background: #fff8e1; }
-  .lineup tr.mvp .hero::before { content: "★"; color: var(--gold); margin-right: 4px; }
-  .timeline { border-left: 2px solid var(--line); margin-left: 80px; }
-  .timeline-event { position: relative; padding: 14px 0 14px 28px; border-bottom: 1px dashed var(--line); }
-  .timeline-event:last-child { border-bottom: none; }
-  .timeline-event .time { position: absolute; left: -78px; top: 14px; width: 60px; text-align: right; font-weight: 700; font-size: 13px; color: var(--ink); font-feature-settings: "tnum"; }
-  .timeline-event::before { content: ""; position: absolute; left: -7px; top: 20px; width: 12px; height: 12px; background: var(--ink); border-radius: 50%; border: 2px solid var(--bg); }
-  .timeline-event.radiant::before { background: var(--radiant); }
-  .timeline-event.dire::before { background: var(--dire); }
-  .timeline-event.key::before { background: var(--gold); width: 16px; height: 16px; left: -9px; top: 18px; }
-  .timeline-event .title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
-  .timeline-event .desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
-  .timeline-event .tag { display: inline-block; font-size: 10px; padding: 1px 7px; margin-right: 6px; border: 1px solid var(--ink); color: var(--ink); letter-spacing: 1px; vertical-align: 1px; }
-  .timeline-event.radiant .tag { background: var(--radiant); color: #fff; border-color: var(--radiant); }
-  .timeline-event.dire .tag { background: var(--dire); color: #fff; border-color: var(--dire); }
-  .phase-title { font-size: 14px; font-weight: 700; letter-spacing: 2px; margin: 28px 0 14px -82px; padding: 6px 16px; background: var(--bg-card); border-left: 4px solid var(--ink); width: fit-content; }
-  .phase-title.early { border-left-color: var(--radiant); color: var(--radiant); }
-  .phase-title.mid { border-left-color: var(--dire); color: var(--dire); }
-  .phase-title.late { border-left-color: var(--gold); color: var(--gold); }
-  .phase-title.gg { border-left-color: var(--ink); color: var(--ink); }
-  .awards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .award { border: 1px solid var(--line); padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start; }
-  .award.gold { border-color: var(--gold); background: var(--gold-bg); }
-  .award.fun { border-color: var(--ink); background: #fffae8; }
-  .award .medal { font-size: 26px; line-height: 1; margin-top: 2px; flex-shrink: 0; width: 32px; }
-  .award .award-info { flex: 1; }
-  .award .award-title { font-size: 11px; letter-spacing: 2px; color: var(--ink-mute); margin-bottom: 4px; font-weight: 600; }
-  .award .award-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--ink); }
-  .award .award-stat { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
-  .player-deep { border: 1px solid var(--line); padding: 20px 24px; margin-bottom: 16px; page-break-inside: avoid; }
-  .player-deep.radiant { border-left: 4px solid var(--radiant); }
-  .player-deep.dire { border-left: 4px solid var(--dire); }
-  .player-deep .pd-head { display: grid; grid-template-columns: 1fr auto; gap: 16px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line-soft); align-items: baseline; }
-  .player-deep .pd-name { font-size: 17px; font-weight: 700; }
-  .player-deep .pd-name .hero { color: var(--ink-soft); font-weight: 400; font-size: 13px; margin-left: 6px; }
-  .player-deep .pd-pos { font-size: 11px; color: var(--ink-mute); letter-spacing: 1px; }
-  .player-deep .pd-kda { text-align: right; font-size: 16px; font-weight: 700; font-feature-settings: "tnum"; }
-  .player-deep .pd-kda .label { font-size: 10px; color: var(--ink-mute); letter-spacing: 2px; margin-right: 6px; font-weight: 400; }
-  .player-deep .pd-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
-  .player-deep .pd-stat { background: var(--bg-card); padding: 7px 10px; text-align: center; }
-  .player-deep .pd-stat .v { font-size: 14px; font-weight: 700; font-feature-settings: "tnum"; }
-  .player-deep .pd-stat .l { font-size: 10px; color: var(--ink-mute); margin-top: 2px; }
-  .player-deep .pd-comment { font-size: 13px; line-height: 1.8; color: var(--ink-soft); }
-  .player-deep .pd-coach { margin-top: 10px; padding: 9px 14px; background: #f8f9fb; border-left: 3px solid #4a90e2; font-size: 12px; color: var(--ink-soft); }
-  .player-deep .pd-coach::before { content: "教练点评 · "; font-weight: 700; color: #4a90e2; letter-spacing: 1px; }
-  .voice-section .voice-card { background: var(--voice-bg); border-left: 4px solid #8b6db5; padding: 18px 22px; margin-bottom: 14px; page-break-inside: avoid; }
-  .voice-section .voice-card .speaker { font-weight: 700; font-size: 14px; margin-bottom: 8px; color: #5d4178; }
-  .voice-section .voice-card .speaker .hero { color: var(--ink-mute); font-weight: 400; font-size: 12px; margin-left: 6px; }
-  .voice-section .voice-card .quote { font-size: 13px; color: var(--ink); line-height: 1.85; font-style: italic; }
-  .voice-section .voice-card .quote::before { content: "「"; color: #8b6db5; margin-right: 2px; }
-  .voice-section .voice-card .quote::after { content: "」"; color: #8b6db5; margin-left: 2px; }
-  .voice-section .voice-intro { font-size: 13px; color: var(--ink-mute); margin-bottom: 18px; padding: 12px 16px; background: var(--bg-card); border-left: 3px solid var(--ink-mute); }
-  .key-moments { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .key-moment { border: 1px solid var(--line); padding: 14px 18px; }
-  .key-moment .km-time { font-size: 11px; color: var(--gold); letter-spacing: 2px; font-weight: 700; margin-bottom: 4px; }
-  .key-moment .km-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-  .key-moment .km-desc { font-size: 12px; color: var(--ink-soft); line-height: 1.6; }
-  .data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .data-table th, .data-table td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
-  .data-table th { font-size: 10px; letter-spacing: 1px; color: var(--ink-mute); background: var(--bg-card); }
-  .data-table td.num { text-align: right; font-feature-settings: "tnum"; }
-  .data-table td.team-radiant { border-left: 3px solid var(--radiant); }
-  .data-table td.team-dire { border-left: 3px solid var(--dire); }
-  .bar-chart { margin: 14px 0; }
-  .bar-row { display: grid; grid-template-columns: 110px 1fr 60px; gap: 10px; align-items: center; padding: 3px 0; font-size: 12px; }
-  .bar-row .bar-name { font-weight: 600; }
-  .bar-row .bar-track { height: 16px; background: var(--bg-card); border: 1px solid var(--line); position: relative; }
-  .bar-row .bar-fill { height: 100%; background: var(--ink); }
-  .bar-row.radiant .bar-fill { background: var(--radiant); }
-  .bar-row.dire .bar-fill { background: var(--dire); }
-  .bar-row .bar-val { text-align: right; font-weight: 600; font-feature-settings: "tnum"; }
-  .suggestions { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .suggestions .sug-block { padding: 16px 20px; border: 1px solid var(--line); }
-  .suggestions .sug-block.radiant { border-left: 4px solid var(--radiant); background: var(--radiant-bg); }
-  .suggestions .sug-block.dire { border-left: 4px solid var(--dire); background: var(--dire-bg); }
-  .suggestions h3 { margin: 0 0 12px; font-size: 14px; }
-  .suggestions ol { margin-left: 20px; font-size: 12px; line-height: 1.8; }
-  .suggestions ol li { margin-bottom: 6px; color: var(--ink-soft); }
-  .suggestions ol li b { color: var(--ink); }
-  .report-footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 11px; color: var(--ink-mute); text-align: center; line-height: 1.8; }
-  .report-footer a { color: var(--ink-soft); }
-  @media (max-width: 720px) {
-    .page { padding: 24px 16px 48px; }
-    .header h1 { font-size: 22px; }
-    .scoreboard { grid-template-columns: 1fr; gap: 16px; padding: 20px; }
-    .scoreboard .vs { display: none; }
-    .scoreboard .score-num { font-size: 36px; }
-    .lineup, .awards-grid, .key-moments, .suggestions { grid-template-columns: 1fr; }
-    .player-deep .pd-stats { grid-template-columns: repeat(2, 1fr); }
-    .timeline { margin-left: 56px; }
-    .timeline-event .time { left: -56px; width: 44px; font-size: 11px; }
-    .phase-title { margin-left: -58px; }
-  }
-  @media print {
-    body { background: white; font-size: 11px; }
-    .page { max-width: 100%; padding: 14mm 12mm; }
-    .actions { display: none !important; }
-    .header h1 { font-size: 20px; }
-    .scoreboard { padding: 16px; page-break-inside: avoid; }
-    .scoreboard .score-num { font-size: 28px; }
-    .tldr, .award, .key-moment, .player-deep, .voice-card { page-break-inside: avoid; }
-    section { margin-bottom: 22px; }
-    section h2 { font-size: 14px; margin-bottom: 12px; padding-bottom: 6px; }
-    .player-deep { padding: 10px 14px; margin-bottom: 8px; }
-    a { color: inherit; text-decoration: none; }
-    .player-cards-section, .voice-section { page-break-before: always; }
-  }
-</style>
+<title>5.9 内战 1 · 第 1 局 AI 战报 · 原点 Dota2</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="page">
@@ -181,548 +16,465 @@
       <a href="../../index.html">原点 Dota2 内战</a> ›
       <a href="../../20260509-内战对战表.html">5.9 对战表</a> ›
       <a href="index.html">5.9 战报</a> ›
-      内战 1 第 1 局
+      内战 1 · 第 1 局 AI 战报
     </div>
     <div class="btns">
-      <a class="btn" href="20260509-内战1-02-AI战报.html">下一局 →</a>
+      
+      
       <button onclick="window.print()">下载 PDF</button>
     </div>
   </div>
 
-  <header class="header">
+  <header class="hero-header">
     <div class="eyebrow">原点 DOTA2 内战 · AI 战报</div>
-    <h1>5.9 内战 1 · 第 1 局</h1>
+    <h1>5.9 内战 1 · 第 1 局 AI 战报</h1>
     <div class="meta-row">
-      <span>2026.5.9 周六</span>
-      <span>比赛 ID 8803928598</span>
-      <span>高分桌</span>
-      <span>时长 37:07</span>
-      <span>75 英雄击杀</span>
+      
+      
+      
+      
     </div>
   </header>
 
-  <div class="scoreboard">
-    <div class="team-side radiant">
-      <div class="label">天 辉</div>
-      <div class="name win">天辉</div>
-      <div class="score-num">51</div>
-    </div>
-    <div class="vs">VS</div>
-    <div class="team-side dire">
-      <div class="label">夜 魇</div>
-      <div class="name">夜魇</div>
-      <div class="score-num">24</div>
-    </div>
-  </div>
+  
 
-  <div class="tldr">
-    <div class="label">⚡ 一句话总结</div>
-    <strong>编织者 Ss 一人 18/4/12 + 7 次多杀，从 9 分钟开始统治整局。早期夜魇赢了两团，但 13 分钟之后天辉连胜 8 团，35 分钟一波团灭夜魇收尾。这是"无解大哥位 carry 局"的教科书。</strong>
-    天辉 5 个核心位置经济差距均匀（编织者 + 潮汐猎人 + 拉比克 + 裂魂人 + 大地之灵），团战配合度极高（11 助攻起步、26-30 助攻三人）；夜魇阵容则被 Ss 编织者的位移完全克制。
-  </div>
+  <article>
+<h1>5.9 内战 1 · 第 1 局 AI 战报</h1>
+<blockquote>
+<p><strong>比赛 ID</strong>：8803928598 ｜ <strong>时长</strong>：37:07 ｜ <strong>结果</strong>：🟢 <strong>天辉胜利</strong> ｜ <strong>比分</strong>：天辉 <strong>51 - 24</strong> 夜魇
+<strong>数据来源</strong>：OpenDota 解析器解析 .dem 录像 → AI 自动生成战报
+<strong>生成时间</strong>：2026-05-10</p>
+</blockquote>
+<hr>
+<h2>一句话总结</h2>
+<blockquote>
+<p><strong>Ss 编织者一号位 18/4/12，9 个多杀当家，13 分起天辉一波下 5 团。带把少女李狗蛋潮汐 11/2 接住肉，37 分干净收尾。</strong></p>
+</blockquote>
+<p>夜魇前 10 分钟还能赢两团，但幻刺一号位没起来，13 分后被天辉滚雪球，再没能站住一波团。</p>
+<hr>
+<h2>阵容对比</h2>
+<h3>🟢 天辉（胜）</h3>
+<table>
+<thead>
+<tr>
+<th>位</th>
+<th>英雄</th>
+<th>玩家</th>
+<th>KDA</th>
+<th>GPM/XPM</th>
+<th>LH/DN</th>
+<th>NW</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>编织者</strong></td>
+<td>Ss</td>
+<td><strong>18/4/12</strong></td>
+<td><strong>693</strong> / 903</td>
+<td>282/10</td>
+<td>25.0K</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>潮汐猎人</strong></td>
+<td>带把少女李狗蛋</td>
+<td><strong>11/2/26</strong></td>
+<td>650 / 891</td>
+<td>264/12</td>
+<td>23.5K</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>拉比克</strong></td>
+<td>冰清玉洁梅老八</td>
+<td>9/5/26</td>
+<td>482 / 638</td>
+<td>120/5</td>
+<td>17.4K</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>大地之灵</strong></td>
+<td>A</td>
+<td>6/7/30</td>
+<td>426 / 640</td>
+<td>114/4</td>
+<td>15.4K</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>裂魂人</strong></td>
+<td>qt</td>
+<td>7/6/29</td>
+<td>391 / 529</td>
+<td>76/1</td>
+<td>14.1K</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注：天辉这套阵容没有传统中单——编织者一号位 + 潮汐三号位双核，加 3 个辅助/游走（拉比克、裂魂人、大地之灵）。<strong>4-1 阵容靠核心单杀 + 3 个控制围殴</strong>，节奏一旦起来就停不下来。</p>
+</blockquote>
+<h3>🔴 夜魇</h3>
+<table>
+<thead>
+<tr>
+<th>位</th>
+<th>英雄</th>
+<th>玩家</th>
+<th>KDA</th>
+<th>GPM/XPM</th>
+<th>LH/DN</th>
+<th>NW</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>幻影刺客</strong></td>
+<td>赵子龙</td>
+<td>5/7/7</td>
+<td>551 / 672</td>
+<td><strong>335</strong>/3</td>
+<td>19.9K</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>风暴之灵</strong></td>
+<td>60</td>
+<td>9/9/10</td>
+<td>528 / <strong>853</strong></td>
+<td>234/7</td>
+<td>19.1K</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>斯拉达</strong></td>
+<td>划，就硬划</td>
+<td>5/11/8</td>
+<td>380 / 552</td>
+<td>163/13</td>
+<td>13.7K</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>暗影萨满</strong></td>
+<td>misaka</td>
+<td>2/13/16</td>
+<td>298 / 314</td>
+<td>78/1</td>
+<td>10.8K</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>术士</strong></td>
+<td>Wasabi</td>
+<td>3/11/14</td>
+<td>363 / 313</td>
+<td>92/2</td>
+<td>13.1K</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>比赛剧情</h2>
+<h3>⚡ 0–10 分：拉比克偷一血，夜魇短暂反扑</h3>
+<ul>
+<li><strong>2:06 一血</strong>：冰清玉洁梅老八 拉比克 击杀 60 风暴之灵（4 号位偷一血）</li>
+<li><strong>5:47 团战 R1-2</strong>：夜魇先下一团</li>
+<li><strong>9:10 团战 R2-4</strong>：夜魇再赢一团 6 死 4-2，<strong>这是夜魇全场打得最舒服的一次</strong></li>
+<li><strong>9:18-9:19 双双双杀</strong>：misaka 暗影萨满 + Ss 编织者 几乎同时双杀</li>
+</ul>
+<blockquote>
+<p><strong>早期评价</strong>：夜魇 4 号位 misaka 9 分前已经有 2 次连胜，但很快就被反推。Ss 编织者 9:19 双杀是开始觉醒的信号。</p>
+</blockquote>
+<h3>🔥 13–25 分：天辉一波下 5 团</h3>
+<p>天辉这一段连下 5 个团（13:31 / 15:25 / 18:07 / 21:00 / 23:24），节奏完全归己：</p>
+<ul>
+<li><strong>13:31 团战 R3-1</strong> + <strong>13:33 / 13:38</strong> 潮汐 + 裂魂人 连胜</li>
+<li><strong>15:25 团战 R3-0</strong> 团灭夜魇</li>
+<li><strong>18:07 团战 R4-1</strong> + <strong>18:14-18:22</strong> 编织者/潮汐/拉比克 三人接连连胜</li>
+<li><strong>21:00 / 21:15</strong> 拉比克 <strong>连续两次连胜 + 21:15 双杀</strong>（这局 4 号位拉比克偷大节奏极顺）</li>
+<li><strong>22:53 第一肉山</strong>：Ss 编织者拿盾</li>
+<li><strong>23:24 团战 R2-1</strong> 拉锯</li>
+<li><strong>24:30</strong> 编织者推塔</li>
+</ul>
+<blockquote>
+<p><strong>中期评价</strong>：编织者带盾先推塔，潮汐走前排吃伤害开大，拉比克偷大补输出——<strong>4-1 阵容的标准高效团战</strong></p>
+</blockquote>
+<h3>⚖️ 29:09 团战 R4-4 互换（夜魇唯一一次稳住）</h3>
+<ul>
+<li><strong>29:09 团战 8 死，4-4 平</strong>：双方各阵亡 4 人，夜魇暂时稳住</li>
+<li><strong>29:30 / 29:31</strong> Ss 编织者双杀 + 连胜</li>
+<li><strong>29:40</strong> 60 风暴之灵 连胜（<strong>单杀奖金 1095，夜魇本场最高单杀赏金</strong>）</li>
+</ul>
+<blockquote>
+<p>这一团是夜魇的<strong>最后挣扎</strong>——风暴之灵反打拿到金额最高的连胜，但天辉装备线已经领先，没法把劣势转成优势。</p>
+</blockquote>
+<h3>💥 31–37 分：编织者后期觉醒</h3>
+<ul>
+<li><strong>31:40 团战 R3-2</strong> 天辉再下一城</li>
+<li><strong>31:57</strong> 编织者 + 风暴之灵 几乎同时双杀（互换）</li>
+<li><strong>32:38</strong> 60 风暴之灵 又一次连胜（<strong>单杀赏金 654</strong>）但已经救不了局</li>
+<li><strong>34:28 第二肉山</strong>：Ss 编织者再次拿盾（<strong>两次盾全归编织者</strong>）</li>
+<li><strong>35:44 团战 R5-0</strong>：天辉 <strong>5 杀 0 死团灭</strong> + <strong>35:54 编织者双杀</strong> + <strong>35:57 编织者三杀！</strong></li>
+<li><strong>36:14 起夜魇全员掉线</strong> —— 比赛结束</li>
+</ul>
+<hr>
+<h2>🏆 最佳玩家 &amp; 趣味奖</h2>
+<h3>🥇 全场最佳：Ss（编织者）</h3>
+<p><strong>18/4/12 ｜ 693 GPM ｜ 903 XPM ｜ 9 个多杀（8 双杀 + 1 三杀）</strong></p>
+<blockquote>
+<p>一号位编织者，5 件装就 282 LH，<strong>25K 经济全场最高</strong>。9 个多杀包括压轴 35:57 三杀收官。两次肉山盾全是他拿——<strong>编织者的位移 + 不息守望，团战开雾偷盾几乎无解</strong>。</p>
+</blockquote>
+<h3>🥈 副最佳：带把少女李狗蛋（潮汐猎人）</h3>
+<p><strong>11/2/26 ｜ 650 GPM ｜ 891 XPM ｜ 6 次连胜 ｜ 仅 2 死</strong></p>
+<blockquote>
+<p>三号位潮汐就 2 死，11 杀 26 助攻全场参团率最高。<strong>潮汐大招的团战价值这局完全打出来了</strong>——天辉一波 5 团靠潮汐先开雾。</p>
+</blockquote>
+<h3>🥉 双辅助最佳：冰清玉洁梅老八（拉比克）</h3>
+<p><strong>9/5/26 ｜ 4 号位拿 9 个杀 ｜ 偷大爽到飞起</strong></p>
+<blockquote>
+<p>拉比克 4 号位 9 杀很可观，2:06 还偷了一血。21:00–21:15 连续两个连胜 + 双杀的爆发段是中期天辉锁死局势的关键。</p>
+</blockquote>
+<h3>🌟 趣味奖</h3>
+<p><strong>🛡️ 视野女王</strong>：A（大地之灵）
+<strong>6 杀 30 助攻 ｜ 9 眼 + 13 岗哨</strong></p>
+<blockquote>
+<p>4 号位大地之灵 30 助攻全场最高，<strong>没死过一次开局</strong>（前期 0 死直到 7:23 才有第一次连胜）。9 眼 13 岗反眼意识极强。</p>
+</blockquote>
+<p><strong>🚪 掉线之夜</strong>：qt（裂魂人）
+<strong>6:07 / 22:25 / 36:14 三次掉线 ｜ 7/6/29</strong></p>
+<blockquote>
+<p>三次掉线但<strong>回来后还是打满了 29 助攻</strong>，5 号位裂魂人靠大招迷踪闪 + 反伤甲存在感拉满。<strong>虽然正补 76 偏低，但 4 眼 + 10 岗</strong>（5 号位插岗哨这么多很可以）。<strong>网络问题黑锅不打你，下次能稳定连接就完美</strong>。</p>
+</blockquote>
+<p><strong>🥶 夜魇核心哑火</strong>：赵子龙（幻刺）
+<strong>5/7/7 ｜ 335 LH（全场最高，但击杀只有 5）</strong></p>
+<blockquote>
+<p>幻刺这局补刀 335 全场最高，但<strong>0 次连胜 0 个多杀</strong>——发育起来了打不出输出。可能是阵容里 misaka 暗影萨满 + Wasabi 术士 控制 + 范围伤害不够，团战找不到切入点。下次试试这种远程辅助阵容里幻刺改成卓尔之类的远程后期。</p>
+</blockquote>
+<p><strong>😅 苦命辅助</strong>：misaka（暗影萨满）+ Wasabi（术士）双双 11+ 死亡</p>
+<ul>
+<li><strong>misaka 2/13/16 ｜ 7 眼 + 20 岗哨</strong></li>
+<li><strong>Wasabi 3/11/14 ｜ 6 眼 + 7 岗哨</strong></li>
+</ul>
+<blockquote>
+<p>两个辅助加起来死了 24 次。暗影萨满 9 分前还有 2 次连胜，但中期被天辉反眼后就没站位了。<strong>插眼数据其实不差，问题在于站位太靠前被秒</strong>。</p>
+</blockquote>
+<hr>
+<h2>关键数据洞察</h2>
+<h3>肉山节奏（决定胜负）</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>谁拿盾</th>
+<th>之后干啥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>22:53</td>
+<td>Ss 编织者</td>
+<td>推中路二塔 + 一波团</td>
+</tr>
+<tr>
+<td>34:28</td>
+<td>Ss 编织者</td>
+<td>35:44 团灭 → 比赛结束</td>
+</tr>
+</tbody></table>
+<p><strong>两次盾全是 Ss 拿走</strong>——夜魇幻刺没有有效抗压点也没办法抢盾。</p>
+<h3>团战胜负（11 场）</h3>
+<ul>
+<li><strong>天辉 7 胜 / 夜魇 3 胜 / 1 平</strong></li>
+<li>夜魇的 3 胜全在 9:10 之前</li>
+<li>13:31 之后天辉 6 胜 0 负 1 平</li>
+</ul>
+<p><strong>完美的&quot;夜魇前期、天辉中后期&quot;曲线</strong>，但夜魇前期的优势没换成塔/经济。</p>
+<h3>视野对比</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>天辉</th>
+<th>夜魇</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>观察眼</td>
+<td>16</td>
+<td>16</td>
+</tr>
+<tr>
+<td>岗哨眼</td>
+<td>24</td>
+<td>28</td>
+</tr>
+<tr>
+<td>反掉对方眼</td>
+<td>28 个观察 / 45 个岗哨</td>
+<td>——</td>
+</tr>
+</tbody></table>
+<p><strong>双方插眼数差不多</strong>——这局的胜负不在视野，在肉山节奏 + 团战配合。</p>
+<hr>
+<h2>改进建议</h2>
+<h3>🟢 天辉（赢的也可以更好）</h3>
+<ol>
+<li><strong>Ss 编织者背包数据看不全</strong>（解析器读不到完整背包），但 25K 经济应该是黑黄棒+大根+辉耀级别。下次可以试试 36 分前就出黑黄棒把 60 风暴之灵的连招扛住</li>
+<li><strong>qt 三次掉线</strong>：网络问题先排查（路由器/Steam 节点/防火墙），影响团战节奏。<strong>这次靠 4 个人也能赢，下次别赌</strong></li>
+<li><strong>A 大地之灵 6/7/30</strong>：30 助攻 4 号位封顶。但 7 死有点多——4 号位前期可以多走野区接眼，少和暗影萨满+术士双辅助硬贴</li>
+</ol>
+<h3>🔴 夜魇（输得明白）</h3>
+<ol>
+<li><strong>幻刺一号位选错</strong>：天辉是编织者+潮汐双核 + 三个范围伤害/控制（裂魂人+大地之灵+拉比克），幻刺没法贴身打编织者的位移。<strong>早期禁选阶段看到这套应该让 60 让中单给幻刺</strong>或者<strong>换斯温/卓尔这种站桩输出</strong></li>
+<li><strong>15-20 分关键期被一波带走</strong>：13:31-15:25 两团连败之后没缓过来。<strong>暗影萨满+术士双辅是控人型阵容，应该让斯拉达早出跳刀抓人</strong>而不是被反打 11 次</li>
+<li><strong>60 风暴之灵中后期觉醒太晚</strong>：29:40 / 32:38 两次连胜都是 600+ 单杀赏金（说明对面赏金高），但已经晚了。<strong>风暴 25 分前应该有 4-5 杀基础经济</strong>才能压制编织者</li>
+</ol>
+<h3>⚖️ 通用观察</h3>
+<ul>
+<li><strong>夜魇 24 杀 vs 天辉 51 杀</strong>——杀数 2 倍差距，正常翻盘窗口已经关闭。<strong>关键是 13-15 分钟一波团的执行</strong></li>
+<li><strong>9 个多杀里 Ss 一个人占 9 个</strong>（其他人 0 个多杀）——编织者真就是核心切后排机器，个人能力差距决定胜负</li>
+</ul>
+<hr>
+<h2>数据表（完整 KDA）</h2>
+<table>
+<thead>
+<tr>
+<th>玩家</th>
+<th>英雄</th>
+<th>KDA</th>
+<th>GPM</th>
+<th>XPM</th>
+<th>LH</th>
+<th>DN</th>
+<th>NW</th>
+<th>LV</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Ss</strong></td>
+<td>编织者</td>
+<td>18/4/12</td>
+<td>693</td>
+<td>903</td>
+<td>282</td>
+<td>10</td>
+<td>25.0K</td>
+<td>24</td>
+</tr>
+<tr>
+<td>带把少女李狗蛋</td>
+<td>潮汐猎人</td>
+<td>11/2/26</td>
+<td>650</td>
+<td>891</td>
+<td>264</td>
+<td>12</td>
+<td>23.5K</td>
+<td>24</td>
+</tr>
+<tr>
+<td>60</td>
+<td>风暴之灵</td>
+<td>9/9/10</td>
+<td>528</td>
+<td>853</td>
+<td>234</td>
+<td>7</td>
+<td>19.1K</td>
+<td>23</td>
+</tr>
+<tr>
+<td>冰清玉洁梅老八</td>
+<td>拉比克</td>
+<td>9/5/26</td>
+<td>482</td>
+<td>638</td>
+<td>120</td>
+<td>5</td>
+<td>17.4K</td>
+<td>20</td>
+</tr>
+<tr>
+<td>qt</td>
+<td>裂魂人</td>
+<td>7/6/29</td>
+<td>391</td>
+<td>529</td>
+<td>76</td>
+<td>1</td>
+<td>14.1K</td>
+<td>18</td>
+</tr>
+<tr>
+<td>A</td>
+<td>大地之灵</td>
+<td>6/7/30</td>
+<td>426</td>
+<td>640</td>
+<td>114</td>
+<td>4</td>
+<td>15.4K</td>
+<td>20</td>
+</tr>
+<tr>
+<td>赵子龙</td>
+<td>幻影刺客</td>
+<td>5/7/7</td>
+<td>551</td>
+<td>672</td>
+<td>335</td>
+<td>3</td>
+<td>19.9K</td>
+<td>21</td>
+</tr>
+<tr>
+<td>划，就硬划</td>
+<td>斯拉达</td>
+<td>5/11/8</td>
+<td>380</td>
+<td>552</td>
+<td>163</td>
+<td>13</td>
+<td>13.7K</td>
+<td>19</td>
+</tr>
+<tr>
+<td>Wasabi</td>
+<td>术士</td>
+<td>3/11/14</td>
+<td>363</td>
+<td>313</td>
+<td>92</td>
+<td>2</td>
+<td>13.1K</td>
+<td>14</td>
+</tr>
+<tr>
+<td>misaka</td>
+<td>暗影萨满</td>
+<td>2/13/16</td>
+<td>298</td>
+<td>314</td>
+<td>78</td>
+<td>1</td>
+<td>10.8K</td>
+<td>14</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>关于本战报</h2>
+<ul>
+<li><strong>解析器</strong>：OpenDota 解析器（Docker 镜像 odota/parser），处理 16.5 万事件 / 35MB 事件流</li>
+<li><strong>聚合</strong>：<a href="../../tools/aggregate.mjs"><code>tools/aggregate.mjs</code></a></li>
+<li><strong>AI 分析</strong>：基于聚合 JSON 撰写</li>
+<li><strong>下一局</strong>：<a href="20260509-%E5%86%85%E6%88%981-02-AI%E6%88%98%E6%8A%A5.md">第 2 局 AI 战报</a>（48 分钟拉锯，冰清玉洁梅老八 琪兰 26/3 暴打）</li>
+</ul>
+<p>如果有判断不准的地方，欢迎在群里反驳——AI 只能从数据看战略层面，<strong>操作妙处和翻车细节得当事人讲</strong>。</p>
 
-  <section>
-    <h2>阵容对比 <span class="h2-meta">5v5 · 全英雄选择 · 高分桌</span></h2>
-    <div class="lineup">
-      <div class="team-block radiant">
-        <div class="team-head">
-          <span class="team-name">天辉 · 胜</span>
-          <span class="team-summary">综合分 51 · 均分高 · 团战配合极强</span>
-        </div>
-        <table>
-          <thead><tr><th>位</th><th>英雄 / 玩家</th><th class="num">击杀/死亡/助攻</th><th class="num">金/分</th><th class="num">经/分</th></tr></thead>
-          <tbody>
-            <tr class="mvp"><td>1</td><td><div class="hero">编织者</div><div class="player">Ss</div></td><td class="num kda">18/4/12</td><td class="num">693</td><td class="num">903</td></tr>
-            <tr><td>2</td><td><div class="hero">裂魂人</div><div class="player">qt</div></td><td class="num kda">7/6/29</td><td class="num">391</td><td class="num">529</td></tr>
-            <tr><td>3</td><td><div class="hero">潮汐猎人</div><div class="player">带把少女李狗蛋</div></td><td class="num kda">11/2/26</td><td class="num">650</td><td class="num">891</td></tr>
-            <tr><td>4</td><td><div class="hero">大地之灵</div><div class="player">A</div></td><td class="num kda">6/7/30</td><td class="num">426</td><td class="num">640</td></tr>
-            <tr><td>5</td><td><div class="hero">拉比克</div><div class="player">冰清玉洁梅老八</div></td><td class="num kda">9/5/26</td><td class="num">482</td><td class="num">638</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="team-block dire">
-        <div class="team-head">
-          <span class="team-name">夜魇 · 负</span>
-          <span class="team-summary">早期赢两团但被编织者反碾</span>
-        </div>
-        <table>
-          <thead><tr><th>位</th><th>英雄 / 玩家</th><th class="num">击杀/死亡/助攻</th><th class="num">金/分</th><th class="num">经/分</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td><div class="hero">幻影刺客</div><div class="player">赵子龙</div></td><td class="num kda">5/7/7</td><td class="num">551</td><td class="num">672</td></tr>
-            <tr><td>2</td><td><div class="hero">风暴之灵</div><div class="player">60</div></td><td class="num kda">9/9/10</td><td class="num">528</td><td class="num">853</td></tr>
-            <tr><td>3</td><td><div class="hero">斯拉达</div><div class="player">划，就硬划</div></td><td class="num kda">5/11/8</td><td class="num">380</td><td class="num">552</td></tr>
-            <tr><td>4</td><td><div class="hero">术士</div><div class="player">Wasabi</div></td><td class="num kda">3/11/14</td><td class="num">363</td><td class="num">313</td></tr>
-            <tr><td>5</td><td><div class="hero">暗影萨满</div><div class="player">misaka</div></td><td class="num kda">2/13/16</td><td class="num">298</td><td class="num">314</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>比赛剧情 <span class="h2-meta">11 团战 · 2 次肉山 · 12 个塔击杀</span></h2>
-    <div class="timeline">
-
-      <div class="phase-title early">📍 0 – 10 分钟 · 互有胜负</div>
-
-      <div class="timeline-event radiant">
-        <div class="time">2:06</div>
-        <span class="tag">一血</span>
-        <div class="title">拉比克击杀风暴之灵</div>
-        <div class="desc">2:06 一血开局，冰清玉洁梅老八 一上来就秀了一把。同时间内一个 3 人小团战，天辉拿 2-1。</div>
-      </div>
-
-      <div class="timeline-event dire">
-        <div class="time">5:47</div>
-        <span class="tag">夜 2-1</span>
-        <div class="title">夜魇小团反击</div>
-        <div class="desc">夜魇赢回一团 1-2 反扑。早期幻影刺客对线没打出节奏。</div>
-      </div>
-
-      <div class="timeline-event dire">
-        <div class="time">9:10 – 9:19</div>
-        <span class="tag">夜魇 2-4 大胜</span>
-        <div class="title">夜魇连胜团 + 暗影萨满双杀</div>
-        <div class="desc">9:10 团 天 2-4 夜，夜魇打出本场最强节奏。9:18 misaka 暗影萨满双杀，9:19 Ss 编织者立刻还以双杀回击。<b>但 Ss 这一波双杀已经预示了他即将统治。</b></div>
-      </div>
-
-      <div class="phase-title late">🟢 13 – 25 分钟 · 编织者爆发期</div>
-
-      <div class="timeline-event radiant key">
-        <div class="time">13:31</div>
-        <span class="tag">⭐ 节奏翻转</span>
-        <div class="title">天辉首胜团 3-1</div>
-        <div class="desc"><b>本场胜负的转折点。</b>Ss 编织者经过 13 分钟 farm 之后开始有装备，天辉抢回主动权。</div>
-      </div>
-
-      <div class="timeline-event radiant">
-        <div class="time">15:25 – 18:15</div>
-        <span class="tag">连胜两团</span>
-        <div class="title">天辉 3-0 + 4-1 双团灭夜魇</div>
-        <div class="desc">15:25 团战 天 3-0 夜（夜魇 0 死亡反击），18:07 团战 天 4-1 夜，18:15 Ss 编织者第二次双杀。<b>夜魇被压回基地。</b></div>
-      </div>
-
-      <div class="timeline-event radiant">
-        <div class="time">21:00 – 23:24</div>
-        <span class="tag">连胜两团</span>
-        <div class="title">天辉 2-1 + 2-1 + 拉比克双杀</div>
-        <div class="desc">21:00 团战 天 2-1 夜，21:15 冰清玉洁梅老八 拉比克双杀（偷大威力）。23:24 团战 天 2-1 夜。<b>天辉已经掌控所有节奏。</b></div>
-      </div>
-
-      <div class="timeline-event radiant">
-        <div class="time">22:53</div>
-        <span class="tag">一肉</span>
-        <div class="title">天辉首肉山</div>
-        <div class="desc">天辉首肉山，盾给 Ss 编织者。<b>编织者带盾后期完全无解</b>——位移技能让对面追不到，盾让对面打不死。</div>
-      </div>
-
-      <div class="phase-title gg">🏆 29 – 37 分钟 · 收尾</div>
-
-      <div class="timeline-event">
-        <div class="time">29:09 – 29:40</div>
-        <span class="tag">激战互换</span>
-        <div class="title">大团战 8 死 4-4 互换 + 双双双杀</div>
-        <div class="desc">29:09 团战 8 死 4-4 互换。29:31 Ss 编织者双杀，29:40 60 风暴之灵立刻双杀回击。<b>夜魇最后一次有效抵抗。</b></div>
-      </div>
-
-      <div class="timeline-event radiant">
-        <div class="time">30:57 – 31:57</div>
-        <span class="tag">连续多杀</span>
-        <div class="title">Ss 编织者连续 2 个双杀</div>
-        <div class="desc">30:57 双杀 + 31:57 双杀。Ss 一个人在这两分钟里收 4 个人头。31:40 团 天 3-2 夜。</div>
-      </div>
-
-      <div class="timeline-event radiant">
-        <div class="time">34:28</div>
-        <span class="tag">二肉</span>
-        <div class="title">天辉再拿一盾</div>
-        <div class="desc">第二次肉山天辉又拿到，已经不需要这个盾了——但拿了对面就拿不了。</div>
-      </div>
-
-      <div class="timeline-event radiant key">
-        <div class="time">35:44 – 36:03</div>
-        <span class="tag">⭐ 团灭收尾</span>
-        <div class="title">天辉 5-0 团灭 + Ss 双杀+三杀连发 → 推平基地</div>
-        <div class="desc"><b>最终一波。</b>35:44 团战 天 5-0 夜（夜魇 0 死亡的整队团灭！），35:54 Ss 双杀 + 35:57 Ss 三杀。一气呵成推平基地。<b>37:07 游戏结束。</b></div>
-      </div>
-
-    </div>
-  </section>
-
-  <section>
-    <h2>关键时刻一览</h2>
-    <div class="key-moments">
-      <div class="key-moment">
-        <div class="km-time">★ 9:10 - 9:19 · 早期高潮</div>
-        <div class="km-title">夜魇 4-2 团灭 → Ss 立刻反杀双杀</div>
-        <div class="km-desc">misaka 双杀 vs Ss 双杀，9 秒内 4 个人头交换。Ss 这一波说明他装备线快了一档。</div>
-      </div>
-      <div class="key-moment">
-        <div class="km-time">★ 13:31 · 节奏翻转</div>
-        <div class="km-title">天辉首胜团 3-1</div>
-        <div class="km-desc">Ss 编织者经过前 13 分钟猥琐发育之后，团战参与度爆发，天辉再没输过。</div>
-      </div>
-      <div class="key-moment">
-        <div class="km-time">★ 22:53 · 物质基础</div>
-        <div class="km-title">天辉首肉山 — 编织者拿盾</div>
-        <div class="km-desc">编织者本来就难抓，再加上盾，夜魇彻底无解。</div>
-      </div>
-      <div class="key-moment">
-        <div class="km-time">★ 35:44 - 35:57 · 收尾</div>
-        <div class="km-title">天辉 5-0 团灭 + Ss 三杀</div>
-        <div class="km-desc">5 死 0 死亡的整队团灭！夜魇等着送基地。</div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>本场奖项</h2>
-    <div class="awards-grid">
-      <div class="award gold">
-        <div class="medal">🥇</div>
-        <div class="award-info">
-          <div class="award-title">全场最佳</div>
-          <div class="award-name">Ss（编织者）</div>
-          <div class="award-stat">18/4/12 ｜ 金/分 693 ｜ <b>7 次多杀</b>（6 双杀 + 1 三杀！）<br>编织者打出"无解大哥位 carry"的标本。9:19 第一次双杀就预示了他将统治整局，35:57 三杀收尾。</div>
-        </div>
-      </div>
-      <div class="award gold">
-        <div class="medal">🥈</div>
-        <div class="award-info">
-          <div class="award-title">副最佳 · 真打野的潮汐</div>
-          <div class="award-name">带把少女李狗蛋（潮汐猎人）</div>
-          <div class="award-stat">11/2/26 ｜ 金/分 650 ｜ 推 3 个塔<br>潮汐猎人打 11 杀 2 死亡是非常神级的数据。3 号位拿 26 助攻，团战大招开得准。</div>
-        </div>
-      </div>
-      <div class="award gold">
-        <div class="medal">🔥</div>
-        <div class="award-info">
-          <div class="award-title">夜魇最佳</div>
-          <div class="award-name">60（风暴之灵）</div>
-          <div class="award-stat">9/9/10 ｜ 金/分 528<br>夜魇唯一打出输出价值的核心。9:18 双杀和 29:40 双杀都是关键回合。</div>
-        </div>
-      </div>
-      <div class="award fun">
-        <div class="medal">🤝</div>
-        <div class="award-info">
-          <div class="award-title">团魂奖</div>
-          <div class="award-name">A（大地之灵）</div>
-          <div class="award-stat">6/7/30 ｜ 全场最高 30 助攻<br>4 号位打出 30 助攻，团战参与度满分。大地之灵的连招配合编织者很流畅。</div>
-        </div>
-      </div>
-      <div class="award fun">
-        <div class="medal">🛡️</div>
-        <div class="award-info">
-          <div class="award-title">完美救人奖</div>
-          <div class="award-name">qt（裂魂人）</div>
-          <div class="award-stat">7/6/29 ｜ 29 助攻<br>裂魂人 4 号位的完美数据。冲锋开团 + 救人都做到了。</div>
-        </div>
-      </div>
-      <div class="award fun">
-        <div class="medal">🪨</div>
-        <div class="award-info">
-          <div class="award-title">黑锅奖（轻喷）</div>
-          <div class="award-name">misaka（暗影萨满）</div>
-          <div class="award-stat">2/13/16 ｜ 13 死亡<br>夜魇全场最高死亡。暗影萨满 4 号位过于激进切人，被反复抓死。9:18 那波双杀是整局唯一高光。</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="player-cards-section">
-    <h2>每位玩家深度点评</h2>
-
-    <h3>🟢 天辉 5 人</h3>
-
-    <div class="player-deep radiant">
-      <div class="pd-head">
-        <div><div class="pd-name">Ss <span class="hero">编织者 · 大哥位</span></div><div class="pd-pos">1 号位 · 全场最佳</div></div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>18/4/12</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">693</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">903</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">7</div><div class="l">多杀次数</div></div>
-        <div class="pd-stat"><div class="v">4</div><div class="l">死亡</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>本场编织者 7 次多杀（6 双 + 1 三）是个恐怖数据。</b>编织者 1 号位本身就是"位移之王"，配合先手攻击和震动伤害，对面斯拉达和幻影刺客追都追不到。前 9 分钟猥琐发育之后，9:19 第一次双杀，从此一路统治到 35:57 三杀收尾。</p>
-        <p>4 死亡说明你苟得也很好——位移技能让对面打不到。</p>
-      </div>
-      <div class="pd-coach">编织者出装路线建议：吸血面具 → 龙心或撒旦 → 金箍棒（破对面闪避）→ 蝴蝶。后期面对夜魇魔抗低的英雄，可以试试出蓝橙剑（紫电）。</div>
-    </div>
-
-    <div class="player-deep radiant">
-      <div class="pd-head">
-        <div><div class="pd-name">qt <span class="hero">裂魂人 · 中单</span></div><div class="pd-pos">2 号位 · 团魂选手</div></div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>7/6/29</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">391</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">529</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">29</div><div class="l">助攻</div></div>
-        <div class="pd-stat"><div class="v">7</div><div class="l">击杀</div></div>
-      </div>
-      <div class="pd-comment">
-        <p>裂魂人 2 号位 mid 出来后冲撞救人 + 团战开团非常关键。29 助攻说明你团战在场率几乎 100%，每次都能跟上。</p>
-        <p>391 金/分 偏低可能因为团战参与太多没补刀，但这就是 4 号位的觉悟（虽然你打的是 mid 位）。</p>
-      </div>
-      <div class="pd-coach">裂魂人 mid 推荐路线：跳刀 → 黑皇杖 → 阿哈利姆神杖（升级冲撞）→ 大根。冲撞先手强 carry 是关键。</div>
-    </div>
-
-    <div class="player-deep radiant">
-      <div class="pd-head">
-        <div><div class="pd-name">带把少女李狗蛋 <span class="hero">潮汐猎人 · 劣势路</span></div><div class="pd-pos">3 号位 · 副最佳</div></div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>11/2/26</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">650</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">891</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">3</div><div class="l">推塔数</div></div>
-        <div class="pd-stat"><div class="v">2</div><div class="l">死亡</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>潮汐猎人 11 杀 2 死亡是神级数据。</b>3 号位通常是吃苦位，但你的潮汐打出了类似大哥位的输出节奏。打了 3 个塔——是带节奏型 3 号。</p>
-        <p>大招毁灭 5 人配合 Ss 编织者大招收割，是天辉团战碾压的核心组合。</p>
-      </div>
-      <div class="pd-coach">潮汐 3 号位出装：黯灭→刃甲→黑皇杖→阿哈利姆神杖。后期出大根可以连续两个大招团灭对面。</div>
-    </div>
-
-    <div class="player-deep radiant">
-      <div class="pd-head">
-        <div><div class="pd-name">A <span class="hero">大地之灵 · 游走辅助</span></div><div class="pd-pos">4 号位 · 团魂奖</div></div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>6/7/30</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">426</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">640</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">30</div><div class="l">助攻 ⭐</div></div>
-        <div class="pd-stat"><div class="v">6</div><div class="l">击杀</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>30 助攻是全场最高。</b>大地之灵 4 号位的连招（石爆 + 残影）控人非常稳，每次团战都参与。</p>
-        <p>6 击杀对 4 号位算输出贡献，配合潮汐大招完美。</p>
-      </div>
-      <div class="pd-coach">大地之灵推荐出阿哈利姆魔晶（升级残影）+ 微光斗篷。后期出大根可以连续控人。</div>
-    </div>
-
-    <div class="player-deep radiant">
-      <div class="pd-head">
-        <div><div class="pd-name">冰清玉洁梅老八 <span class="hero">拉比克 · 硬辅</span></div><div class="pd-pos">5 号位 · 偷大王</div></div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>9/5/26</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">482</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">638</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">26</div><div class="l">助攻</div></div>
-        <div class="pd-stat"><div class="v">9</div><div class="l">击杀</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>拉比克 5 号位拿 9 杀！</b>2:06 一血也是你拿的——拉比克一上来就秀。21:15 双杀那波估计偷了对面术士或风暴大招。</p>
-        <p>5 号位 482 金/分 + 26 助攻——视野和支援都做了。</p>
-      </div>
-      <div class="pd-coach">拉比克 5 号位出装：推推棒→微光→阿哈利姆神杖→大根。偷大节奏是这英雄的核心。</div>
-    </div>
-
-    <h3>🔴 夜魇 5 人</h3>
-
-    <div class="player-deep dire">
-      <div class="pd-head">
-        <div><div class="pd-name">赵子龙 <span class="hero">幻影刺客 · 大哥位</span></div><div class="pd-pos">1 号位 · 被克制</div></div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>5/7/7</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">551</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">672</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">5</div><div class="l">击杀</div></div>
-        <div class="pd-stat"><div class="v">7</div><div class="l">死亡</div></div>
-      </div>
-      <div class="pd-comment">
-        <p>5 击杀 7 死亡——幻影刺客被克制了。对面阵容编织者位移让你的大招打不到关键人，潮汐大招又控住你后排难帮。</p>
-        <p>551 金/分对 1 号位偏低，说明对线没打出节奏。</p>
-      </div>
-      <div class="pd-coach">下次面对编织者，可以早出金箍棒（破闪避）+ 蝴蝶。或者 BP 阶段不选幻刺，选莉娜/赏金这种打编织者的。</div>
-    </div>
-
-    <div class="player-deep dire">
-      <div class="pd-head">
-        <div><div class="pd-name">60 <span class="hero">风暴之灵 · 中单</span></div><div class="pd-pos">2 号位 · 夜魇最佳</div></div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>9/9/10</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">528</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">853</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">9</div><div class="l">击杀</div></div>
-        <div class="pd-stat"><div class="v">9</div><div class="l">死亡</div></div>
-      </div>
-      <div class="pd-comment">
-        <p>9/9/10 是夜魇唯一打出输出的人。29:40 双杀那波是夜魇最后的反扑。但 9 死亡说明被反复切死——风暴之灵脆皮。</p>
-      </div>
-      <div class="pd-coach">风暴之灵后期可以出蓝橙剑 + 大根。先手蓝量管理是关键。</div>
-    </div>
-
-    <div class="player-deep dire">
-      <div class="pd-head">
-        <div><div class="pd-name">划，就硬划 <span class="hero">斯拉达 · 劣势路</span></div><div class="pd-pos">3 号位</div></div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>5/11/8</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">380</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">552</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">5</div><div class="l">击杀</div></div>
-        <div class="pd-stat"><div class="v">11</div><div class="l">死亡</div></div>
-      </div>
-      <div class="pd-comment">
-        <p>3 号位斯拉达 5 杀 11 死。对面潮汐猎人 + 编织者太强了，前期斯拉达大招找视野的优势没打出来。</p>
-      </div>
-      <div class="pd-coach">面对潮汐 + 编织者这种阵容，斯拉达大招其实没那么大用。试试早出胸甲反伤。</div>
-    </div>
-
-    <div class="player-deep dire">
-      <div class="pd-head">
-        <div><div class="pd-name">Wasabi <span class="hero">术士 · 游走</span></div><div class="pd-pos">4 号位</div></div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>3/11/14</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">363</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">313</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">14</div><div class="l">助攻</div></div>
-        <div class="pd-stat"><div class="v">11</div><div class="l">死亡</div></div>
-      </div>
-      <div class="pd-comment">
-        <p>术士 4 号位被反复切死。术士大招本来是逆转技，但需要保护——你的位置经常太前。</p>
-      </div>
-      <div class="pd-coach">术士 4 号位出装：推推棒救自己 + 微光救人 + 阿哈利姆神杖（大招升级）。开大招后立即推开自己。</div>
-    </div>
-
-    <div class="player-deep dire">
-      <div class="pd-head">
-        <div><div class="pd-name">misaka <span class="hero">暗影萨满 · 硬辅</span></div><div class="pd-pos">5 号位 · 黑锅奖</div></div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>2/13/16</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">298</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">314</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">2</div><div class="l">击杀</div></div>
-        <div class="pd-stat"><div class="v">13</div><div class="l">死亡</div></div>
-      </div>
-      <div class="pd-comment">
-        <p>13 死亡全场最高。9:18 那波双杀是你整局唯一高光，可惜 9:19 立刻被 Ss 反过来双杀。后面就一直被切死。</p>
-      </div>
-      <div class="pd-coach">暗影萨满 5 号位出装：祭品/微光/原力法杖 三件套。变蛇形态尽量躲后排。前期辅助生存意识第一，输出第二。</div>
-    </div>
-
-  </section>
-
-  <section class="voice-section">
-    <h2>🎙️ 口述视角</h2>
-
-    <div class="voice-intro">
-      AI 模拟每位玩家口吻，对其他人的看法。基于实际数据 + 角色推测，<b>看看在不同位置上场，眼里的同一场比赛是什么样</b>。
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">Ss<span class="hero">编织者 · 大哥位</span></div>
-      <div class="quote">前 9 分钟我一直在猥琐 farm，对线幻刺没法压我。9 分钟那波团战 misaka 双杀我，我立刻一波双杀回来——从那时起我就感觉 carry 了。后面装备一件件出，对面追不到我。带把少女李狗蛋的潮汐打得真好，每次大招都接我的输出，11 杀 2 死亡也是 carry 数据。冰清玉洁梅老八 拉比克偷大也是关键，21 分钟那波双杀感觉是偷了术士大。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">带把少女李狗蛋<span class="hero">潮汐猎人 · 劣势路</span></div>
-      <div class="quote">3 号位潮汐对线虽然苦但我尽量站住。13 分钟之后跟着 Ss 走，每次大招毁灭都能控住夜魇 4-5 个人，他立刻爆发收人。Ss 这把编织者就是无解 carry。对面斯拉达打 3 号其实强势，但他被我大招控住一次就走不了。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">qt<span class="hero">裂魂人 · 中单</span></div>
-      <div class="quote">裂魂人 mid 主要是开团 + 救人。29 个助攻说明每次团战我都在。Ss 后期编织者太牛了，我冲撞先手几个英雄他后面收。冰清玉洁梅老八 拉比克偷大也很狠，每次他偷一个大招团战就翻盘。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">A<span class="hero">大地之灵 · 4 号位</span></div>
-      <div class="quote">4 号大地之灵主要是控人。30 助攻是我满意的数据。每次跟潮汐配合大招控人，Ss 编织者就跟着收 5 个。前 10 分钟夜魇打得不错，但 13 分钟之后我们打他们就跟开挂一样。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">冰清玉洁梅老八<span class="hero">拉比克 · 5 号位</span></div>
-      <div class="quote">2:06 一血就是我拿的，开局拉比克秀一把。21:15 那波双杀肯定偷了术士大招。9 杀拉比克 5 号位也算 carry 数据了。Ss 这把编织者一个人带飞，我视野跟上他的节奏就行。下等局 misaka 我们这边 5 号但她切人太凶被切死了。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">60<span class="hero">风暴之灵 · 夜魇 mid</span></div>
-      <div class="quote">夜魇唯一打出输出的就是我。9:18 双杀和 29:40 双杀是我两次回光。但 Ss 编织者太强了，我冲过去切人发现他位移走了，反过来被他大招追死。下次面对编织者要一起开雾找他。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">赵子龙<span class="hero">幻影刺客 · 夜魇 1 号位</span></div>
-      <div class="quote">幻影刺客对线没赢就完了。前期 farm 一般，后期编织者位移让我大招打不到。下次 BP 看到编织者就别选幻刺——出蓝橙剑这种破闪避的英雄更好。这把对面 4 号 + 5 号死了 18 个，但我们 carry 没起来也没用。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">misaka<span class="hero">暗影萨满 · 夜魇 5 号位</span></div>
-      <div class="quote">9:18 双杀是我整局唯一高光，立刻被 Ss 反杀。13 死亡是我自己问题——5 号位切人太凶，被反复抓死。下次出推推棒救自己，少切人多放眼。</div>
-    </div>
-
-  </section>
-
-  <section>
-    <h2>每分钟金钱排行</h2>
-    <div class="bar-chart">
-      <div class="bar-row radiant"><div class="bar-name">Ss</div><div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div><div class="bar-val">693</div></div>
-      <div class="bar-row radiant"><div class="bar-name">带把少女李狗蛋</div><div class="bar-track"><div class="bar-fill" style="width: 93.8%;"></div></div><div class="bar-val">650</div></div>
-      <div class="bar-row dire"><div class="bar-name">赵子龙</div><div class="bar-track"><div class="bar-fill" style="width: 79.5%;"></div></div><div class="bar-val">551</div></div>
-      <div class="bar-row dire"><div class="bar-name">60</div><div class="bar-track"><div class="bar-fill" style="width: 76.2%;"></div></div><div class="bar-val">528</div></div>
-      <div class="bar-row radiant"><div class="bar-name">冰清玉洁梅老八</div><div class="bar-track"><div class="bar-fill" style="width: 69.6%;"></div></div><div class="bar-val">482</div></div>
-      <div class="bar-row radiant"><div class="bar-name">A</div><div class="bar-track"><div class="bar-fill" style="width: 61.5%;"></div></div><div class="bar-val">426</div></div>
-      <div class="bar-row radiant"><div class="bar-name">qt</div><div class="bar-track"><div class="bar-fill" style="width: 56.4%;"></div></div><div class="bar-val">391</div></div>
-      <div class="bar-row dire"><div class="bar-name">划，就硬划</div><div class="bar-track"><div class="bar-fill" style="width: 54.8%;"></div></div><div class="bar-val">380</div></div>
-      <div class="bar-row dire"><div class="bar-name">Wasabi</div><div class="bar-track"><div class="bar-fill" style="width: 52.4%;"></div></div><div class="bar-val">363</div></div>
-      <div class="bar-row dire"><div class="bar-name">misaka</div><div class="bar-track"><div class="bar-fill" style="width: 43%;"></div></div><div class="bar-val">298</div></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>完整数据表</h2>
-    <table class="data-table">
-      <thead><tr><th>玩家</th><th>英雄</th><th class="num">击杀/死亡/助攻</th><th class="num">金/分</th><th class="num">经/分</th></tr></thead>
-      <tbody>
-        <tr><td class="team-radiant">Ss ⭐</td><td>编织者</td><td class="num">18/4/12</td><td class="num">693</td><td class="num">903</td></tr>
-        <tr><td class="team-radiant">带把少女李狗蛋</td><td>潮汐猎人</td><td class="num">11/2/26</td><td class="num">650</td><td class="num">891</td></tr>
-        <tr><td class="team-radiant">冰清玉洁梅老八</td><td>拉比克</td><td class="num">9/5/26</td><td class="num">482</td><td class="num">638</td></tr>
-        <tr><td class="team-radiant">A</td><td>大地之灵</td><td class="num">6/7/30</td><td class="num">426</td><td class="num">640</td></tr>
-        <tr><td class="team-radiant">qt</td><td>裂魂人</td><td class="num">7/6/29</td><td class="num">391</td><td class="num">529</td></tr>
-        <tr><td class="team-dire">赵子龙</td><td>幻影刺客</td><td class="num">5/7/7</td><td class="num">551</td><td class="num">672</td></tr>
-        <tr><td class="team-dire">60</td><td>风暴之灵</td><td class="num">9/9/10</td><td class="num">528</td><td class="num">853</td></tr>
-        <tr><td class="team-dire">划，就硬划</td><td>斯拉达</td><td class="num">5/11/8</td><td class="num">380</td><td class="num">552</td></tr>
-        <tr><td class="team-dire">Wasabi</td><td>术士</td><td class="num">3/11/14</td><td class="num">363</td><td class="num">313</td></tr>
-        <tr><td class="team-dire">misaka</td><td>暗影萨满</td><td class="num">2/13/16</td><td class="num">298</td><td class="num">314</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>下次怎么打更好</h2>
-    <div class="suggestions">
-      <div class="sug-block radiant">
-        <h3>🟢 天辉</h3>
-        <ol>
-          <li><b>Ss 编织者节奏正确</b>：前期猥琐 + 中后期暴走，无可指摘</li>
-          <li><b>潮汐 + 大地之灵开团组合</b>：留这个组合，团战碾压</li>
-          <li><b>拉比克偷大节奏可以更激进</b>：术士大、斯拉达大、风暴大都是高价值偷取</li>
-        </ol>
-      </div>
-      <div class="sug-block dire">
-        <h3>🔴 夜魇</h3>
-        <ol>
-          <li><b>面对编织者要早针对</b>：莉娜/赏金/巨魔战将都是打编织者的英雄</li>
-          <li><b>misaka 5 号别切人太凶</b>：13 死亡说明位置不对，先求生再输出</li>
-          <li><b>幻影刺客赵子龙出装可以加金箍棒</b>：破编织者闪避</li>
-          <li><b>13:31 那波团没顶住 = 输</b>：早期赢两团之后应该保持节奏多推塔，不应该让天辉缓过来</li>
-        </ol>
-      </div>
-    </div>
-  </section>
+  </article>
 
   <div class="report-footer">
-    <p>📊 数据来源：OpenDota Parser 解析比赛 ID 8803928598 → Claude AI 自动生成战报</p>
+    <p>📊 数据来源：<a href="https://github.com/odota/parser" target="_blank">OpenDota Parser</a> 解析比赛 ID  → Claude AI 自动生成</p>
     <p>📖 <a href="index.html">返回 5.9 战报总览</a> · <a href="../../index.html">主页</a> · <a href="https://github.com/mrliuzhiyu/OriginDota">GitHub</a></p>
   </div>
 

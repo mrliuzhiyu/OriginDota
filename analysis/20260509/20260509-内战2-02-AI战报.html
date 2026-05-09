@@ -3,196 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="2026.5.9 原点 Dota2 内战 2 第 2 局 AI 战报 — 幻影刺客后期翻盘 57 分大战">
+<meta name="description" content="原点 Dota2 内战 AI 战报">
 <meta name="theme-color" content="#1a1a1a">
-<title>5.9 内战 2 第 2 局 · AI 战报 · 原点 Dota2</title>
-<style>
-  :root {
-    --ink: #1a1a1a; --ink-soft: #444; --ink-mute: #888;
-    --line: #e6e6e6; --line-soft: #f0f0f0;
-    --bg: #ffffff; --bg-card: #fafafa; --bg-soft: #f5f5f5;
-    --radiant: #2d5a3d; --radiant-bg: #f0f7f2;
-    --dire: #8b3a3a; --dire-bg: #fbf3f3;
-    --gold: #b8860b; --gold-bg: #fdf9ed;
-    --red: #c00; --voice-bg: #f5f1fa;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 14px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
-  .page { max-width: 1080px; margin: 0 auto; padding: 48px 40px 80px; }
-
-  .actions { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; margin-bottom: 32px; border-bottom: 1px solid var(--line); }
-  .actions .crumb { font-size: 12px; color: var(--ink-mute); letter-spacing: 1px; }
-  .actions .crumb a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px dotted var(--ink-mute); }
-  .actions .crumb a:hover { color: var(--ink); }
-  .actions .btns { display: flex; gap: 10px; }
-  .actions button, .actions a.btn { padding: 8px 14px; font-size: 12px; border: 1px solid var(--ink); background: var(--bg); color: var(--ink); cursor: pointer; font-family: inherit; letter-spacing: 1px; text-decoration: none; }
-  .actions button:hover, .actions a.btn:hover { background: var(--ink); color: #fff; }
-
-  .header { text-align: center; margin-bottom: 40px; padding-bottom: 28px; border-bottom: 2px solid var(--ink); }
-  .header .eyebrow { font-size: 11px; letter-spacing: 5px; color: var(--ink-mute); margin-bottom: 14px; }
-  .header h1 { font-size: 30px; font-weight: 600; letter-spacing: 1px; margin-bottom: 18px; }
-  .header .meta-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--ink-soft); }
-  .header .meta-row span { position: relative; }
-  .header .meta-row span + span::before { content: "·"; color: var(--ink-mute); position: absolute; left: -14px; }
-
-  .scoreboard { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; padding: 28px 32px; border: 1px solid var(--line); background: var(--bg-card); margin-bottom: 32px; }
-  .scoreboard .team-side { text-align: center; }
-  .scoreboard .team-side.radiant { color: var(--radiant); }
-  .scoreboard .team-side.dire { color: var(--dire); }
-  .scoreboard .team-side .label { font-size: 12px; letter-spacing: 3px; color: var(--ink-mute); margin-bottom: 6px; }
-  .scoreboard .team-side .name { font-size: 22px; font-weight: 700; letter-spacing: 2px; margin-bottom: 4px; }
-  .scoreboard .team-side .name.win::after { content: "胜"; display: inline-block; margin-left: 8px; font-size: 12px; background: var(--gold); color: #fff; padding: 2px 8px; letter-spacing: 1px; vertical-align: 4px; }
-  .scoreboard .score-num { font-size: 48px; font-weight: 800; font-feature-settings: "tnum"; line-height: 1; }
-  .scoreboard .vs { font-size: 16px; color: var(--ink-mute); letter-spacing: 4px; }
-
-  .tldr { background: var(--gold-bg); border-left: 4px solid var(--gold); padding: 18px 24px; margin-bottom: 40px; font-size: 15px; line-height: 1.85; }
-  .tldr strong { color: var(--ink); font-weight: 700; }
-  .tldr .label { font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 8px; font-weight: 700; }
-
-  section { margin-bottom: 48px; }
-  section h2 { font-size: 20px; font-weight: 700; letter-spacing: 2px; padding-bottom: 12px; margin-bottom: 24px; border-bottom: 2px solid var(--ink); }
-  section h2 .h2-meta { font-size: 12px; color: var(--ink-mute); letter-spacing: 1px; margin-left: 12px; font-weight: 400; }
-  section h3 { font-size: 15px; font-weight: 700; margin: 24px 0 14px; }
-
-  .lineup { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .lineup .team-block { border: 1px solid var(--line); }
-  .lineup .team-head { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; }
-  .lineup .team-block.radiant .team-head { background: var(--radiant-bg); border-bottom-color: var(--radiant); }
-  .lineup .team-block.dire .team-head { background: var(--dire-bg); border-bottom-color: var(--dire); }
-  .lineup .team-name { font-weight: 700; letter-spacing: 1px; font-size: 15px; }
-  .lineup .team-block.radiant .team-name { color: var(--radiant); }
-  .lineup .team-block.dire .team-name { color: var(--dire); }
-  .lineup .team-summary { font-size: 11px; color: var(--ink-mute); }
-  .lineup table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .lineup th, .lineup td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--line-soft); }
-  .lineup th { font-size: 10px; color: var(--ink-mute); letter-spacing: 1px; font-weight: 500; background: var(--bg-soft); }
-  .lineup tr:last-child td { border-bottom: none; }
-  .lineup .hero { font-weight: 600; }
-  .lineup .player { color: var(--ink-soft); font-size: 11px; }
-  .lineup td.num { text-align: right; font-feature-settings: "tnum"; }
-  .lineup td.kda { font-weight: 600; font-feature-settings: "tnum"; }
-  .lineup tr.mvp { background: #fff8e1; }
-  .lineup tr.mvp .hero::before { content: "★"; color: var(--gold); margin-right: 4px; }
-
-  .timeline { border-left: 2px solid var(--line); margin-left: 80px; }
-  .timeline-event { position: relative; padding: 14px 0 14px 28px; border-bottom: 1px dashed var(--line); }
-  .timeline-event:last-child { border-bottom: none; }
-  .timeline-event .time { position: absolute; left: -78px; top: 14px; width: 60px; text-align: right; font-weight: 700; font-size: 13px; color: var(--ink); font-feature-settings: "tnum"; }
-  .timeline-event::before { content: ""; position: absolute; left: -7px; top: 20px; width: 12px; height: 12px; background: var(--ink); border-radius: 50%; border: 2px solid var(--bg); }
-  .timeline-event.radiant::before { background: var(--radiant); }
-  .timeline-event.dire::before { background: var(--dire); }
-  .timeline-event.key::before { background: var(--gold); width: 16px; height: 16px; left: -9px; top: 18px; }
-  .timeline-event .title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
-  .timeline-event .desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
-  .timeline-event .tag { display: inline-block; font-size: 10px; padding: 1px 7px; margin-right: 6px; border: 1px solid var(--ink); color: var(--ink); letter-spacing: 1px; vertical-align: 1px; }
-  .timeline-event.radiant .tag { background: var(--radiant); color: #fff; border-color: var(--radiant); }
-  .timeline-event.dire .tag { background: var(--dire); color: #fff; border-color: var(--dire); }
-  .phase-title { font-size: 14px; font-weight: 700; letter-spacing: 2px; margin: 28px 0 14px -82px; padding: 6px 16px; background: var(--bg-card); border-left: 4px solid var(--ink); width: fit-content; }
-  .phase-title.early { border-left-color: var(--radiant); color: var(--radiant); }
-  .phase-title.中路{ border-left-color: var(--dire); color: var(--dire); }
-  .phase-title.late { border-left-color: var(--gold); color: var(--gold); }
-  .phase-title.gg { border-left-color: var(--ink); color: var(--ink); }
-
-  .awards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .award { border: 1px solid var(--line); padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start; }
-  .award.gold { border-color: var(--gold); background: var(--gold-bg); }
-  .award.fun { border-color: var(--ink); background: #fffae8; }
-  .award .medal { font-size: 26px; line-height: 1; margin-top: 2px; flex-shrink: 0; width: 32px; }
-  .award .award-info { flex: 1; }
-  .award .award-title { font-size: 11px; letter-spacing: 2px; color: var(--ink-mute); margin-bottom: 4px; font-weight: 600; }
-  .award .award-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--ink); }
-  .award .award-stat { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
-
-  .player-deep { border: 1px solid var(--line); padding: 20px 24px; margin-bottom: 16px; page-break-inside: avoid; }
-  .player-deep.radiant { border-left: 4px solid var(--radiant); }
-  .player-deep.dire { border-left: 4px solid var(--dire); }
-  .player-deep .pd-head { display: grid; grid-template-columns: 1fr auto; gap: 16px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line-soft); align-items: baseline; }
-  .player-deep .pd-name { font-size: 17px; font-weight: 700; }
-  .player-deep .pd-name .hero { color: var(--ink-soft); font-weight: 400; font-size: 13px; margin-left: 6px; }
-  .player-deep .pd-pos { font-size: 11px; color: var(--ink-mute); letter-spacing: 1px; }
-  .player-deep .pd-kda { text-align: right; font-size: 16px; font-weight: 700; font-feature-settings: "tnum"; }
-  .player-deep .pd-kda .label { font-size: 10px; color: var(--ink-mute); letter-spacing: 2px; margin-right: 6px; font-weight: 400; }
-  .player-deep .pd-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
-  .player-deep .pd-stat { background: var(--bg-card); padding: 7px 10px; text-align: center; }
-  .player-deep .pd-stat .v { font-size: 14px; font-weight: 700; font-feature-settings: "tnum"; }
-  .player-deep .pd-stat .l { font-size: 10px; color: var(--ink-mute); margin-top: 2px; }
-  .player-deep .pd-comment { font-size: 13px; line-height: 1.8; color: var(--ink-soft); }
-  .player-deep .pd-comment p { margin-bottom: 6px; }
-  .player-deep .pd-coach { margin-top: 10px; padding: 9px 14px; background: #f8f9fb; border-left: 3px solid #4a90e2; font-size: 12px; color: var(--ink-soft); }
-  .player-deep .pd-coach::before { content: "教练点评 · "; font-weight: 700; color: #4a90e2; letter-spacing: 1px; }
-
-  .voice-section .voice-card { background: var(--voice-bg); border-left: 4px solid #8b6db5; padding: 18px 22px; margin-bottom: 14px; page-break-inside: avoid; }
-  .voice-section .voice-card .speaker { font-weight: 700; font-size: 14px; margin-bottom: 8px; color: #5d4178; }
-  .voice-section .voice-card .speaker .hero { color: var(--ink-mute); font-weight: 400; font-size: 12px; margin-left: 6px; }
-  .voice-section .voice-card .quote { font-size: 13px; color: var(--ink); line-height: 1.85; font-style: italic; }
-  .voice-section .voice-card .quote::before { content: "「"; color: #8b6db5; margin-right: 2px; }
-  .voice-section .voice-card .quote::after { content: "」"; color: #8b6db5; margin-left: 2px; }
-  .voice-section .voice-intro { font-size: 13px; color: var(--ink-mute); margin-bottom: 18px; padding: 12px 16px; background: var(--bg-card); border-left: 3px solid var(--ink-mute); }
-
-  .key-moments { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .key-moment { border: 1px solid var(--line); padding: 14px 18px; }
-  .key-moment .km-time { font-size: 11px; color: var(--gold); letter-spacing: 2px; font-weight: 700; margin-bottom: 4px; }
-  .key-moment .km-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-  .key-moment .km-desc { font-size: 12px; color: var(--ink-soft); line-height: 1.6; }
-
-  .data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .data-table th, .data-table td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
-  .data-table th { font-size: 10px; letter-spacing: 1px; color: var(--ink-mute); background: var(--bg-card); }
-  .data-table td.num { text-align: right; font-feature-settings: "tnum"; }
-  .data-table td.team-radiant { border-left: 3px solid var(--radiant); }
-  .data-table td.team-dire { border-left: 3px solid var(--dire); }
-
-  .bar-chart { margin: 14px 0; }
-  .bar-row { display: grid; grid-template-columns: 110px 1fr 60px; gap: 10px; align-items: center; padding: 3px 0; font-size: 12px; }
-  .bar-row .bar-name { font-weight: 600; }
-  .bar-row .bar-track { height: 16px; background: var(--bg-card); border: 1px solid var(--line); position: relative; }
-  .bar-row .bar-fill { height: 100%; background: var(--ink); }
-  .bar-row.radiant .bar-fill { background: var(--radiant); }
-  .bar-row.dire .bar-fill { background: var(--dire); }
-  .bar-row .bar-val { text-align: right; font-weight: 600; font-feature-settings: "tnum"; }
-
-  .suggestions { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .suggestions .sug-block { padding: 16px 20px; border: 1px solid var(--line); }
-  .suggestions .sug-block.radiant { border-left: 4px solid var(--radiant); background: var(--radiant-bg); }
-  .suggestions .sug-block.dire { border-left: 4px solid var(--dire); background: var(--dire-bg); }
-  .suggestions h3 { margin: 0 0 12px; font-size: 14px; }
-  .suggestions ol { margin-left: 20px; font-size: 12px; line-height: 1.8; }
-  .suggestions ol li { margin-bottom: 6px; color: var(--ink-soft); }
-  .suggestions ol li b { color: var(--ink); }
-
-  .report-footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 11px; color: var(--ink-mute); text-align: center; line-height: 1.8; }
-  .report-footer a { color: var(--ink-soft); }
-
-  @media (max-width: 720px) {
-    .page { padding: 24px 16px 48px; }
-    .header h1 { font-size: 22px; }
-    .scoreboard { grid-template-columns: 1fr; gap: 16px; padding: 20px; }
-    .scoreboard .vs { display: none; }
-    .scoreboard .score-num { font-size: 36px; }
-    .lineup, .awards-grid, .key-moments, .suggestions { grid-template-columns: 1fr; }
-    .player-deep .pd-stats { grid-template-columns: repeat(2, 1fr); }
-    .timeline { margin-left: 56px; }
-    .timeline-event .time { left: -56px; width: 44px; font-size: 11px; }
-    .phase-title { margin-left: -58px; }
-  }
-
-  @media print {
-    body { background: white; font-size: 11px; }
-    .page { max-width: 100%; padding: 14mm 12mm; }
-    .actions { display: none !important; }
-    .header h1 { font-size: 20px; }
-    .scoreboard { padding: 16px; page-break-inside: avoid; }
-    .scoreboard .score-num { font-size: 28px; }
-    .tldr, .award, .key-moment, .player-deep, .voice-card { page-break-inside: avoid; }
-    section { margin-bottom: 22px; }
-    section h2 { font-size: 14px; margin-bottom: 12px; padding-bottom: 6px; }
-    .player-deep { padding: 10px 14px; margin-bottom: 8px; }
-    .player-deep .pd-name { font-size: 13px; }
-    .voice-card { padding: 12px 16px; }
-    a { color: inherit; text-decoration: none; }
-    .player-cards-section, .voice-section { page-break-before: always; }
-  }
-</style>
+<title>5.9 内战 2 · 第 1 局 AI 战报 · 原点 Dota2</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="page">
@@ -202,643 +16,478 @@
       <a href="../../index.html">原点 Dota2 内战</a> ›
       <a href="../../20260509-内战对战表.html">5.9 对战表</a> ›
       <a href="index.html">5.9 战报</a> ›
-      内战 2 第 2 局
+      内战 2 · 第 1 局 AI 战报
     </div>
     <div class="btns">
-      <a class="btn" href="20260509-内战2-01-AI战报.html">← 上一局</a>
-      <a class="btn" href="20260509-内战3-01-AI战报.html">下一局 →</a>
+      
+      
       <button onclick="window.print()">下载 PDF</button>
     </div>
   </div>
 
-  <header class="header">
+  <header class="hero-header">
     <div class="eyebrow">原点 DOTA2 内战 · AI 战报</div>
-    <h1>5.9 内战 2 · 第 2 局</h1>
+    <h1>5.9 内战 2 · 第 1 局 AI 战报</h1>
     <div class="meta-row">
-      <span>2026.5.9 周六</span>
-      <span>比赛 ID 8804000163</span>
-      <span>全英雄选择</span>
-      <span>时长 57:51</span>
-      <span>87 英雄击杀</span>
+      
+      
+      
+      
     </div>
   </header>
 
-  <div class="scoreboard">
-    <div class="team-side radiant">
-      <div class="label">天 辉</div>
-      <div class="name win">天辉</div>
-      <div class="score-num">45</div>
-    </div>
-    <div class="vs">VS</div>
-    <div class="team-side dire">
-      <div class="label">夜 魇</div>
-      <div class="name">夜魇</div>
-      <div class="score-num">41</div>
-    </div>
-  </div>
+  
 
-  <div class="tldr">
-    <div class="label">⚡ 一句话总结</div>
-    <strong>早期被夜魇瘟疫法师 + 主宰双核 滚雪球 几乎打崩，29 分起天辉抢首肉山+连赢三波团战翻盘，最后 42 分幻影刺客装备成型一波 1v5 收割（4 双杀+2 三杀），57:51 推平基地。</strong>
-    经典"老鹰苟到觉醒"剧本。天辉 5 个团战胜利里 4 个发生在 29 分钟之后，夜魇 4 个胜利全在 38 分钟之前——完美的"夜魇前期、天辉后期"双 大哥位 节奏曲线。
-  </div>
+  <article>
+<h1>5.9 内战 2 · 第 1 局 AI 战报</h1>
+<blockquote>
+<p><strong>比赛 ID</strong>：8804000163 ｜ <strong>时长</strong>：57:51 ｜ <strong>结果</strong>：🟢 <strong>天辉胜利</strong> ｜ <strong>比分</strong>：天辉 45 - 41 夜魇
+<strong>数据来源</strong>：OpenDota Parser 解析 .dem 录像 → Claude 自动生成战报
+<strong>生成时间</strong>：2026-05-09</p>
+</blockquote>
+<hr>
+<h2>一句话总结</h2>
+<blockquote>
+<p><strong>早期被夜魇 Necrophos+Juggernaut 双核 snowball 吊打，29 分 Radiant 一波团战翻盘，拉锯到 50 分钟靠 PA 觉醒（4 个 multikill 收尾）推平基地。</strong></p>
+</blockquote>
+<p>这是一场**完美的&quot;开局劣势 → 后期翻盘&quot;**剧本——天辉死了 41 个人才赢的硬仗，含金量高。</p>
+<hr>
+<h2>阵容对比</h2>
+<h3>🟢 天辉（胜）</h3>
+<table>
+<thead>
+<tr>
+<th>位</th>
+<th>英雄</th>
+<th>玩家</th>
+<th>KDA</th>
+<th>GPM/XPM</th>
+<th>LH/DN</th>
+<th>视野</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>Phantom Assassin</strong></td>
+<td>AR.Chalice</td>
+<td><strong>18/4/15</strong></td>
+<td>797 / 1130</td>
+<td>565/9</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Leshrac</strong></td>
+<td>难为。</td>
+<td>16/8/20</td>
+<td>780 / 1085</td>
+<td>514/6</td>
+<td>2眼/1岗</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Slardar</strong></td>
+<td>蓝色柚子大王</td>
+<td>2/14/21</td>
+<td>462 / 691</td>
+<td>273/6</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Dark Willow</strong></td>
+<td>爱吃番茄的喵酱</td>
+<td>6/8/28</td>
+<td>420 / 723</td>
+<td>48/5</td>
+<td><strong>9眼/34岗</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Rubick</strong></td>
+<td>Joy</td>
+<td>3/8/29</td>
+<td>408 / 655</td>
+<td>145/1</td>
+<td>14眼/9岗</td>
+</tr>
+</tbody></table>
+<h3>🔴 夜魇</h3>
+<table>
+<thead>
+<tr>
+<th>位</th>
+<th>英雄</th>
+<th>玩家</th>
+<th>KDA</th>
+<th>GPM/XPM</th>
+<th>LH/DN</th>
+<th>视野</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>Juggernaut</strong></td>
+<td>剑心犹在</td>
+<td>12/8/17</td>
+<td>718 / 833</td>
+<td><strong>593/18</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Necrophos</strong></td>
+<td>憨皮小牛</td>
+<td>10/8/22</td>
+<td>571 / 847</td>
+<td>425/3</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Void Spirit</strong></td>
+<td>划，就硬划</td>
+<td>10/10/19</td>
+<td>501 / 754</td>
+<td>326/6</td>
+<td>2眼</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Elder Titan</strong></td>
+<td>A</td>
+<td>9/7/24</td>
+<td>425 / 795</td>
+<td>206/4</td>
+<td>13眼/17岗</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Winter Wyvern</strong></td>
+<td>下等马给我田忌吧</td>
+<td><strong>0/12/27</strong></td>
+<td>318 / 490</td>
+<td>91/3</td>
+<td>11眼/22岗</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>比赛剧情（带时间戳）</h2>
+<h3>📍 0–15 分：难为 Leshrac 一打多统治中路</h3>
+<ul>
+<li><strong>2:56 First Blood</strong>：AR.Chalice PA 一血 Winter Wyvern</li>
+<li><strong>8:22–11:04</strong>：难为 Leshrac <strong>连续 4 次 streak</strong>（光环 + 闪电环刷脸），mid 完全压制</li>
+<li><strong>13:50</strong> Slardar 推第一塔（天辉先破塔）</li>
+<li><strong>14:19</strong> Juggernaut 还击推塔</li>
+</ul>
+<blockquote>
+<p><strong>早期评价</strong>：天辉中路赢线、推塔领先，但 Slardar offlane 已经开始挨打了</p>
+</blockquote>
+<h3>🔥 15–20 分：夜魇双核觉醒，连下两团</h3>
+<ul>
+<li><strong>15:53 团战</strong> 夜魇 3-0 团灭天辉</li>
+<li><strong>15:57</strong> 憨皮小牛 Necrophos <strong>双杀</strong> + <strong>16:04 三杀</strong>！</li>
+<li><strong>18:31 团战</strong> 夜魇又 4-0 屠戮天辉</li>
+<li><strong>18:38</strong> 划就硬划 Void Spirit streak</li>
+<li><strong>18:45</strong> 剑心犹在 Juggernaut 双杀</li>
+</ul>
+<blockquote>
+<p><strong>中期评价</strong>：Necrophos 大招带闪烁切后排，Jugg 大招收割。<strong>天辉这一段差点崩盘</strong></p>
+</blockquote>
+<h3>🟢 20–32 分：天辉重整，29:05 一团反扑</h3>
+<ul>
+<li><strong>21:09 / 22:57</strong> Juggernaut 还在推塔，夜魇看似优势</li>
+<li><strong>30:03 第一肉山</strong>：Leshrac 拿盾（天辉抢肉山）</li>
+<li><strong>29:05 团战 R4-2</strong> 天辉打赢一波！<strong>节奏第一次反转</strong></li>
+<li><strong>32:48 团战 R5-2</strong> 天辉再下一城</li>
+<li><strong>33:01 / 33:12</strong> Dark Willow + Joy Rubick 各双杀（Joy 应该偷了 Necro 大招？）</li>
+</ul>
+<blockquote>
+<p><strong>关键转折</strong>：30 分 Roshan 是命脉。天辉抢到盾 → 干净反打两团 → 节奏回归</p>
+</blockquote>
+<h3>⚖️ 33–42 分：拉锯，互有胜负</h3>
+<ul>
+<li><strong>34:53 / 34:58</strong> 划就硬划 <strong>双杀 + 三杀</strong>（夜魇救场）</li>
+<li><strong>34:36 团战 R1-4</strong> 夜魇又赢一团</li>
+<li><strong>37:53 团战 R2-5</strong> 夜魇再下一城</li>
+<li><strong>41:12</strong> Elder Titan 双杀（A 这位置真是团战大师）</li>
+<li><strong>41:43 第二肉山</strong>：Juggernaut 拿盾（夜魇还击）</li>
+</ul>
+<blockquote>
+<p><strong>拉锯期评价</strong>：双方 Roshan 各拿一次，纸面均势。但<strong>天辉装备线开始领先</strong>（PA 800 GPM 在堆装）</p>
+</blockquote>
+<h3>💥 42–58 分：PA 后期觉醒，一边倒收官</h3>
+<ul>
+<li><strong>42:50 团战 R4-2</strong> 天辉打赢</li>
+<li><strong>42:58 / 43:00</strong> <strong>AR.Chalice PA 双杀 + 三杀连发</strong>！PA 终于上线</li>
+<li><strong>51:58 第三肉山</strong>（夜魇又抢，但已经晚了）</li>
+<li><strong>52:08 团战 R5-2</strong> 天辉绝对优势</li>
+<li><strong>52:23</strong> PA <strong>三杀</strong>！</li>
+<li><strong>55:50 团战 R5-2</strong> + <strong>56:09 PA 三杀</strong> → 推平基地，<strong>GG</strong></li>
+</ul>
+<blockquote>
+<p><strong>决胜期评价</strong>：PA 一旦起来，夜魇没有解的（魔免不掉关键技能 + Blur 闪避），57 分的 PA 已经是 4 神装无敌</p>
+</blockquote>
+<hr>
+<h2>🏆 MVP &amp; 黑锅 &amp; 趣味奖</h2>
+<h3>🥇 全场 MVP：AR.Chalice（Phantom Assassin）</h3>
+<p><strong>18/4/15 ｜ 797 GPM ｜ 6 个 multikill（4 双杀 + 2 三杀）</strong></p>
+<blockquote>
+<p>早期划水（被 WW 抢一血、前 30 分只死了 0 次），但开盾后觉醒，<strong>42 分起一人主宰团战</strong>。这就是教科书式 PA carry 节奏：苟到装备成型，收割。</p>
+</blockquote>
+<h3>🥈 副 MVP：难为。（Leshrac）</h3>
+<p><strong>16/8/20 ｜ 780 GPM ｜ 推 4 塔 ｜ 中路压制力 MAX</strong></p>
+<blockquote>
+<p>早期 4 个 streak 一人压住夜魇 mid，是天辉前期能站住的关键。后期闪电环带 push 也很强。</p>
+</blockquote>
+<h3>🔴 夜魇 MVP：憨皮小牛（Necrophos）</h3>
+<p><strong>10/8/22 ｜ 16:04 三杀 ｜ 团战 22 助攻</strong></p>
+<blockquote>
+<p>Necrophos 大招带 BKB 和闪烁切后排，是夜魇早中期 carry 节奏的发动机。<strong>单挑能 3 杀的辅助/工具人型 carry，神操作</strong>。</p>
+</blockquote>
+<h3>🪨 黑锅奖（轻喷版）：蓝色柚子大王（Slardar）</h3>
+<p><strong>2/14/21</strong></p>
+<blockquote>
+<p>14 个死亡里多半是被 Necrophos+Jugg 双切。3 号位本来就难，但<strong>273 LH 有点低</strong>——可能是被压线后没及时转线找资源。</p>
+<p><strong>不算 throw</strong>：21 助攻说明你团战在的，没躲。下次试试早出 Blade Mail 反伤 Necro。</p>
+</blockquote>
+<h3>🌟 趣味奖</h3>
+<p><strong>🛡️ 完美辅助奖</strong>：下等马给我田忌吧（Winter Wyvern）
+<strong>0/12/27 ｜ 11 个眼 + 22 个岗 ｜ 318 GPM</strong></p>
+<blockquote>
+<p>0 杀 12 死的&quot;纯纯人形眼睛 + 复活之冷&quot;。WW 的大招 Winter&#39;s Curse 全程救人无数（27 助攻），完美 5 号位。<strong>信誉分应该额外 +0.5</strong>！</p>
+</blockquote>
+<p><strong>🤝 团魂奖</strong>：Joy（Rubick）
+<strong>3/8/29 ｜ 14 个眼 + 9 个岗</strong></p>
+<blockquote>
+<p>29 助攻全场最高之一。Rubick 全场偷大很关键（猜测偷了 Necro 大、Jugg 大、Leshrac 大、ET 大）。<strong>33:12 双杀那波</strong>很关键。</p>
+</blockquote>
+<p><strong>👑 推塔王</strong>：剑心犹在（Juggernaut）
+<strong>18 个 Denies！</strong>（全场最高，反补 18 次说明对线意识极好）
+<strong>593 LH</strong> 全场最高，标准 carry 数据。可惜 PA 装备追上来后被压一头。</p>
+<p><strong>⚡ 团战收割机</strong>：A（Elder Titan）
+<strong>13 个观察眼 + 17 个岗哨眼 + 9 杀 7 死 24 助攻</strong></p>
+<blockquote>
+<p>真正的&quot;4 号位团战核心&quot;。岗哨眼放最多说明你在主动反眼，比某些 4 号位强多了。</p>
+</blockquote>
+<hr>
+<h2>关键数据洞察</h2>
+<h3>Roshan 节奏（决定胜负的关键）</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>胜方</th>
+<th>谁拿盾</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>30:03</td>
+<td>🟢 天辉抢</td>
+<td>Leshrac（带刚波，团战核心）</td>
+</tr>
+<tr>
+<td>41:43</td>
+<td>🔴 夜魇抢</td>
+<td>Juggernaut（最大化 carry 价值）</td>
+</tr>
+<tr>
+<td>51:58</td>
+<td>🔴 夜魇抢（晚了）</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p><strong>第一肉山天辉拿到，是反扑的物质基础</strong>（Leshrac 带刚波团战翻盘）。第三肉山时夜魇已经被 PA 装备碾压，盾也救不了。</p>
+<h3>团战胜负</h3>
+<ul>
+<li><strong>总团战 9 场：天辉 5 胜 / 夜魇 4 胜</strong></li>
+<li>天辉的 5 胜里 4 个发生在 29 分钟之后</li>
+<li><strong>夜魇的 4 胜全在前 38 分钟</strong></li>
+</ul>
+<p>→ 完美的&quot;夜魇前期、天辉后期&quot;曲线</p>
+<h3>视野对比</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>天辉</th>
+<th>夜魇</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>观察眼</td>
+<td>25</td>
+<td>26</td>
+</tr>
+<tr>
+<td>岗哨眼</td>
+<td>49</td>
+<td>39</td>
+</tr>
+</tbody></table>
+<p><strong>天辉岗哨眼比夜魇多 10 个</strong>——反眼意识更强。Dark Willow 一人插了 34 个岗哨，<strong>4 号位反眼范本</strong>。</p>
+<hr>
+<h2>改进建议（每队 3 条）</h2>
+<h3>🟢 天辉</h3>
+<ol>
+<li><strong>Slardar 早期处境太苦</strong>：被 Necrophos 主动 push 线 + Jugg gank。下局可以让 Joy Rubick 早期上 offlane 偏游走帮 Slardar 站线</li>
+<li><strong>PA 出装太奶</strong>（前 30 分 0 死也只是因为没参团）：建议 18 分前可以试一次 gank 帮中路而不是全程 farm。但<strong>结果上看你是对的</strong>（觉醒后无敌）</li>
+<li><strong>Joy 14 眼 + 9 岗 + 14 个 buyback</strong>？Buyback 数据可能有 bug，但视野数据看你出装思路偏护卫，这局没问题</li>
+</ol>
+<h3>🔴 夜魇</h3>
+<ol>
+<li><strong>15-20 分一波打崩天辉时没拆掉</strong>：早期两个团 7-0，但只多推了 1 个塔。<strong>应该 18:31 打完直接转高地</strong>，不给天辉缓的时间</li>
+<li><strong>Jugg 后期被 PA 单杀</strong>（51:58 + 52:08 团战）：装备线最后被 PA 反超。需要更激进推塔，或者出 Satanic 抗压</li>
+<li><strong>WW 全场没 1 杀</strong>：虽然她是 5 号位但 Winter&#39;s Curse 找时机其实可以收人头。下次大招后跟一个普攻试试</li>
+</ol>
+<h3>⚖️ 通用建议（双方）</h3>
+<ul>
+<li><strong>天辉总击杀 45 &lt; 夜魇 41 + 4 个 streak 死亡 ≈ 45</strong>：双方杀得差不多，差距只在<strong>塔/兵线/Roshan 经济</strong>。说明纯抢人头不一定赢，目标资源更关键</li>
+<li><strong>42:58–43:00 PA 双 + 三杀</strong>：这 2 秒决定了比赛——夜魇可能在守高地时贴脸开雾被 BKB 反打。下次守高地<strong>散开站位 + 留撤退技能</strong></li>
+</ul>
+<hr>
+<h2>数据表（完整 KDA）</h2>
+<table>
+<thead>
+<tr>
+<th>玩家</th>
+<th>英雄</th>
+<th>KDA</th>
+<th>GPM</th>
+<th>XPM</th>
+<th>LH</th>
+<th>DN</th>
+<th>NW</th>
+<th>LV</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AR.Chalice</strong></td>
+<td>Phantom Assassin</td>
+<td>18/4/15</td>
+<td>797</td>
+<td>1130</td>
+<td>565</td>
+<td>9</td>
+<td>45.4K</td>
+<td>30</td>
+</tr>
+<tr>
+<td>难为。</td>
+<td>Leshrac</td>
+<td>16/8/20</td>
+<td>780</td>
+<td>1085</td>
+<td>514</td>
+<td>6</td>
+<td>44.5K</td>
+<td>29</td>
+</tr>
+<tr>
+<td>剑心犹在</td>
+<td>Juggernaut</td>
+<td>12/8/17</td>
+<td>718</td>
+<td>833</td>
+<td>593</td>
+<td>18</td>
+<td>40.9K</td>
+<td>27</td>
+</tr>
+<tr>
+<td>划，就硬划</td>
+<td>Void Spirit</td>
+<td>10/10/19</td>
+<td>501</td>
+<td>754</td>
+<td>326</td>
+<td>6</td>
+<td>28.6K</td>
+<td>26</td>
+</tr>
+<tr>
+<td>憨皮小牛</td>
+<td>Necrophos</td>
+<td>10/8/22</td>
+<td>571</td>
+<td>847</td>
+<td>425</td>
+<td>3</td>
+<td>32.5K</td>
+<td>27</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Elder Titan</td>
+<td>9/7/24</td>
+<td>425</td>
+<td>795</td>
+<td>206</td>
+<td>4</td>
+<td>24.2K</td>
+<td>27</td>
+</tr>
+<tr>
+<td>爱吃番茄的喵酱</td>
+<td>Dark Willow</td>
+<td>6/8/28</td>
+<td>420</td>
+<td>723</td>
+<td>48</td>
+<td>5</td>
+<td>23.9K</td>
+<td>26</td>
+</tr>
+<tr>
+<td>Joy</td>
+<td>Rubick</td>
+<td>3/8/29</td>
+<td>408</td>
+<td>655</td>
+<td>145</td>
+<td>1</td>
+<td>23.2K</td>
+<td>25</td>
+</tr>
+<tr>
+<td>蓝色柚子大王</td>
+<td>Slardar</td>
+<td>2/14/21</td>
+<td>462</td>
+<td>691</td>
+<td>273</td>
+<td>6</td>
+<td>26.3K</td>
+<td>26</td>
+</tr>
+<tr>
+<td>下等马给我田忌吧</td>
+<td>Winter Wyvern</td>
+<td>0/12/27</td>
+<td>318</td>
+<td>490</td>
+<td>91</td>
+<td>3</td>
+<td>18.1K</td>
+<td>22</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>关于本战报</h2>
+<ul>
+<li><strong>解析器</strong>：<a href="https://github.com/odota/parser">OpenDota Parser</a> (Docker)，处理 27 万事件 / 60MB JSONL</li>
+<li><strong>聚合</strong>：自研 Node.js 脚本（<a href="../tools/aggregate.mjs"><code>tools/aggregate.mjs</code></a>）</li>
+<li><strong>AI 分析</strong>：Claude（Anthropic）基于聚合 JSON 撰写</li>
+<li><strong>流程</strong>：录像 → 解析 → 聚合 → AI 战报 → git push → 公示网页</li>
+</ul>
+<p>如果某个判断（MVP / 黑锅 / 节奏分析）你觉得不准，欢迎在群里反驳——AI 只能基于数据判断，<strong>实际操作的妙处和翻车细节还得当事人亲口讲</strong>。</p>
+<p>下一局记得继续传录像 → 我自动出战报。</p>
 
-  <section>
-    <h2>阵容对比 <span class="h2-meta">5v5 · 全英雄选择 · 双核阵容对决</span></h2>
-    <div class="lineup">
-      <div class="team-block radiant">
-        <div class="team-head">
-          <span class="team-name">天辉 · 胜</span>
-          <span class="team-summary">综合分 51K · 均分 5450</span>
-        </div>
-        <table>
-          <thead><tr><th>位</th><th>英雄 / 玩家</th><th class="num">击杀/死亡/助攻</th><th class="num">金/分</th><th class="num">经/分</th></tr></thead>
-          <tbody>
-            <tr class="mvp"><td>1</td><td><div class="hero">幻影刺客</div><div class="player">AR.Chalice</div></td><td class="num kda">18/4/15</td><td class="num">797</td><td class="num">1130</td></tr>
-            <tr><td>2</td><td><div class="hero">拉席克</div><div class="player">难为。</div></td><td class="num kda">16/8/20</td><td class="num">780</td><td class="num">1085</td></tr>
-            <tr><td>3</td><td><div class="hero">斯拉达</div><div class="player">蓝色柚子大王</div></td><td class="num kda">2/14/21</td><td class="num">462</td><td class="num">691</td></tr>
-            <tr><td>4</td><td><div class="hero">黑暗仙女</div><div class="player">爱吃番茄的喵酱</div></td><td class="num kda">6/8/28</td><td class="num">420</td><td class="num">723</td></tr>
-            <tr><td>5</td><td><div class="hero">拉比克</div><div class="player">Joy</div></td><td class="num kda">3/8/29</td><td class="num">408</td><td class="num">655</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="team-block dire">
-        <div class="team-head">
-          <span class="team-name">夜魇 · 负</span>
-          <span class="team-summary">综合分 50K · 均分 5060</span>
-        </div>
-        <table>
-          <thead><tr><th>位</th><th>英雄 / 玩家</th><th class="num">击杀/死亡/助攻</th><th class="num">金/分</th><th class="num">经/分</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td><div class="hero">主宰</div><div class="player">剑心犹在</div></td><td class="num kda">12/8/17</td><td class="num">718</td><td class="num">833</td></tr>
-            <tr><td>2</td><td><div class="hero">瘟疫法师</div><div class="player">憨皮小牛</div></td><td class="num kda">10/8/22</td><td class="num">571</td><td class="num">847</td></tr>
-            <tr><td>3</td><td><div class="hero">虚无之灵</div><div class="player">划，就硬划</div></td><td class="num kda">10/10/19</td><td class="num">501</td><td class="num">754</td></tr>
-            <tr><td>4</td><td><div class="hero">上古巨神</div><div class="player">A</div></td><td class="num kda">9/7/24</td><td class="num">425</td><td class="num">795</td></tr>
-            <tr><td>5</td><td><div class="hero">寒冬飞龙</div><div class="player">下等马给我田忌吧</div></td><td class="num kda">0/12/27</td><td class="num">318</td><td class="num">490</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>比赛剧情 <span class="h2-meta">9 个团战 · 3 次肉山 · 25 个塔击杀</span></h2>
-    <div class="timeline">
-
-      <div class="phase-title early">📍 0 – 15 分钟 · 拉席克中路统治</div>
-
-      <div class="timeline-event radiant">
-        <div class="time">2:56</div>
-        <span class="tag">一血</span>
-        <div class="title">幻影刺客一血寒冬飞龙</div>
-        <div class="desc">下路对线，AR.Chalice 拿到一血。给幻刺早期经济加成，对线就赢了。</div>
-      </div>
-
-      <div class="timeline-event radiant">
-        <div class="time">8 – 11 分</div>
-        <span class="tag">连续 连杀</span>
-        <div class="title">拉席克中路 4 次 连杀（3 分钟内）</div>
-        <div class="desc">难为。8:22、8:44、10:15、11:04 连续四次 连杀——闪电环 + 光环刷脸，中路完全碾压。这种节奏说明拉席克走的应该是疯帽 + 跳刀路线。</div>
-      </div>
-
-      <div class="timeline-event radiant">
-        <div class="time">13:50</div>
-        <span class="tag">推塔</span>
-        <div class="title">斯拉达推下天辉第一塔</div>
-        <div class="desc">天辉先破塔，前期节奏完全压制。</div>
-      </div>
-
-      <div class="phase-title mid">⚠️ 15 – 20 分钟 · 夜魇双核觉醒</div>
-
-      <div class="timeline-event dire key">
-        <div class="time">15:52 – 16:04</div>
-        <span class="tag">3-0 团灭</span>
-        <div class="title">⭐ 瘟疫法师 3 分钟内双杀 + 三杀</div>
-        <div class="desc"><b>本场夜魇翻局起点。</b>憨皮小牛 15:52 双杀，紧接 16:04 三杀。15:53 那波团战天辉 0-3 团灭。瘟疫法师大招配合阿哈利姆神杖（推测）+ 跳刀切后排，连秒 3 人——这是 瘟疫法师经典爆发节奏。</div>
-      </div>
-
-      <div class="timeline-event dire">
-        <div class="time">18:31 – 18:45</div>
-        <span class="tag">4-0 团灭</span>
-        <div class="title">虚无之灵 + 主宰接力 连杀</div>
-        <div class="desc">夜魇又一波 4-0。划就硬划 18:38 连杀、剑心犹在 18:45 双杀。<b>天辉这一段差点崩盘</b>——双方经济差距被拉到 12K+。</div>
-      </div>
-
-      <div class="phase-title late">🔄 20 – 35 分钟 · 天辉重整 + 拉锯</div>
-
-      <div class="timeline-event radiant key">
-        <div class="time">29:05</div>
-        <span class="tag">⭐ 反扑团</span>
-        <div class="title">天辉 4-2 打赢首个反扑团</div>
-        <div class="desc"><b>本场翻盘起点。</b>夜魇双核装备爆出黑皇杖之后的真空期，天辉用斯拉达大招找视野 + 拉席克闪电环转线，在天辉野区一波拿下 4-2。<b>节奏第一次翻转。</b></div>
-      </div>
-
-      <div class="timeline-event radiant">
-        <div class="time">30:03</div>
-        <span class="tag">一肉</span>
-        <div class="title">天辉首肉山 — 拉席克拿盾</div>
-        <div class="desc">第一肉山天辉拿到，难为。带上不朽盾 = 团战不死秒人。<b>这是物质基础</b>——后续两个 天5-2夜 / 天4-2夜 大胜全靠这个 买活 优势。</div>
-      </div>
-
-      <div class="timeline-event radiant">
-        <div class="time">32:48 – 33:12</div>
-        <span class="tag">连续优势团</span>
-        <div class="title">天辉 5-2 团灭 + 拉比克双杀（偷大！）</div>
-        <div class="desc">32:48 团 天5-2夜，紧接 33:01 黑暗仙女双杀，33:12 <b>Joy 拉比克双杀</b>——很可能偷的是瘟疫法师大招或拉席克大招，团战收割力拉满。</div>
-      </div>
-
-      <div class="timeline-event dire">
-        <div class="time">34:36 – 37:53</div>
-        <span class="tag">夜魇反推</span>
-        <div class="title">虚无之灵 双杀+三杀 → 夜魇 天5-2夜 大胜</div>
-        <div class="desc">划就硬划 34:53 双杀 + 34:58 三杀，34:36 团战 天1-4夜，37:53 团战 天2-5夜。夜魇用虚无之灵强黑皇杖输出反扑，差距又被拉回。</div>
-      </div>
-
-      <div class="timeline-event dire">
-        <div class="time">41:43</div>
-        <span class="tag">二肉</span>
-        <div class="title">夜魇拿第二肉山 — 主宰拿盾</div>
-        <div class="desc">夜魇还以颜色，剑心犹在拿盾。但<b>这时幻影刺客已经攒够装备线</b>——夜魇盾的价值正在被 幻影刺客的狂战斧 + 飘渺之刃抹平。</div>
-      </div>
-
-      <div class="phase-title gg">🏆 42 – 58 分钟 · 幻刺觉醒 · 一边倒收官</div>
-
-      <div class="timeline-event radiant key">
-        <div class="time">42:50 – 43:00</div>
-        <span class="tag">⭐⭐ 幻刺觉醒</span>
-        <div class="title">⭐ AR.Chalice 一波双杀+三杀（关键 8 秒）</div>
-        <div class="desc"><b>整场比赛真正的胜负手。</b>42:50 团战 天4-2夜，紧跟 42:58 幻影刺客双杀 + 43:00 幻影刺客三杀。幻影刺客终于成型——狂战斧推线 + 阿哈利姆神杖飘渺之刃 + 黑皇杖 / 深渊之刃关键装备到位，<b>每次大招暴击秒人</b>。从这一刻起夜魇没解了。</div>
-      </div>
-
-      <div class="timeline-event radiant">
-        <div class="time">51:58 – 57:51</div>
-        <span class="tag">游戏结束</span>
-        <div class="title">三肉 → 高地破 → 推平基地</div>
-        <div class="desc">52:08 团战 天5-2夜 + 52:23 幻影刺客三杀 + 52:25 上古巨神双杀（夜魇唯一抵抗）。55:50 团战再 天5-2夜，56:09 幻影刺客三杀 + 56:11 拉席克双杀 → 推平基地。<b>57:51 游戏结束。</b></div>
-      </div>
-
-    </div>
-  </section>
-
-  <section>
-    <h2>关键时刻一览 <span class="h2-meta">5 个改变走势的瞬间</span></h2>
-    <div class="key-moments">
-      <div class="key-moment">
-        <div class="km-time">★ 16:04 · 转折 1</div>
-        <div class="km-title">瘟疫法师三杀 → 夜魇起飞</div>
-        <div class="km-desc">本场最强单波击杀。瘟疫法师大招 3 个死神镰刀直接锁死天辉团战发动机。</div>
-      </div>
-      <div class="key-moment">
-        <div class="km-time">★ 29:05 · 转折 2</div>
-        <div class="km-title">天辉首胜团 4-2</div>
-        <div class="km-desc">夜魇黑皇杖全部用完之后的真空期，天辉用斯拉达大招硬开成功。节奏翻转。</div>
-      </div>
-      <div class="key-moment">
-        <div class="km-time">★ 30:03 · 物质基础</div>
-        <div class="km-title">首肉山拉席克拿盾</div>
-        <div class="km-desc">不朽盾给拉席克，团战秒人不死 = 后续两个团战翻盘的底子。</div>
-      </div>
-      <div class="key-moment">
-        <div class="km-time">★ 42:58-43:00 · 关键 8 秒</div>
-        <div class="km-title">幻影刺客双杀+三杀连发</div>
-        <div class="km-desc">幻影刺客装备线终于成型，8 秒内 5 杀。夜魇彻底失去单挑能力。</div>
-      </div>
-      <div class="key-moment">
-        <div class="km-time">★ 56:09 · 比赛终结</div>
-        <div class="km-title">幻影刺客三杀 + 拉席克双杀 → 推基地</div>
-        <div class="km-desc">最后一波 5-2 团灭后无人守家，57:51 游戏结束。</div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>本场奖项 <span class="h2-meta">数据说话</span></h2>
-    <div class="awards-grid">
-      <div class="award gold">
-        <div class="medal">🥇</div>
-        <div class="award-info">
-          <div class="award-title">全场 全场最佳</div>
-          <div class="award-name">AR.Chalice（幻影刺客）</div>
-          <div class="award-stat">18/4/15 ｜ 797 金/分 ｜ 6 个 多杀（4 双杀+2 三杀）<br>"苟到觉醒型 大哥位"教科书。前 30 分只死 0-1 次（还在打钱），42 分起一人主宰。</div>
-        </div>
-      </div>
-      <div class="award gold">
-        <div class="medal">🥈</div>
-        <div class="award-info">
-          <div class="award-title">副 全场最佳 · 早期暴走奖</div>
-          <div class="award-name">难为。（拉席克）</div>
-          <div class="award-stat">16/8/20 ｜ 780 金/分 ｜ 推 4 塔 ｜ 早期 4 连杀<br>没有早期拉席克一打多压住，天辉前 15 分就崩了。</div>
-        </div>
-      </div>
-      <div class="award gold">
-        <div class="medal">🔥</div>
-        <div class="award-info">
-          <div class="award-title">夜魇 全场最佳</div>
-          <div class="award-name">憨皮小牛（瘟疫法师）</div>
-          <div class="award-stat">10/8/22 ｜ 16:04 单波三杀<br>瘟疫法师是夜魇早中期 大哥位 节奏的发动机。可惜后期被 幻影刺客装备打散。</div>
-        </div>
-      </div>
-      <div class="award fun">
-        <div class="medal">🛡️</div>
-        <div class="award-info">
-          <div class="award-title">完美辅助奖</div>
-          <div class="award-name">下等马给我田忌吧（寒冬飞龙）</div>
-          <div class="award-stat">0/12/27 ｜ 11 眼 + 22 岗 ｜ 318 金/分<br>0 杀全 助攻 的"纯纯人形复活之冷"。冰霜诅咒救人无数。<b>建议信誉分额外 +0.5</b>。</div>
-        </div>
-      </div>
-      <div class="award fun">
-        <div class="medal">👁️</div>
-        <div class="award-info">
-          <div class="award-title">视野霸主</div>
-          <div class="award-name">爱吃番茄的喵酱（黑暗仙女）</div>
-          <div class="award-stat">9 眼 + 34 个岗哨<br>4 号位反眼贡献全场最高，34 个岗哨意味着每分钟都在主动反眼。</div>
-        </div>
-      </div>
-      <div class="award fun">
-        <div class="medal">🤝</div>
-        <div class="award-info">
-          <div class="award-title">团魂奖</div>
-          <div class="award-name">Joy（拉比克）</div>
-          <div class="award-stat">3/8/29 ｜ 全场最高 29 助攻 ｜ 偷大无数<br>33:12 那波双杀大概率偷了对面瘟疫法师大招反杀。</div>
-        </div>
-      </div>
-      <div class="award fun">
-        <div class="medal">🪨</div>
-        <div class="award-info">
-          <div class="award-title">黑锅奖（轻喷）</div>
-          <div class="award-name">蓝色柚子大王（斯拉达）</div>
-          <div class="award-stat">2/14/21 ｜ 14 个死亡<br>3 号位斯拉达被瘟疫法师 + 主宰反复抓死。21 个 助攻 说明你团战没躲。下次试试早出胸甲反伤。</div>
-        </div>
-      </div>
-      <div class="award fun">
-        <div class="medal">⚔️</div>
-        <div class="award-info">
-          <div class="award-title">推塔王 / 大哥位标杆</div>
-          <div class="award-name">剑心犹在（主宰）</div>
-          <div class="award-stat">593 LH（全场最高） ｜ 18 反补（全场最高）<br>对线阶段 大哥位 数据完美，可惜后期 幻影刺客装备追上。</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="player-cards-section">
-    <h2>每位玩家深度点评 <span class="h2-meta">10 张卡 · 一人一段</span></h2>
-
-    <h3>🟢 天辉 5 人</h3>
-
-    <div class="player-deep radiant">
-      <div class="pd-head">
-        <div>
-          <div class="pd-name">AR.Chalice <span class="hero">幻影刺客 · 1 号位</span></div>
-          <div class="pd-pos">大哥位 · 全场最佳</div>
-        </div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>18/4/15</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">797</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">1130</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">565</div><div class="l">正补</div></div>
-        <div class="pd-stat"><div class="v">9</div><div class="l">反补</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>本场 全场最佳 毫无悬念。</b>4 死亡是后期 大哥位 的标准——从一血开始一直到 30 分钟基本全在打钱，没参团。这种"不参团"看似消极，但这就是幻影刺客的节奏：装备成型前是发育机器，装备成型后是杀人机器。</p>
-        <p>关键节点：<b>32:56 第一个 连杀 → 38:16 又一个 → 42:58/43:00 双+三杀连发（觉醒）→ 52:08 ~ 56:11 一共 8 个 连杀 锁死局势</b>。18 杀里至少 14 个发生在 35 分之后。</p>
-      </div>
-      <div class="pd-coach">下次可以更激进一点——这场是因为夜魇没人针对你（瘟疫法师主切后排不切前排），所以你苟过来了。如果对面有真正的反 幻影刺客阵容（如赏金 + 莉娜），就需要更早出黑皇杖。出装节奏正确，赞一个。</div>
-    </div>
-
-    <div class="player-deep radiant">
-      <div class="pd-head">
-        <div>
-          <div class="pd-name">难为。 <span class="hero">拉席克 · 中单</span></div>
-          <div class="pd-pos">中单 · 副 全场最佳</div>
-        </div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>16/8/20</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">780</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">1085</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">514</div><div class="l">正补</div></div>
-        <div class="pd-stat"><div class="v">6</div><div class="l">反补</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>没有你早期 4 个 连杀（8:22-11:04），天辉前 15 分就崩了。</b>中路 514 LH 说明你不光打架还在补刀——这是优秀中单的标准（杀人 ≠ 不补刀）。</p>
-        <p>后期推塔贡献也大（4 个塔），是天辉持续输出节奏的核心。8 死说明被夜魇集火过几次（典型拉席克的脆皮命运），但每次基本带走人。</p>
-      </div>
-      <div class="pd-coach">拉席克 中路出装路线建议：黯灭早 → 血精石 → 永世法衣 → 阿哈利姆神杖 → 大根。后期大根双闪电环团战才是真正神技。</div>
-    </div>
-
-    <div class="player-deep radiant">
-      <div class="pd-head">
-        <div>
-          <div class="pd-name">蓝色柚子大王 <span class="hero">斯拉达 · 3 号位</span></div>
-          <div class="pd-pos">劣单 · 黑锅奖</div>
-        </div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>2/14/21</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">462</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">691</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">273</div><div class="l">正补</div></div>
-        <div class="pd-stat"><div class="v">6</div><div class="l">反补</div></div>
-      </div>
-      <div class="pd-comment">
-        <p>14 个死亡，但<b>21 个 助攻</b> 说明你团战一直在场——没躲、没苟。3 号位斯拉达面对瘟疫法师这种"切前排"英雄非常痛苦。</p>
-        <p>对比上一局（同英雄不同人玩出 18/1 神级数据），<b>说明斯拉达这英雄非常吃打法/位置</b>。1 号位斯拉达大招配合双 大哥位 阵容是无敌的，但 3 号位斯拉达在被压制阵容里很被动。</p>
-      </div>
-      <div class="pd-coach">下次 3 号位面对瘟疫法师阵容，强烈建议早出 <b>胸甲（反伤刺甲）</b>——瘟疫法师大招打你你能反掉一半血。莲花球也好用反弹大招。</div>
-    </div>
-
-    <div class="player-deep radiant">
-      <div class="pd-head">
-        <div>
-          <div class="pd-name">爱吃番茄的喵酱 <span class="hero">黑暗仙女 · 4 号位</span></div>
-          <div class="pd-pos">游走辅助 · 视野霸主</div>
-        </div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>6/8/28</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">420</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">723</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">9</div><div class="l">观察眼</div></div>
-        <div class="pd-stat"><div class="v">34</div><div class="l">岗哨</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>34 个岗哨眼是这场全场最高。</b>这意味着你每隔 1 分钟就在主动反眼——这才是 4 号位该有的视野觉悟。</p>
-        <p>6/8/28 数据中规中矩，团战经常使用满地荆棘控住目标。33:01 双杀那波打得很漂亮。</p>
-      </div>
-      <div class="pd-coach">4 号位推荐多带烟雾——配合斯拉达大招的视野，可以做更多团灭式 抓人。下次试试出微光斗篷救幻影刺客。</div>
-    </div>
-
-    <div class="player-deep radiant">
-      <div class="pd-head">
-        <div>
-          <div class="pd-name">Joy <span class="hero">拉比克 · 5 号位</span></div>
-          <div class="pd-pos">硬辅 · 团魂奖</div>
-        </div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>3/8/29</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">408</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">655</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">14</div><div class="l">观察眼</div></div>
-        <div class="pd-stat"><div class="v">9</div><div class="l">岗哨</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>29 个 助攻 是全场最高之一</b>。拉比克 5 号位 = 关键时刻偷大 + 全程视野 + 拉杆控人。33:12 那波双杀很大概率偷的是瘟疫法师大招（死神镰刀）反杀。</p>
-        <p>14 个观察眼是全场前列——5 号视野非常合格。</p>
-      </div>
-      <div class="pd-coach">拉比克偷大节奏是这英雄的核心 — 你已经做得不错。下次可以试试推推棒推队友 + 偷掉主宰大招（剑舞）反向收割。</div>
-    </div>
-
-    <h3>🔴 夜魇 5 人</h3>
-
-    <div class="player-deep dire">
-      <div class="pd-head">
-        <div>
-          <div class="pd-name">剑心犹在 <span class="hero">主宰 · 1 号位</span></div>
-          <div class="pd-pos">大哥位 · 推塔王</div>
-        </div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>12/8/17</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">718</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">833</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">593</div><div class="l">正补 ⭐</div></div>
-        <div class="pd-stat"><div class="v">18</div><div class="l">反补 ⭐</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>593 LH + 18 反补双双全场最高</b>，对线 大哥位 数据完美。前 30 分钟你应该是夜魇最强 大哥位——可惜后期 幻影刺客装备追上来后单挑被压。</p>
-        <p>12/8 的击杀死亡 体现主宰在团战的分推 + 大招收割能力。但<b>装备线最终被 幻影刺客反超</b>（41K vs 45K）。</p>
-      </div>
-      <div class="pd-coach">面对 幻影刺客后期 大哥位：早出撒旦（满血保护 + 吸血对抗 幻影刺客暴击）。漩涡斧也可以考虑（破飘渺之刃闪避）。黑皇杖永远是必出。</div>
-    </div>
-
-    <div class="player-deep dire">
-      <div class="pd-head">
-        <div>
-          <div class="pd-name">憨皮小牛 <span class="hero">瘟疫法师 · 中单</span></div>
-          <div class="pd-pos">中单 · 夜魇 全场最佳</div>
-        </div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>10/8/22</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">571</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">847</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">425</div><div class="l">正补</div></div>
-        <div class="pd-stat"><div class="v">3</div><div class="l">反补</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>16:04 那波三杀是本场最强单波操作。</b>瘟疫法师大招（死神镰刀）的 instant kill 在低血时无敌，配合跳刀切后排，连秒 3 人 — 这是 瘟疫法师的高光时刻。</p>
-        <p>10/8/22 + 22 个 助攻 说明你团战非常活跃。可惜后期 幻影刺客装备爆发后，瘟疫法师大招被黑皇杖+撒旦+飘渺之刃全方位克制。</p>
-      </div>
-      <div class="pd-coach">面对 幻影刺客这种 大哥位，瘟疫法师后期想保持威胁，可以考虑：（1）出阿哈利姆魔晶让大招冷却 + 范围更短；（2）出莲花球反弹 幻影刺客大招暴击。</div>
-    </div>
-
-    <div class="player-deep dire">
-      <div class="pd-head">
-        <div>
-          <div class="pd-name">划，就硬划 <span class="hero">虚无之灵 · 3 号位</span></div>
-          <div class="pd-pos">劣单</div>
-        </div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>10/10/19</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">501</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">754</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">326</div><div class="l">正补</div></div>
-        <div class="pd-stat"><div class="v">6</div><div class="l">反补</div></div>
-      </div>
-      <div class="pd-comment">
-        <p>10/10 击杀死亡 + 19 助 = 平衡的 劣势路 大哥位。<b>34:53 双杀 + 34:58 三杀</b>（连发）说明黑皇杖出来后输出爆发力极强。</p>
-        <p>但 10 死也偏多——VS 是脆皮但靠位移生存的英雄。</p>
-      </div>
-      <div class="pd-coach">虚无之灵后期可以试试阿哈利姆神杖（重置技能）+ 大根，团战连续打两轮就是杀人神器。</div>
-    </div>
-
-    <div class="player-deep dire">
-      <div class="pd-head">
-        <div>
-          <div class="pd-name">A <span class="hero">上古巨神 · 4 号位</span></div>
-          <div class="pd-pos">游走辅助</div>
-        </div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>9/7/24</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">425</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">795</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">13</div><div class="l">观察眼</div></div>
-        <div class="pd-stat"><div class="v">17</div><div class="l">岗哨</div></div>
-      </div>
-      <div class="pd-comment">
-        <p>4 号位 9/7/24 + 24 个 助攻 + 17 个岗哨眼 = <b>真正的"4 号位团战核心"</b>。上古巨神的灵魂出窍 + 大招回响重踏是夜魇早中期统治力的核心。</p>
-        <p>52:25 双杀那波打得很漂亮——夜魇唯一在 幻影刺客觉醒后的有效抵抗。</p>
-      </div>
-      <div class="pd-coach">上古巨神 4 号位推荐阿哈利姆神杖 + 微光救人。后期面对 幻影刺客这种英雄，可以试试赤红甲增加团队抗暴击能力。</div>
-    </div>
-
-    <div class="player-deep dire">
-      <div class="pd-head">
-        <div>
-          <div class="pd-name">下等马给我田忌吧 <span class="hero">寒冬飞龙 · 5 号位</span></div>
-          <div class="pd-pos">硬辅 · 完美辅助奖</div>
-        </div>
-        <div class="pd-kda"><span class="label">击杀/死亡/助攻</span>0/12/27</div>
-      </div>
-      <div class="pd-stats">
-        <div class="pd-stat"><div class="v">318</div><div class="l">金/分</div></div>
-        <div class="pd-stat"><div class="v">490</div><div class="l">经/分</div></div>
-        <div class="pd-stat"><div class="v">11</div><div class="l">观察眼</div></div>
-        <div class="pd-stat"><div class="v">22</div><div class="l">岗哨</div></div>
-      </div>
-      <div class="pd-comment">
-        <p><b>0 杀 12 死 27 助攻 + 11 观察 + 22 岗哨</b>——这就是 5 号位的完美数据。完全是"人形复活之冷"，全程救人没考虑过自己输出。</p>
-        <p>寒冬飞龙大招冬蛰诅咒是团战逆转技。这场 27 个 助攻 说明你的大招命中率非常高。</p>
-        <p><b>建议获得本期内战信誉分额外 +0.5 的"完美辅助奖"</b>。</p>
-      </div>
-      <div class="pd-coach">5 号位寒冬飞龙出装：微光斗篷救人 + 推推棒自救 + 阿哈利姆神杖。莲花球反弹关键技能也很强。</div>
-    </div>
-
-  </section>
-
-  <section class="voice-section">
-    <h2>🎙️ 口述视角 <span class="h2-meta">每个人眼里的其他人</span></h2>
-
-    <div class="voice-intro">
-      下面是 AI 模拟每位玩家的口吻，对场上其他人的看法。基于实际数据 + 角色推测，不代表当事人真实想法——但能让你感受到：<b>同一场比赛在不同位置看是完全不同的故事</b>。
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">AR.Chalice<span class="hero">幻影刺客 · 1 号位</span></div>
-      <div class="quote">前 30 分基本没参团，看难为。一个人 中路4 连杀 的时候我心想"卧槽这把 中路真带得动"。后来夜魇瘟疫法师起来三杀我们，我装备还没出狂战斧+大根，只能猥琐打钱。蓝色柚子大王 3 号位真挺惨，被瘟疫法师反复抓但一直在团没躲。Joy 拉比克偷大也很狠，33:12 那波双杀感觉是偷了 瘟疫法师的大。最后 42 分钟我装备全出来了，剩下就是收割。这局基本是 Joy + 番茄酱 + 难为 抗住前 40 分给我攒装备的。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">难为。<span class="hero">拉席克 · 中单</span></div>
-      <div class="quote">早期 中路8 分到 11 分刷了 4 个 连杀，瘟疫法师没法打我，对面看到拉席克黑屋直接退线。但 16 分那波团瘟疫法师跳大三杀我没跟上，让夜魇起来了。中期我顶着撑着，主要是 Joy 一直在视野位救我。后期 幻影刺客出装后我就只负责开闪电环带塔，他负责秒人。蓝色柚子大王这局打 3 号是真心苦，被 瘟疫法师集火太多次，下次我们换阵容他打 1 号或者 4 号试试。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">蓝色柚子大王<span class="hero">斯拉达 · 3 号位</span></div>
-      <div class="quote">3 号斯拉达是真难顶，瘟疫法师推线 + 主宰 抓人，每次回血都要躲 1 分钟。15 分那波团我刚转线就被 瘟疫法师大秒了。憨皮小牛大哥这局节奏带得真好，但他切人就找我，真的烦。Joy 给我视野救了我好几次，还偷了一个大救我命。后期 幻影刺客真的牛，我被打死那么多次都还在团，最后看 AR.Chalice 一个人 5 杀团灭对面 — 值了。下次我打 4 号位算了，3 号面对瘟疫法师太亏。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">爱吃番茄的喵酱<span class="hero">黑暗仙女 · 4 号位</span></div>
-      <div class="quote">4 号位主要任务就是反眼+控制，这把岗哨插了 34 个，几乎每分钟都在反。前期跟着难为。打 中路帮 抓人。33:01 那波荆棘控住瘟疫法师让 Joy 偷大杀掉真的爽。蓝色柚子太苦了，每次团战他都先冲，可惜对面集火他。下等马（夜魇 WW）这局也很厉害，0 杀 12 死 27 助攻——纯辅助打法值得学习。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">Joy<span class="hero">拉比克 · 5 号位</span></div>
-      <div class="quote">这把偷了好几个大招我都数不清了——印象最深的是 33:12 那波偷的 瘟疫法师大，直接反杀了夜魇 大哥位。29 个助攻基本就是给 幻影刺客和拉席克的。早期被夜魇 瘟疫法师三杀打懵了，幸亏蓝色柚子和番茄酱顶住没崩。憨皮小牛大哥的瘟疫法师真是 大哥位 中单的标杆，可惜他大招冷却太长了，每次大招完我就有机会偷他。下等马 WW 那位太牛了，0 杀全程 助攻 救人——5 号位最高境界。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">剑心犹在<span class="hero">主宰 · 夜魇 1 号位</span></div>
-      <div class="quote">对线 大哥位 数据是全场最好的（593 LH + 18 反补），憨皮小牛中路也帮我 抓人 几次。前 30 分钟我们经济压制天辉。但后来 幻影刺客装备爆出狂战斧 + 大根 + 阿甘后我就打不过了——我撒旦没出，主要靠刷推塔节奏。后面几个团我大招都被天辉拉席克黑屋断了。下次我应该早出撒旦或漩涡斧，专门打幻影刺客。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">憨皮小牛<span class="hero">瘟疫法师 · 夜魇中单</span></div>
-      <div class="quote">16:04 那波三杀是我整局最爽的——大招配合跳刀切后排连秒 3 个，看到对面屏幕惨不忍睹。但 30 分钟之后天辉拉席克直接顶上来对刷，我大招都被偷了好几次（应该是 Joy 的拉比克）。后期 幻影刺客起来之后我就基本只能带塔了，大招对他不疼不痒。划就硬划虚无之灵这局打 3 号挺顶的，34 分双杀+三杀帮我们续了一波节奏。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">划，就硬划<span class="hero">虚无之灵 · 夜魇 3 号位</span></div>
-      <div class="quote">虚无之灵 3 号位主要靠位移生存。34:53 那波双杀 + 34:58 三杀是我装备成型后的爆发，给夜魇续了节奏。但 幻影刺客觉醒后我位移都救不了 — 他暴击+大招直接秒。剑心犹在大哥这把对线 大哥位 数据牛但后期被反超，下次我们要更早抢肉山。下等马这把真是辅助典范，27 个救命冰冻，是我们队的底气。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">A<span class="hero">上古巨神 · 夜魇 4 号位</span></div>
-      <div class="quote">4 号位主要是开团 + 灵魂出窍残血追杀。9 杀 24 助攻数据挺满意，41:12 双杀 + 52:25 双杀都是大招配合 黑皇杖 切的。但是面对 幻影刺客觉醒后我灵魂出窍也撑不住几下，下次得出赤红甲增加团队抗暴击。憨皮小牛 中路太凶了，看到他大招我就开心。Joy 拉比克偷大次数太多影响我们节奏，下次蓝色柚子大招后立刻不要给他偷的机会。</div>
-    </div>
-
-    <div class="voice-card">
-      <div class="speaker">下等马给我田忌吧<span class="hero">寒冬飞龙 · 夜魇 5 号位</span></div>
-      <div class="quote">5 号位 0 杀 12 死 27 助攻——这是我满意的数据。冬蛰诅咒控住对面 大哥位 让队友秒掉，这是寒冬飞龙的精髓。早期我们打得不错，憨皮小牛大哥三杀那波我也救了好几个人。后期 幻影刺客起来之后我大招也救不了多久，每次诅咒结束 幻影刺客就把我们打死。可惜了主宰，对线那么强但后期被压。下次我多出微光救人。</div>
-    </div>
-
-  </section>
-
-  <section>
-    <h2>经济与战力对比 <span class="h2-meta">关键数据可视化</span></h2>
-
-    <h3>每分钟金钱（金/分）排行</h3>
-    <div class="bar-chart">
-      <div class="bar-row radiant"><div class="bar-name">AR.Chalice</div><div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div><div class="bar-val">797</div></div>
-      <div class="bar-row radiant"><div class="bar-name">难为。</div><div class="bar-track"><div class="bar-fill" style="width: 97.9%;"></div></div><div class="bar-val">780</div></div>
-      <div class="bar-row dire"><div class="bar-name">剑心犹在</div><div class="bar-track"><div class="bar-fill" style="width: 90.1%;"></div></div><div class="bar-val">718</div></div>
-      <div class="bar-row dire"><div class="bar-name">憨皮小牛</div><div class="bar-track"><div class="bar-fill" style="width: 71.6%;"></div></div><div class="bar-val">571</div></div>
-      <div class="bar-row dire"><div class="bar-name">划，就硬划</div><div class="bar-track"><div class="bar-fill" style="width: 62.9%;"></div></div><div class="bar-val">501</div></div>
-      <div class="bar-row radiant"><div class="bar-name">蓝色柚子大王</div><div class="bar-track"><div class="bar-fill" style="width: 58%;"></div></div><div class="bar-val">462</div></div>
-      <div class="bar-row dire"><div class="bar-name">A</div><div class="bar-track"><div class="bar-fill" style="width: 53.3%;"></div></div><div class="bar-val">425</div></div>
-      <div class="bar-row radiant"><div class="bar-name">爱吃番茄的喵酱</div><div class="bar-track"><div class="bar-fill" style="width: 52.7%;"></div></div><div class="bar-val">420</div></div>
-      <div class="bar-row radiant"><div class="bar-name">Joy</div><div class="bar-track"><div class="bar-fill" style="width: 51.2%;"></div></div><div class="bar-val">408</div></div>
-      <div class="bar-row dire"><div class="bar-name">下等马</div><div class="bar-track"><div class="bar-fill" style="width: 39.9%;"></div></div><div class="bar-val">318</div></div>
-    </div>
-
-    <h3>团战胜负（按时间顺序）</h3>
-    <div class="bar-chart">
-      <div class="bar-row dire"><div class="bar-name">15:53</div><div class="bar-track"><div class="bar-fill" style="width: 18%;"></div></div><div class="bar-val">夜 3-0</div></div>
-      <div class="bar-row dire"><div class="bar-name">18:31</div><div class="bar-track"><div class="bar-fill" style="width: 24%;"></div></div><div class="bar-val">夜 4-0</div></div>
-      <div class="bar-row radiant"><div class="bar-name">29:05</div><div class="bar-track"><div class="bar-fill" style="width: 36%;"></div></div><div class="bar-val">天 4-2</div></div>
-      <div class="bar-row radiant"><div class="bar-name">32:48</div><div class="bar-track"><div class="bar-fill" style="width: 42%;"></div></div><div class="bar-val">天 5-2</div></div>
-      <div class="bar-row dire"><div class="bar-name">34:36</div><div class="bar-track"><div class="bar-fill" style="width: 30%;"></div></div><div class="bar-val">夜 4-1</div></div>
-      <div class="bar-row dire"><div class="bar-name">37:53</div><div class="bar-track"><div class="bar-fill" style="width: 42%;"></div></div><div class="bar-val">夜 5-2</div></div>
-      <div class="bar-row radiant"><div class="bar-name">42:50</div><div class="bar-track"><div class="bar-fill" style="width: 36%;"></div></div><div class="bar-val">天 4-2</div></div>
-      <div class="bar-row radiant"><div class="bar-name">52:08</div><div class="bar-track"><div class="bar-fill" style="width: 42%;"></div></div><div class="bar-val">天 5-2</div></div>
-      <div class="bar-row radiant"><div class="bar-name">55:50</div><div class="bar-track"><div class="bar-fill" style="width: 42%;"></div></div><div class="bar-val">天 5-2</div></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>完整数据表 <span class="h2-meta">10 人全数据</span></h2>
-    <table class="data-table">
-      <thead><tr><th>玩家</th><th>英雄</th><th class="num">击杀/死亡/助攻</th><th class="num">金/分</th><th class="num">经/分</th><th class="num">正补</th><th class="num">反补</th><th class="num">净资产</th><th class="num">等级</th><th class="num">观察眼</th><th class="num">岗哨</th></tr></thead>
-      <tbody>
-        <tr><td class="team-radiant">AR.Chalice ⭐</td><td>幻影刺客</td><td class="num">18/4/15</td><td class="num">797</td><td class="num">1130</td><td class="num">565</td><td class="num">9</td><td class="num">45.4K</td><td class="num">30</td><td class="num">0</td><td class="num">0</td></tr>
-        <tr><td class="team-radiant">难为。</td><td>拉席克</td><td class="num">16/8/20</td><td class="num">780</td><td class="num">1085</td><td class="num">514</td><td class="num">6</td><td class="num">44.5K</td><td class="num">29</td><td class="num">2</td><td class="num">1</td></tr>
-        <tr><td class="team-dire">剑心犹在</td><td>主宰</td><td class="num">12/8/17</td><td class="num">718</td><td class="num">833</td><td class="num">593</td><td class="num">18</td><td class="num">40.9K</td><td class="num">27</td><td class="num">0</td><td class="num">0</td></tr>
-        <tr><td class="team-dire">划，就硬划</td><td>虚无之灵</td><td class="num">10/10/19</td><td class="num">501</td><td class="num">754</td><td class="num">326</td><td class="num">6</td><td class="num">28.6K</td><td class="num">26</td><td class="num">2</td><td class="num">0</td></tr>
-        <tr><td class="team-dire">憨皮小牛</td><td>瘟疫法师</td><td class="num">10/8/22</td><td class="num">571</td><td class="num">847</td><td class="num">425</td><td class="num">3</td><td class="num">32.5K</td><td class="num">27</td><td class="num">0</td><td class="num">0</td></tr>
-        <tr><td class="team-dire">A</td><td>上古巨神</td><td class="num">9/7/24</td><td class="num">425</td><td class="num">795</td><td class="num">206</td><td class="num">4</td><td class="num">24.2K</td><td class="num">27</td><td class="num">13</td><td class="num">17</td></tr>
-        <tr><td class="team-radiant">爱吃番茄的喵酱</td><td>黑暗仙女</td><td class="num">6/8/28</td><td class="num">420</td><td class="num">723</td><td class="num">48</td><td class="num">5</td><td class="num">23.9K</td><td class="num">26</td><td class="num">9</td><td class="num">34</td></tr>
-        <tr><td class="team-radiant">Joy</td><td>拉比克</td><td class="num">3/8/29</td><td class="num">408</td><td class="num">655</td><td class="num">145</td><td class="num">1</td><td class="num">23.2K</td><td class="num">25</td><td class="num">14</td><td class="num">9</td></tr>
-        <tr><td class="team-radiant">蓝色柚子大王</td><td>斯拉达</td><td class="num">2/14/21</td><td class="num">462</td><td class="num">691</td><td class="num">273</td><td class="num">6</td><td class="num">26.3K</td><td class="num">26</td><td class="num">0</td><td class="num">0</td></tr>
-        <tr><td class="team-dire">下等马给我田忌吧</td><td>寒冬飞龙</td><td class="num">0/12/27</td><td class="num">318</td><td class="num">490</td><td class="num">91</td><td class="num">3</td><td class="num">18.1K</td><td class="num">22</td><td class="num">11</td><td class="num">22</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>下次怎么打更好 <span class="h2-meta">每队 4 条具体建议</span></h2>
-    <div class="suggestions">
-      <div class="sug-block radiant">
-        <h3>🟢 天辉</h3>
-        <ol>
-          <li><b>斯拉达 3 号位早期处境太苦：</b>下次让 Joy 拉比克早期上 劣势路 偏游走帮斯拉达站线</li>
-          <li><b>幻影刺客出装路线 OK 但偏被动：</b>前 30 分 0 死说明完全没参团。可以在 18-22 分钟试一次分推帮中路找节奏</li>
-          <li><b>第一肉山一定要争：</b>这场 30:03 抢到了第一盾，是反扑的物质基础</li>
-          <li><b>5 号位 买活 gold 储备：</b>关键时刻能买活的话团战翻局力强一倍</li>
-        </ol>
-      </div>
-      <div class="sug-block dire">
-        <h3>🔴 夜魇</h3>
-        <ol>
-          <li><b>15-20 分崩天辉时没拆塔：</b>早期两团 7-0 的优势只换来推 1 个塔。<b>应该 18:31 打完直接转高地</b>，不给天辉缓时间</li>
-          <li><b>主宰后期被 幻影刺客单杀：</b>装备线被 幻影刺客反超。需要更激进推塔，或者出撒旦 / 漩涡斧抗压</li>
-          <li><b>寒冬飞龙全场 0 杀：</b>她是 5 号位但冬蛰诅咒找时机其实可以收尾</li>
-          <li><b>面对 幻影刺客阵容要早针对：</b>选英雄阶段看到对面幻影刺客，首选赏金（剑士）打前期 + 莉娜配合大招打飘渺之刃闪避</li>
-        </ol>
-      </div>
-    </div>
-  </section>
+  </article>
 
   <div class="report-footer">
-    <p>📊 数据来源：<a href="https://github.com/odota/parser" target="_blank">OpenDota Parser</a>（本地 Docker）解析 .dem 录像 → Claude AI 自动生成战报</p>
-    <p>🤖 工具链：parse-replay.ps1 → aggregate.mjs → Claude</p>
-    <p>📖 更多战报：<a href="../../index.html">主页</a> · <a href="https://github.com/mrliuzhiyu/OriginDota">GitHub</a></p>
-    <p style="margin-top: 12px; font-size: 10px;">本战报由 AI 基于客观数据生成。如对 全场最佳 / 黑锅 / 节奏判断有不同意见，欢迎在群里反驳——AI 只能从数字看战略层面，操作妙处和翻车细节得当事人讲。</p>
+    <p>📊 数据来源：<a href="https://github.com/odota/parser" target="_blank">OpenDota Parser</a> 解析比赛 ID  → Claude AI 自动生成</p>
+    <p>📖 <a href="index.html">返回 5.9 战报总览</a> · <a href="../../index.html">主页</a> · <a href="https://github.com/mrliuzhiyu/OriginDota">GitHub</a></p>
   </div>
 
 </div>
