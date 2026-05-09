@@ -47,7 +47,7 @@
 - 房名：`原点 Dota 内战 1` / `原点 Dota 内战 2`（双桌时）
 - 密码：`2016`
 - 服务器：上海电信
-- 模式：Random
+- 模式：全英雄选择 (AP)
 - 默认时间：周六 20:00
 - 群内黑盒语音：<https://chat.xiaoheihe.cn/ia8us87s>
 - 公示网页：<https://mrliuzhiyu.github.io/OriginDota/>
