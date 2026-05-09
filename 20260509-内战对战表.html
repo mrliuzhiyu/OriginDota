@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="2026.5.9 周六 20:00 原点 Dota2 内战对战表 — 双桌并行，33 人接龙">
+<meta name="description" content="2026.5.9 周六 20:00 原点 Dota2 内战对战表 — 三桌并行，37 人接龙">
 <meta name="theme-color" content="#1a1a1a">
-<title>2026.5.9 原点 Dota2 内战对战表 · 双桌</title>
+<title>2026.5.9 原点 Dota2 内战对战表 · 三桌</title>
 <style>
   :root {
     --ink: #1a1a1a;
@@ -68,11 +68,11 @@
     left: -16px;
   }
 
-  /* Rooms strip - 2 rooms side by side */
+  /* Rooms strip */
   .rooms {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
     margin-bottom: 32px;
   }
   .room-card {
@@ -99,10 +99,10 @@
   }
   .room-card .r-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .room-card .r-cell {
-    padding: 12px 16px;
+    padding: 12px 14px;
     border-right: 1px solid var(--line);
     text-align: center;
   }
@@ -119,30 +119,30 @@
     font-weight: 500;
     color: var(--ink);
   }
-  @media (max-width: 720px) {
+  @media (max-width: 880px) {
     .rooms { grid-template-columns: 1fr; }
   }
 
   /* Captains */
   .captains {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
     margin-bottom: 32px;
   }
   .cap {
     border: 1px solid var(--ink);
-    padding: 18px 22px;
+    padding: 16px 18px;
     display: flex;
-    gap: 18px;
+    gap: 14px;
     align-items: center;
   }
   .cap .cap-badge {
     font-size: 10px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     color: var(--ink);
     border: 1px solid var(--ink);
-    padding: 3px 8px;
+    padding: 3px 7px;
     font-weight: 600;
     flex-shrink: 0;
   }
@@ -151,7 +151,7 @@
     min-width: 0;
   }
   .cap .cap-name {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--ink);
     margin-bottom: 2px;
@@ -160,7 +160,7 @@
     font-size: 12px;
     color: var(--ink-soft);
   }
-  @media (max-width: 720px) {
+  @media (max-width: 880px) {
     .captains { grid-template-columns: 1fr; }
   }
 
@@ -200,16 +200,18 @@
   }
   .voice-rows {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .voice-row {
     padding: 14px 18px;
     border-right: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
-  .voice-row:last-child { border-right: none; }
+  .voice-row:nth-child(3n) { border-right: none; }
+  .voice-row:nth-last-child(-n+3) { border-bottom: none; }
   .voice-row .v-team {
     font-size: 10px;
     letter-spacing: 2px;
@@ -225,6 +227,9 @@
   @media (max-width: 880px) {
     .voice-rows { grid-template-columns: repeat(2, 1fr); }
     .voice-row { border-bottom: 1px solid var(--line-soft); }
+    .voice-row:nth-child(3n) { border-right: 1px solid var(--line-soft); }
+    .voice-row:nth-child(2n) { border-right: none; }
+    .voice-row:nth-last-child(-n+3) { border-bottom: 1px solid var(--line-soft); }
   }
   @media (max-width: 480px) {
     .voice-rows { grid-template-columns: 1fr; }
@@ -387,7 +392,7 @@
     border: 1px solid var(--line);
     background: var(--bg-card);
     padding: 22px 26px;
-    margin-bottom: 56px;
+    margin-bottom: 28px;
   }
   .subs h3 {
     font-size: 13px;
@@ -397,6 +402,14 @@
     margin-bottom: 14px;
     text-transform: uppercase;
   }
+  .subs h3 .h-meta {
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 2px;
+    margin-left: 10px;
+    font-weight: 400;
+    text-transform: none;
+  }
   .subs-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -405,6 +418,9 @@
   .sub-card {
     border-left: 2px solid #b8b8b8;
     padding: 4px 0 4px 14px;
+  }
+  .sub-card.obs {
+    border-left-color: #d8d8d8;
   }
   .sub-card .sc-name {
     font-size: 15px;
@@ -563,12 +579,21 @@
     padding-left: 20px;
   }
   .card[data-tier="r2"] {
-    border-left: 2px solid #888;
+    border-left: 2px solid #666;
+    padding-left: 20px;
+  }
+  .card[data-tier="r3"] {
+    border-left: 2px solid #aaa;
     padding-left: 20px;
   }
   .card[data-tier="sub"] {
     border-left: 2px solid #b8b8b8;
     padding-left: 20px;
+  }
+  .card[data-tier="obs"] {
+    border-left: 2px solid #d8d8d8;
+    padding-left: 20px;
+    opacity: 0.85;
   }
   .card .card-name {
     font-size: 17px;
@@ -611,21 +636,18 @@
     .header h1 { font-size: 21px; margin-bottom: 10px; }
     .header .meta { gap: 10px 18px; font-size: 12px; }
 
-    /* 双桌房间信息 */
-    .rooms { grid-template-columns: 1fr; gap: 14px; margin-bottom: 22px; }
+    /* 三桌房间信息 */
+    .rooms { grid-template-columns: 1fr !important; gap: 14px; margin-bottom: 22px; }
     .room-card .r-head { padding: 12px 16px; }
     .room-card .r-name { font-size: 15px; }
     .room-card .r-tier { font-size: 10px; letter-spacing: 1px; }
-    .room-card .r-grid { grid-template-columns: repeat(2, 1fr) !important; }
-    .room-card .r-cell { padding: 10px 12px; }
-    .room-card .r-cell:nth-child(1),
-    .room-card .r-cell:nth-child(2) { border-bottom: 1px solid var(--line); }
-    .room-card .r-cell:nth-child(2) { border-right: none; }
+    .room-card .r-grid { grid-template-columns: repeat(3, 1fr) !important; }
+    .room-card .r-cell { padding: 10px 8px; }
     .room-card .r-label { font-size: 9px; letter-spacing: 1px; }
     .room-card .r-value { font-size: 12px; }
 
     /* 开房说明 */
-    .captains { grid-template-columns: 1fr; gap: 12px; margin-bottom: 22px; }
+    .captains { grid-template-columns: 1fr !important; gap: 12px; margin-bottom: 22px; }
     .cap { padding: 14px 16px; gap: 12px; }
     .cap .cap-badge { font-size: 9px; letter-spacing: 1.5px; padding: 2px 6px; }
     .cap .cap-name { font-size: 15px; }
@@ -638,8 +660,8 @@
     .voice-head .v-label { font-size: 10px; }
     .voice-head .v-link { font-size: 11px; }
     .voice-rows { grid-template-columns: 1fr 1fr !important; }
-    .voice-row { padding: 11px 14px; border-right: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
-    .voice-row:nth-child(2n) { border-right: none; }
+    .voice-row { padding: 11px 14px; border-right: 1px solid var(--line-soft) !important; border-bottom: 1px solid var(--line-soft) !important; }
+    .voice-row:nth-child(2n) { border-right: none !important; }
     .voice-row .v-team { font-size: 9px; letter-spacing: 1.5px; }
     .voice-row .v-room { font-size: 13px; }
 
@@ -669,7 +691,7 @@
     .team-foot { padding: 10px 16px; font-size: 10px; flex-wrap: wrap; gap: 4px; }
 
     /* 替补 / 观战 */
-    .subs { padding: 16px 16px; margin-bottom: 32px; }
+    .subs { padding: 16px 16px; margin-bottom: 22px; }
     .subs h3 { font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; }
     .subs-grid { grid-template-columns: 1fr !important; gap: 10px; }
     .sub-card { padding: 4px 0 4px 12px; }
@@ -704,7 +726,7 @@
     .room-card .r-cell { border-right: none !important; border-bottom: 1px solid var(--line); }
     .room-card .r-cell:last-child { border-bottom: none; }
     .voice-rows { grid-template-columns: 1fr !important; }
-    .voice-row { border-right: none; }
+    .voice-row { border-right: none !important; }
   }
 
   @media print {
@@ -718,18 +740,17 @@
 <div class="page">
 
   <header class="header">
-    <div class="eyebrow">原点 DOTA2 内战 · 双桌并行</div>
+    <div class="eyebrow">原点 DOTA2 内战 · 三桌并行</div>
     <h1>原点 Dota2 内战对战表</h1>
     <div class="meta">
       <span>2026.5.9 周六 20:00</span>
       <span>队长模式 · AI 均衡洗牌</span>
-      <span>服务器：上海电信</span>
-      <span>33 人接龙 · 20 主力 · 9 替补 · 4 观战</span>
+      <span>37 人接龙 · 30 主力 · 3 替补 · 4 观战</span>
       <span>报名顺序优先</span>
     </div>
   </header>
 
-  <!-- 两个房间信息条 -->
+  <!-- 三个房间信息条 -->
   <section class="rooms">
     <div class="room-card">
       <div class="r-head">
@@ -743,15 +764,11 @@
         </div>
         <div class="r-cell">
           <div class="r-label">开房</div>
-          <div class="r-value">Joy <span style="font-size:10px; color: var(--ink-mute);">#1</span></div>
-        </div>
-        <div class="r-cell">
-          <div class="r-label">服务器</div>
-          <div class="r-value">上海电信</div>
+          <div class="r-value">就硬划 <span style="font-size:10px; color: var(--ink-mute);">#6</span></div>
         </div>
         <div class="r-cell">
           <div class="r-label">均分</div>
-          <div class="r-value">~4800</div>
+          <div class="r-value">~5550</div>
         </div>
       </div>
     </div>
@@ -759,6 +776,27 @@
     <div class="room-card">
       <div class="r-head">
         <span class="r-name">原点 Dota 内战 2</span>
+        <span class="r-tier">中分桌 · MID</span>
+      </div>
+      <div class="r-grid">
+        <div class="r-cell">
+          <div class="r-label">密码</div>
+          <div class="r-value">2016</div>
+        </div>
+        <div class="r-cell">
+          <div class="r-label">开房</div>
+          <div class="r-value">Joy <span style="font-size:10px; color: var(--ink-mute);">#1</span></div>
+        </div>
+        <div class="r-cell">
+          <div class="r-label">均分</div>
+          <div class="r-value">~3580</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="room-card">
+      <div class="r-head">
+        <span class="r-name">原点 Dota 内战 3</span>
         <span class="r-tier">普通桌 · STANDARD</span>
       </div>
       <div class="r-grid">
@@ -771,12 +809,8 @@
           <div class="r-value">Tc <span style="font-size:10px; color: var(--ink-mute);">#2</span></div>
         </div>
         <div class="r-cell">
-          <div class="r-label">服务器</div>
-          <div class="r-value">上海电信</div>
-        </div>
-        <div class="r-cell">
           <div class="r-label">均分</div>
-          <div class="r-value">~2050</div>
+          <div class="r-value">~1750</div>
         </div>
       </div>
     </div>
@@ -787,49 +821,68 @@
     <div class="cap">
       <span class="cap-badge">开房 · 内战 1</span>
       <div class="cap-info">
-        <div class="cap-name">Joy<span style="font-size:11px; color: var(--ink-mute); letter-spacing:1px; margin-left:8px; font-weight:400;">报名 #1 · 内战 1 顺位首位 · 信誉分 +0.5</span></div>
-        <div class="cap-duty">由内战 1 顺位首位玩家开房，房名「原点 Dota 内战 1」，密码 2016，服务器上海电信</div>
+        <div class="cap-name">就硬划<span style="font-size:11px; color: var(--ink-mute); letter-spacing:1px; margin-left:8px; font-weight:400;">#6 · 顺位首位 · 信誉分 +0.5</span></div>
+        <div class="cap-duty">高分桌开房，房名「原点 Dota 内战 1」，密码 2016</div>
       </div>
     </div>
     <div class="cap">
       <span class="cap-badge">开房 · 内战 2</span>
       <div class="cap-info">
-        <div class="cap-name">Tc<span style="font-size:11px; color: var(--ink-mute); letter-spacing:1px; margin-left:8px; font-weight:400;">报名 #2 · 内战 2 顺位首位 · 信誉分 +0.5</span></div>
-        <div class="cap-duty">由内战 2 顺位首位玩家开房，房名「原点 Dota 内战 2」，密码 2016，服务器上海电信</div>
+        <div class="cap-name">Joy<span style="font-size:11px; color: var(--ink-mute); letter-spacing:1px; margin-left:8px; font-weight:400;">#1 · 顺位首位 · 信誉分 +0.5</span></div>
+        <div class="cap-duty">中分桌开房，房名「原点 Dota 内战 2」，密码 2016</div>
+      </div>
+    </div>
+    <div class="cap">
+      <span class="cap-badge">开房 · 内战 3</span>
+      <div class="cap-info">
+        <div class="cap-name">Tc<span style="font-size:11px; color: var(--ink-mute); letter-spacing:1px; margin-left:8px; font-weight:400;">#2 · 顺位首位 · 信誉分 +0.5</span></div>
+        <div class="cap-duty">普通桌开房，房名「原点 Dota 内战 3」，密码 2016</div>
       </div>
     </div>
   </section>
 
-  <!-- 语音房间 -->
+  <!-- 语音房间 (3 桌 × 3 房 = 9 个) -->
   <section class="voice">
     <div class="voice-head">
-      <span class="v-label">语音 · 黑盒语音</span>
+      <span class="v-label">语音 · 黑盒语音 · 9 个房间</span>
       <span class="v-link">语音频道链接 <a href="https://chat.xiaoheihe.cn/ia8us87s" target="_blank" rel="noopener">chat.xiaoheihe.cn/ia8us87s</a></span>
     </div>
-    <div class="voice-rows" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="voice-rows">
       <div class="voice-row">
         <div class="v-team">内战 1 · 天辉</div>
-        <div class="v-room">天辉剑圣房</div>
+        <div class="v-room">高分天辉房</div>
       </div>
       <div class="voice-row">
         <div class="v-team">内战 1 · 夜魇</div>
-        <div class="v-room">夜宴剑圣房</div>
+        <div class="v-room">高分夜魇房</div>
       </div>
       <div class="voice-row">
         <div class="v-team">内战 1 · 解说</div>
-        <div class="v-room">剑圣解说房</div>
+        <div class="v-room">高分解说房</div>
       </div>
       <div class="voice-row">
         <div class="v-team">内战 2 · 天辉</div>
-        <div class="v-room">天辉小黑房</div>
+        <div class="v-room">中分天辉房</div>
       </div>
       <div class="voice-row">
         <div class="v-team">内战 2 · 夜魇</div>
-        <div class="v-room">夜宴小黑房</div>
+        <div class="v-room">中分夜魇房</div>
       </div>
       <div class="voice-row">
         <div class="v-team">内战 2 · 解说</div>
-        <div class="v-room">小黑解说房</div>
+        <div class="v-room">中分解说房</div>
+      </div>
+      <div class="voice-row">
+        <div class="v-team">内战 3 · 天辉</div>
+        <div class="v-room">普通天辉房</div>
+      </div>
+      <div class="voice-row">
+        <div class="v-team">内战 3 · 夜魇</div>
+        <div class="v-room">普通夜魇房</div>
+      </div>
+      <div class="voice-row">
+        <div class="v-team">内战 3 · 解说</div>
+        <div class="v-room">普通解说房</div>
       </div>
     </div>
   </section>
@@ -837,8 +890,8 @@
   <!-- ============ 内战 1 · 高分桌 ============ -->
   <div class="battle-block">
     <div class="battle-head">
-      <h2>内战 1<span class="room-tag">高分桌 · 房名「原点 Dota 内战 1」 · 密码 2016 · 上海电信</span></h2>
-      <div class="b-cap">开房：<b>Joy（顺位首位 #1）</b></div>
+      <h2>内战 1<span class="room-tag">高分桌 · 房名「原点 Dota 内战 1」 · 密码 2016</span></h2>
+      <div class="b-cap">开房：<b>就硬划（顺位首位 #6）</b></div>
     </div>
 
     <div class="teams">
@@ -847,15 +900,15 @@
       <div class="team">
         <div class="team-head">
           <div class="team-name">天辉<span class="en">RADIANT</span></div>
-          <div class="team-score">综合分<b>23500</b></div>
+          <div class="team-score">综合分<b>27500</b></div>
         </div>
 
         <div class="slot">
           <div class="pos">1</div>
           <div class="info">
-            <div class="name"><span class="num">#13</span>苏三 (SS)</div>
+            <div class="name"><span class="num">#14</span>苏三 (SS)</div>
             <div class="sub">
-              <span>6000 · 国服</span>
+              <span>6000</span>
               <span class="pref">首选 1</span>
             </div>
           </div>
@@ -865,80 +918,7 @@
         <div class="slot">
           <div class="pos">2</div>
           <div class="info">
-            <div class="name"><span class="num">#23</span>zhou</div>
-            <div class="sub">
-              <span>7000 · 国服</span>
-              <span class="pref">首选 2 · 可 1·2</span>
-            </div>
-          </div>
-          <div class="role"><b>中单</b>Mid</div>
-        </div>
-
-        <div class="slot">
-          <div class="pos">3</div>
-          <div class="info">
-            <div class="name"><span class="num">#05</span>就硬划</div>
-            <div class="sub">
-              <span>4000 · 东南亚</span>
-              <span class="pref">可 1·2·3·4</span>
-            </div>
-          </div>
-          <div class="role"><b>劣单</b>Offlane</div>
-        </div>
-
-        <div class="slot">
-          <div class="pos">4</div>
-          <div class="info">
-            <div class="name"><span class="num">#25</span>老崔 (OB)</div>
-            <div class="sub">
-              <span>3500 · 东南亚</span>
-              <span class="pref">可 1·3·4</span>
-            </div>
-          </div>
-          <div class="role"><b>游走辅助</b>Soft Support</div>
-        </div>
-
-        <div class="slot">
-          <div class="pos">5</div>
-          <div class="info">
-            <div class="name"><span class="num">#01</span>Joy</div>
-            <div class="sub">
-              <span>3000 · 国服</span>
-              <span class="pref">首选 1 · 可 1·4·5 · 顺位首位 / 开房</span>
-            </div>
-          </div>
-          <div class="role"><b>硬辅</b>Hard Support</div>
-        </div>
-
-        <div class="team-foot">
-          <span>核心位 1+2+3:&nbsp; 17000</span>
-          <span>辅助位 4+5:&nbsp; 6500</span>
-        </div>
-      </div>
-
-      <!-- 内战 1 · 夜魇 -->
-      <div class="team">
-        <div class="team-head">
-          <div class="team-name">夜魇<span class="en">DIRE</span></div>
-          <div class="team-score">综合分<b>24500</b></div>
-        </div>
-
-        <div class="slot">
-          <div class="pos">1</div>
-          <div class="info">
-            <div class="name"><span class="num">#18</span>赵子龙</div>
-            <div class="sub">
-              <span>5000 · 东南亚</span>
-              <span class="pref">首选 1</span>
-            </div>
-          </div>
-          <div class="role"><b>大哥位</b>Carry</div>
-        </div>
-
-        <div class="slot">
-          <div class="pos">2</div>
-          <div class="info">
-            <div class="name"><span class="num">#10</span>我王守義</div>
+            <div class="name"><span class="num">#11</span>我王守義</div>
             <div class="sub">
               <span>4000</span>
               <span class="pref">首选 1 · 可 1·2</span>
@@ -950,9 +930,9 @@
         <div class="slot">
           <div class="pos">3</div>
           <div class="info">
-            <div class="name"><span class="num">#20</span>吴迪</div>
+            <div class="name"><span class="num">#22</span>吴迪</div>
             <div class="sub">
-              <span>6500 · 东南亚</span>
+              <span>6500</span>
               <span class="pref">仅 3 号位</span>
             </div>
           </div>
@@ -962,10 +942,168 @@
         <div class="slot">
           <div class="pos">4</div>
           <div class="info">
-            <div class="name"><span class="num">#12</span>Wayne</div>
+            <div class="name"><span class="num">#36</span>qt</div>
             <div class="sub">
-              <span>6000 · 国服</span>
+              <span>5000</span>
               <span class="pref">可 4·5</span>
+            </div>
+          </div>
+          <div class="role"><b>游走辅助</b>Soft Support</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">5</div>
+          <div class="info">
+            <div class="name"><span class="num">#13</span>Wayne</div>
+            <div class="sub">
+              <span>6000</span>
+              <span class="pref">可 4·5</span>
+            </div>
+          </div>
+          <div class="role"><b>硬辅</b>Hard Support</div>
+        </div>
+
+        <div class="team-foot">
+          <span>核心位 1+2+3:&nbsp; 16500</span>
+          <span>辅助位 4+5:&nbsp; 11000</span>
+        </div>
+      </div>
+
+      <!-- 内战 1 · 夜魇 -->
+      <div class="team">
+        <div class="team-head">
+          <div class="team-name">夜魇<span class="en">DIRE</span></div>
+          <div class="team-score">综合分<b>28000</b></div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">1</div>
+          <div class="info">
+            <div class="name"><span class="num">#20</span>赵子龙</div>
+            <div class="sub">
+              <span>5000</span>
+              <span class="pref">首选 1</span>
+            </div>
+          </div>
+          <div class="role"><b>大哥位</b>Carry</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">2</div>
+          <div class="info">
+            <div class="name"><span class="num">#25</span>zhou</div>
+            <div class="sub">
+              <span>7000</span>
+              <span class="pref">首选 2 · 可 1·2</span>
+            </div>
+          </div>
+          <div class="role"><b>中单</b>Mid</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">3</div>
+          <div class="info">
+            <div class="name"><span class="num">#06</span>就硬划</div>
+            <div class="sub">
+              <span>4000</span>
+              <span class="pref">可 1·2·3·4 · 顺位首位 / 开房</span>
+            </div>
+          </div>
+          <div class="role"><b>劣单</b>Offlane</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">4</div>
+          <div class="info">
+            <div class="name"><span class="num">#26</span>zk</div>
+            <div class="sub">
+              <span>6000</span>
+              <span class="pref">可 2·3·4</span>
+            </div>
+          </div>
+          <div class="role"><b>游走辅助</b>Soft Support</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">5</div>
+          <div class="info">
+            <div class="name"><span class="num">#31</span>芥末 (wasabi)</div>
+            <div class="sub">
+              <span>6000</span>
+              <span class="pref">可 1·3·5</span>
+            </div>
+          </div>
+          <div class="role"><b>硬辅</b>Hard Support</div>
+        </div>
+
+        <div class="team-foot">
+          <span>核心位 1+2+3:&nbsp; 16000</span>
+          <span>辅助位 4+5:&nbsp; 12000</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ 内战 2 · 中分桌 ============ -->
+  <div class="battle-block">
+    <div class="battle-head">
+      <h2>内战 2<span class="room-tag">中分桌 · 房名「原点 Dota 内战 2」 · 密码 2016</span></h2>
+      <div class="b-cap">开房：<b>Joy（顺位首位 #1）</b></div>
+    </div>
+
+    <div class="teams">
+
+      <!-- 内战 2 · 天辉 -->
+      <div class="team">
+        <div class="team-head">
+          <div class="team-name">天辉<span class="en">RADIANT</span></div>
+          <div class="team-score">综合分<b>17800</b></div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">1</div>
+          <div class="info">
+            <div class="name"><span class="num">#27</span>剑心仍在</div>
+            <div class="sub">
+              <span>4000</span>
+              <span class="pref">首选 1</span>
+            </div>
+          </div>
+          <div class="role"><b>大哥位</b>Carry</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">2</div>
+          <div class="info">
+            <div class="name"><span class="num">#15</span>ben</div>
+            <div class="sub">
+              <span>3300</span>
+              <span class="pref">首选 1 · 可 1·2·3</span>
+            </div>
+          </div>
+          <div class="role"><b>中单</b>Mid</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">3</div>
+          <div class="info">
+            <div class="name"><span class="num">#38</span>AR.Chalice</div>
+            <div class="sub">
+              <span>4500</span>
+              <span class="pref">可 1·3</span>
+            </div>
+          </div>
+          <div class="role"><b>劣单</b>Offlane</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">4</div>
+          <div class="info">
+            <div class="name"><span class="num">#01</span>Joy</div>
+            <div class="sub">
+              <span>3000</span>
+              <span class="pref">首选 1 · 可 1·4·5 · 顺位首位 / 开房</span>
             </div>
           </div>
           <div class="role"><b>游走辅助</b>Soft Support</div>
@@ -976,44 +1114,32 @@
           <div class="info">
             <div class="name"><span class="num">#03</span>番茄酱</div>
             <div class="sub">
-              <span>3000 · 国服</span>
-              <span class="pref">首选 2 · 可 2·4·5 · 顶位上桌</span>
+              <span>3000</span>
+              <span class="pref">首选 2 · 可 2·4·5</span>
             </div>
           </div>
           <div class="role"><b>硬辅</b>Hard Support</div>
         </div>
 
         <div class="team-foot">
-          <span>核心位 1+2+3:&nbsp; 15500</span>
-          <span>辅助位 4+5:&nbsp; 9000</span>
+          <span>核心位 1+2+3:&nbsp; 11800</span>
+          <span>辅助位 4+5:&nbsp; 6000</span>
         </div>
       </div>
 
-    </div>
-  </div>
-
-  <!-- ============ 内战 2 · 普通桌 ============ -->
-  <div class="battle-block">
-    <div class="battle-head">
-      <h2>内战 2<span class="room-tag">普通桌 · 房名「原点 Dota 内战 2」 · 密码 2016 · 上海电信</span></h2>
-      <div class="b-cap">开房：<b>Tc（顺位首位 #2）</b></div>
-    </div>
-
-    <div class="teams">
-
-      <!-- 内战 2 · 天辉 -->
+      <!-- 内战 2 · 夜魇 -->
       <div class="team">
         <div class="team-head">
-          <div class="team-name">天辉<span class="en">RADIANT</span></div>
-          <div class="team-score">综合分<b>10500</b></div>
+          <div class="team-name">夜魇<span class="en">DIRE</span></div>
+          <div class="team-score">综合分<b>18000</b></div>
         </div>
 
         <div class="slot">
           <div class="pos">1</div>
           <div class="info">
-            <div class="name"><span class="num">#24</span>剑心仍在</div>
+            <div class="name"><span class="num">#30</span>日天冠绝守门员</div>
             <div class="sub">
-              <span>4000 · 国服 / 东南亚</span>
+              <span>6000</span>
               <span class="pref">首选 1</span>
             </div>
           </div>
@@ -1023,10 +1149,10 @@
         <div class="slot">
           <div class="pos">2</div>
           <div class="info">
-            <div class="name"><span class="num">#22</span>攻击精神</div>
+            <div class="name"><span class="num">#10</span>2</div>
             <div class="sub">
-              <span>1500 · 东南亚</span>
-              <span class="pref">仅 2 号位</span>
+              <span>3000</span>
+              <span class="pref">首选 1 · 可 1·2</span>
             </div>
           </div>
           <div class="role"><b>中单</b>Mid</div>
@@ -1035,9 +1161,9 @@
         <div class="slot">
           <div class="pos">3</div>
           <div class="info">
-            <div class="name"><span class="num">#08</span>憨皮小牛</div>
+            <div class="name"><span class="num">#09</span>憨皮小牛</div>
             <div class="sub">
-              <span>3000 · 东南亚</span>
+              <span>3000</span>
               <span class="pref">首选 3 · 可 3·4</span>
             </div>
           </div>
@@ -1047,10 +1173,10 @@
         <div class="slot">
           <div class="pos">4</div>
           <div class="info">
-            <div class="name"><span class="num">#04</span>CY (Cynic)</div>
+            <div class="name"><span class="num">#07</span>下等马</div>
             <div class="sub">
-              <span>500 · 东南亚</span>
-              <span class="pref">首选 4 · 可 4·5</span>
+              <span>3000</span>
+              <span class="pref">首选 1 · 可 1·3·4·5</span>
             </div>
           </div>
           <div class="role"><b>游走辅助</b>Soft Support</div>
@@ -1059,35 +1185,47 @@
         <div class="slot">
           <div class="pos">5</div>
           <div class="info">
-            <div class="name"><span class="num">#21</span>xp</div>
+            <div class="name"><span class="num">#08</span>Error 404</div>
             <div class="sub">
-              <span>1500 · 东南亚</span>
-              <span class="pref">首选 1 · 可 1·4·5</span>
+              <span>3000</span>
+              <span class="pref">首选 1 · 可 1·5</span>
             </div>
           </div>
           <div class="role"><b>硬辅</b>Hard Support</div>
         </div>
 
         <div class="team-foot">
-          <span>核心位 1+2+3:&nbsp; 8500</span>
-          <span>辅助位 4+5:&nbsp; 2000</span>
+          <span>核心位 1+2+3:&nbsp; 12000</span>
+          <span>辅助位 4+5:&nbsp; 6000</span>
         </div>
       </div>
 
-      <!-- 内战 2 · 夜魇 -->
+    </div>
+  </div>
+
+  <!-- ============ 内战 3 · 普通桌 ============ -->
+  <div class="battle-block">
+    <div class="battle-head">
+      <h2>内战 3<span class="room-tag">普通桌 · 房名「原点 Dota 内战 3」 · 密码 2016</span></h2>
+      <div class="b-cap">开房：<b>Tc（顺位首位 #2）</b></div>
+    </div>
+
+    <div class="teams">
+
+      <!-- 内战 3 · 天辉 -->
       <div class="team">
         <div class="team-head">
-          <div class="team-name">夜魇<span class="en">DIRE</span></div>
-          <div class="team-score">综合分<b>10000<span style="font-weight:400; font-size:11px; color: var(--ink-mute); margin-left:4px;">+ 姜生</span></b></div>
+          <div class="team-name">天辉<span class="en">RADIANT</span></div>
+          <div class="team-score">综合分<b>9000<span style="font-weight:400; font-size:11px; color: var(--ink-mute); margin-left:4px;">+ 姜生</span></b></div>
         </div>
 
         <div class="slot">
           <div class="pos">1</div>
           <div class="info">
-            <div class="name"><span class="num">#07</span>Error 404</div>
+            <div class="name"><span class="num">#34</span>LittleKim</div>
             <div class="sub">
-              <span>3000</span>
-              <span class="pref">首选 1 · 可 1·5</span>
+              <span>2500</span>
+              <span class="pref">首选 3 · 可 1·3·4</span>
             </div>
           </div>
           <div class="role"><b>大哥位</b>Carry</div>
@@ -1096,10 +1234,83 @@
         <div class="slot">
           <div class="pos">2</div>
           <div class="info">
-            <div class="name"><span class="num">#09</span>2</div>
+            <div class="name"><span class="num">#24</span>攻击精神</div>
             <div class="sub">
-              <span>3000 · 外服 + 国服</span>
-              <span class="pref">首选 1 · 可 1·2</span>
+              <span>1500</span>
+              <span class="pref">仅 2 号位</span>
+            </div>
+          </div>
+          <div class="role"><b>中单</b>Mid</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">3</div>
+          <div class="info">
+            <div class="name"><span class="num">#28</span>老崔 (OB)</div>
+            <div class="sub">
+              <span>3500</span>
+              <span class="pref">可 1·3·4</span>
+            </div>
+          </div>
+          <div class="role"><b>劣单</b>Offlane</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">4</div>
+          <div class="info">
+            <div class="name"><span class="num">#33</span>请神 Fy god 附体</div>
+            <div class="sub">
+              <span>1500</span>
+              <span class="pref">可 4·5</span>
+            </div>
+          </div>
+          <div class="role"><b>游走辅助</b>Soft Support</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">5</div>
+          <div class="info">
+            <div class="name"><span class="num">#21</span>姜生</div>
+            <div class="sub">
+              <span>无段位</span>
+              <span class="pref">可 4·5</span>
+            </div>
+          </div>
+          <div class="role"><b>硬辅</b>Hard Support</div>
+        </div>
+
+        <div class="team-foot">
+          <span>核心位 1+2+3:&nbsp; 7500</span>
+          <span>辅助位 4+5:&nbsp; 1500 + 姜生</span>
+        </div>
+      </div>
+
+      <!-- 内战 3 · 夜魇 -->
+      <div class="team">
+        <div class="team-head">
+          <div class="team-name">夜魇<span class="en">DIRE</span></div>
+          <div class="team-score">综合分<b>8500</b></div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">1</div>
+          <div class="info">
+            <div class="name"><span class="num">#23</span>xp</div>
+            <div class="sub">
+              <span>1500</span>
+              <span class="pref">首选 1 · 可 1·4·5</span>
+            </div>
+          </div>
+          <div class="role"><b>大哥位</b>Carry</div>
+        </div>
+
+        <div class="slot">
+          <div class="pos">2</div>
+          <div class="info">
+            <div class="name"><span class="num">#32</span>大鱼 (DDDash)</div>
+            <div class="sub">
+              <span>3000</span>
+              <span class="pref">首选 3 · 可 3·1·2</span>
             </div>
           </div>
           <div class="role"><b>中单</b>Mid</div>
@@ -1110,7 +1321,7 @@
           <div class="info">
             <div class="name"><span class="num">#02</span>Tc</div>
             <div class="sub">
-              <span>1000 卫士 · 国服</span>
+              <span>1000 卫士</span>
               <span class="pref">仅 3 号位 · 顺位首位 / 开房</span>
             </div>
           </div>
@@ -1120,10 +1331,10 @@
         <div class="slot">
           <div class="pos">4</div>
           <div class="info">
-            <div class="name"><span class="num">#06</span>下等马</div>
+            <div class="name"><span class="num">#05</span>CY (Cynic)</div>
             <div class="sub">
-              <span>3000 · 国服</span>
-              <span class="pref">首选 1 · 可 1·3·4·5</span>
+              <span>500</span>
+              <span class="pref">首选 4 · 可 4·5</span>
             </div>
           </div>
           <div class="role"><b>游走辅助</b>Soft Support</div>
@@ -1132,91 +1343,68 @@
         <div class="slot">
           <div class="pos">5</div>
           <div class="info">
-            <div class="name"><span class="num">#19</span>姜生</div>
+            <div class="name"><span class="num">#37</span>Yalo</div>
             <div class="sub">
-              <span>无段位 · 东南亚</span>
-              <span class="pref">可 4·5</span>
+              <span>2500</span>
+              <span class="pref">首选 4 · 可 4·5·3·2·1</span>
             </div>
           </div>
           <div class="role"><b>硬辅</b>Hard Support</div>
         </div>
 
         <div class="team-foot">
-          <span>核心位 1+2+3:&nbsp; 7000</span>
-          <span>辅助位 4+5:&nbsp; 3000 + 姜生</span>
+          <span>核心位 1+2+3:&nbsp; 5500</span>
+          <span>辅助位 4+5:&nbsp; 3000</span>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- ============ 替补区 ============ -->
+  <!-- ============ 替补区（独立） ============ -->
   <section class="subs">
-    <h3>替补 · 观战</h3>
-    <div class="subs-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+    <h3>替补 <span class="h-meta">3 人 · 缺人时按顺位补</span></h3>
+    <div class="subs-grid">
       <div class="sub-card">
-        <div class="sc-name"><span class="num">#11</span>不巧者 (Misaka)</div>
-        <div class="sc-info">7500 · 东南亚 · 仅 1 号位</div>
+        <div class="sc-name"><span class="num">#12</span>不巧者 (Misaka)</div>
+        <div class="sc-info">7500 · 仅 1 号位</div>
         <div class="sc-when">自报替补 · 内战 1 缺 1 号位时优先顶上</div>
       </div>
       <div class="sub-card">
-        <div class="sc-name"><span class="num">#14</span>爱丽丝 (Alice)</div>
-        <div class="sc-info">2500 · 外服 · 可 1·4·5</div>
-        <div class="sc-when">观战可替补 · 内战 2 缺 1·4·5 时可顶</div>
+        <div class="sc-name"><span class="num">#16</span>爱丽丝 (Alice)</div>
+        <div class="sc-info">2500 · 可 1·4·5</div>
+        <div class="sc-when">观战可替补 · 内战 2 / 3 缺 1·4·5 时可顶</div>
       </div>
       <div class="sub-card">
-        <div class="sc-name"><span class="num">#26</span>及时行乐</div>
-        <div class="sc-info">2500 · 东南亚 · 可 2·1</div>
-        <div class="sc-when">21:00 后才能玩 · 第二局起可补 1 / 2 号位</div>
+        <div class="sc-name"><span class="num">#29</span>及时行乐</div>
+        <div class="sc-info">2500 · 可 2·1</div>
+        <div class="sc-when">21:00 后才能玩 · 第二局起可补 1·2 号位</div>
       </div>
-      <div class="sub-card">
-        <div class="sc-name"><span class="num">#27</span>日天冠绝守门员</div>
-        <div class="sc-info">未填段位 · 1 号位</div>
-        <div class="sc-when">替补 · 段位待补 · 1 号位空缺时按顺位顶</div>
-      </div>
-      <div class="sub-card">
-        <div class="sc-name"><span class="num">#28</span>芥末 (wasabi)</div>
-        <div class="sc-info">6000 · 国服 · 可 1·3·5</div>
-        <div class="sc-when">替补 · 内战 1 缺 1·3·5 时优先顶（高分）</div>
-      </div>
-      <div class="sub-card">
-        <div class="sc-name"><span class="num">#29</span>大鱼 (DDDash)</div>
-        <div class="sc-info">3000 · 国服 · 可 3·1·2</div>
-        <div class="sc-when">替补 · 内战 2 缺 3·1·2 时按顺位顶</div>
-      </div>
-      <div class="sub-card">
-        <div class="sc-name"><span class="num">#30</span>请神 Fy god 附体</div>
-        <div class="sc-info">1500 · 国服 · 可 4·5</div>
-        <div class="sc-when">替补 · 内战 2 缺 4·5 时按顺位顶</div>
-      </div>
-      <div class="sub-card">
-        <div class="sc-name"><span class="num">#31</span>LittleKim</div>
-        <div class="sc-info">2500 · 外服 + 国服 · 可 3·4·1</div>
-        <div class="sc-when">替补 · 内战 2 缺 1·3·4 时按顺位顶</div>
-      </div>
-      <div class="sub-card">
-        <div class="sc-name"><span class="num">#33</span>qt</div>
-        <div class="sc-info">5000 · 国服 · 可 4·5</div>
-        <div class="sc-when">替补 · 内战 1 缺 4·5 时优先顶（高分）</div>
-      </div>
-      <div class="sub-card">
-        <div class="sc-name"><span class="num">#15</span>J.S</div>
-        <div class="sc-info">纯潜水 · 观战 · 不上场</div>
+    </div>
+  </section>
+
+  <!-- ============ 观战区（独立） ============ -->
+  <section class="subs">
+    <h3>观战 <span class="h-meta">4 人 · 在解说房，缺人时本人愿上才上</span></h3>
+    <div class="subs-grid">
+      <div class="sub-card obs">
+        <div class="sc-name"><span class="num">#17</span>J.S</div>
+        <div class="sc-info">纯潜水 · 不上场</div>
         <div class="sc-when">自选观战 · 在解说房</div>
       </div>
-      <div class="sub-card">
-        <div class="sc-name"><span class="num">#16</span>罗西基 (spimba)</div>
-        <div class="sc-info">2000 · 东南亚 · 仅 3 号位 · 观战</div>
-        <div class="sc-when">自选观战 · 内战 2 缺 3 号位且本人愿上时可顶</div>
+      <div class="sub-card obs">
+        <div class="sc-name"><span class="num">#18</span>罗西基 (spimba)</div>
+        <div class="sc-info">2000 · 仅 3 号位</div>
+        <div class="sc-when">自选观战 · 内战 3 缺 3 号位且本人愿上时可顶</div>
       </div>
-      <div class="sub-card">
-        <div class="sc-name"><span class="num">#17</span>noobplayer</div>
-        <div class="sc-info">8000 · 东南亚 · 可 4·5 · 观战</div>
+      <div class="sub-card obs">
+        <div class="sc-name"><span class="num">#19</span>noobplayer</div>
+        <div class="sc-info">8000 · 可 4·5</div>
         <div class="sc-when">自选观战 · 内战 1 缺 4·5 且本人愿上时再上</div>
       </div>
-      <div class="sub-card">
-        <div class="sc-name"><span class="num">#32</span>老八</div>
-        <div class="sc-info">5000 · 东南亚 · 可 1·2 · 观战</div>
+      <div class="sub-card obs">
+        <div class="sc-name"><span class="num">#35</span>老八</div>
+        <div class="sc-info">5000 · 可 1·2</div>
         <div class="sc-when">自选观战 · 内战 1 缺 1·2 且本人愿上时可顶</div>
       </div>
     </div>
@@ -1224,30 +1412,31 @@
 
   <!-- ============ 说明 ============ -->
   <section class="notes">
-    <h3>双桌分桌思路</h3>
+    <h3>三桌分桌思路</h3>
     <ul>
-      <li>33 人接龙：4 人自选纯观战（J.S、罗西基、noobplayer、老八）、1 人自报只当替补（不巧者）、1 人观战可替补（爱丽丝）、1 人 21:00 后才能玩（及时行乐）。剩余 26 人主力候选，按报名顺序前 20 人入主力，第 21+ 人进替补。3 桌需 30 人，差 4 人，所以走 2 桌方案。</li>
-      <li><b>内战 1（高分桌）</b>均分 ~4800，覆盖 3000–7000 段位。两边综合分 23500 vs 24500，差距 1000。Joy 顺位首位（#1）负责开房。</li>
-      <li><b>内战 2（普通桌）</b>均分 ~2050，覆盖 500–4000 段位（姜生无段位按 0 估）。两边综合分 10500 vs 10000，差距 500。Tc 顺位首位（#2）负责开房。</li>
-      <li><b>报名顺序优先：</b>主力 20 人来自 #1–10、#12、#13、#18–25 共 20 人。早报名里自报观战 / 替补的（#11、#14–17）尊重个人选择，不强行拉上场。第 21+ 报名的（#27–31、#33）按顺位规则进替补；其中 #28 芥末 6000 和 #33 qt 5000 段位高，缺人时优先顶进内战 1。</li>
+      <li>37 人接龙（CY 报名两次 #4 #5 算 1 人，ben 报名两次 #15 #39 算 1 人，实际 37 人）。其中 4 人纯观战、1 人自报替补、1 人观战可替补、1 人 21:00 后才能玩 → 主力候选 30 人，正好 3 桌满员。</li>
+      <li><b>内战 1（高分桌）</b>均分 ~5550，覆盖 4000–7000 段位。两边综合分 27500 vs 28000，差 500。开房：就硬划（#6 顺位首位）。</li>
+      <li><b>内战 2（中分桌）</b>均分 ~3580，覆盖 3000–6000 段位。两边综合分 17800 vs 18000，差 200。开房：Joy（#1 顺位首位）。</li>
+      <li><b>内战 3（普通桌）</b>均分 ~1750，覆盖 0–3500 段位（姜生无段位按 0 估）。两边综合分 9000 vs 8500，差 500。开房：Tc（#2 顺位首位）。</li>
+      <li><b>报名顺序优先：</b>主力 30 人由报名顺序前 30 个非观战 / 非替补玩家组成。早报名里自报观战 / 替补的（#12、#16–19）尊重个人选择，不强行拉上场。第三桌大都是顺位靠后的玩家（#21+ 区间为主），符合"替补顺位排后"的思路。</li>
+      <li><b>关于服务器：</b>内战在游戏内房间打，跟天梯服务器无关。表里的"国服 / 东南亚"只是玩家天梯习惯参考，不影响内战。</li>
     </ul>
 
     <h3 style="margin-top: 28px;">开房 · 顺位首位人负责（信誉分 +0.5）</h3>
     <ul>
-      <li>不设额外队长。每桌的"顺位首位"（按报名顺序，本桌最早报名的人）负责开房：<b>内战 1 → Joy（#1）</b>；<b>内战 2 → Tc（#2）</b>。房名 / 密码 / 服务器（上海电信）按本表设置。开房队长本期信誉分额外 +0.5。</li>
-      <li>开完房就上场，不需要"专人维护"。如果中途出现需要协调（暂停 / 死亡裁判 / 改人）的情况，房主和队伍队员一起决定。</li>
-      <li>纯观战玩家（J.S、罗西基、noobplayer、老八）按本人意愿在解说房观战。</li>
-      <li>开房房主职责：开房（房名 <code style="font-family:inherit; background: var(--bg-card); padding:1px 6px; border:1px solid var(--line);">原点 Dota 内战 1</code> / <code style="font-family:inherit; background: var(--bg-card); padding:1px 6px; border:1px solid var(--line);">原点 Dota 内战 2</code>，密码 2016，服务器上海电信）、邀请、点开始。其它（暂停 / 处理掉线 / 换人协调）大家一起决定。</li>
-      <li>如果两桌想互相同步开始 / 同步结束，两个房主在解说房对一下时间。</li>
+      <li>不设额外队长。每桌的"顺位首位"（按报名顺序，本桌最早报名的人）负责开房。开房队长本期信誉分额外 +0.5。</li>
+      <li><b>内战 1 → 就硬划（#6）</b>；<b>内战 2 → Joy（#1）</b>；<b>内战 3 → Tc（#2）</b>。</li>
+      <li>开房房主职责：开房（房名 <code style="font-family:inherit; background: var(--bg-card); padding:1px 6px; border:1px solid var(--line);">原点 Dota 内战 1·2·3</code>，密码 <code style="font-family:inherit; background: var(--bg-card); padding:1px 6px; border:1px solid var(--line);">2016</code>）、邀请、点开始。其它（暂停 / 处理掉线 / 换人协调）大家一起决定。</li>
+      <li>开完房就上场，不需要"专人维护"。三桌之间想同步开始 / 结束，三个房主在解说房对一下时间。</li>
     </ul>
 
-    <h3 style="margin-top: 28px;">下一局换人指南</h3>
+    <h3 style="margin-top: 28px;">下一局换人 · 解散规则（保底 1 把）</h3>
     <ul>
-      <li>每桌空出位置时，在解说房喊一声"内战 X 缺 Y 号位"，按位置匹配，不死按队列。</li>
-      <li><b>内战 1（高分桌）缺人：</b>缺 1 号 → 不巧者(7500) 优先 / 芥末(6000) 备选；缺 2 号 → 大鱼(3000) 备选（无更高分替补）；缺 3 号 → 芥末(6000) 顶上；缺 4 号 → qt(5000) / 老崔已在场；缺 5 号 → qt(5000) / noobplayer(8000) 视意愿。</li>
-      <li><b>内战 2（普通桌）缺人：</b>缺 1 号 → 爱丽丝(2500) / 大鱼(3000) / LittleKim(2500) 按队列；缺 2 号 → 大鱼(3000) / 21:00 后及时行乐(2500)；缺 3 号 → 大鱼(3000) / LittleKim(2500) / 罗西基(2000) 视意愿；缺 4·5 号 → 请神 Fy(1500) / LittleKim(2500) / 爱丽丝(2500) 按队列。</li>
+      <li><b>保底 1 把：</b>第一局必打。第二局起按下面规则。</li>
+      <li><b>有人走 → 替补按顺位补：</b>替补区按顺序顶（Misaka / 爱丽丝 / 及时行乐），优先按位置匹配。21:00 后及时行乐可上 1·2 号位。</li>
+      <li><b>没替补也凑不齐 → 当晚解散，下期再战：</b>不强凑。</li>
+      <li>每桌空出位置时，在对应解说房喊一声"内战 X 缺 Y 号位"，按位置匹配，按队列。</li>
       <li><b>跨桌换人慎重：</b>高分进普通桌容易碾压，普通进高分桌容易挨打。优先考虑同桌内换位 / 重洗。</li>
-      <li><b>解散规则：</b>有人走 → 替补按顺位补上；没替补也没新人 → 解散，下期再打。</li>
     </ul>
 
     <h3 style="margin-top: 28px;">信誉分制度</h3>
@@ -1273,53 +1462,53 @@
     <div class="roster-head">
       <div class="eyebrow">全员名单</div>
       <h2>全员花名册</h2>
-      <div class="sub">33 位接龙报名 · 按报名顺序排列 · 20 主力 · 9 替补 · 4 观战</div>
+      <div class="sub">37 位接龙报名 · 按报名顺序排列 · 30 主力 · 3 替补 · 4 观战</div>
     </div>
 
     <div class="roster-grid">
 
-      <div class="card" data-tier="r1">
+      <div class="card" data-tier="r2">
         <div class="card-num">报名 #01</div>
-        <div class="card-tag">内战 1 · 天辉 5 号 · 顺位首位 / 开房</div>
+        <div class="card-tag">内战 2 · 天辉 4 号 · 顺位首位 / 开房</div>
         <div class="card-name">Joy</div>
         <div class="card-info">3000 · 国服</div>
-        <div class="card-pos">首选 1 · 可 1·4·5 · 内战 1 顺位首位负责开房</div>
+        <div class="card-pos">首选 1 · 可 1·4·5 · 内战 2 顺位首位负责开房</div>
       </div>
 
-      <div class="card" data-tier="r2">
+      <div class="card" data-tier="r3">
         <div class="card-num">报名 #02</div>
-        <div class="card-tag">内战 2 · 夜魇 3 号 · 顺位首位 / 开房</div>
+        <div class="card-tag">内战 3 · 夜魇 3 号 · 顺位首位 / 开房</div>
         <div class="card-name">Tc</div>
         <div class="card-info">1000 卫士 · 国服</div>
-        <div class="card-pos">仅 3 号位 · 内战 2 顺位首位负责开房</div>
+        <div class="card-pos">仅 3 号位 · 内战 3 顺位首位负责开房</div>
       </div>
 
-      <div class="card" data-tier="r1">
+      <div class="card" data-tier="r2">
         <div class="card-num">报名 #03</div>
-        <div class="card-tag">内战 1 · 夜魇 5 号</div>
+        <div class="card-tag">内战 2 · 天辉 5 号</div>
         <div class="card-name">番茄酱</div>
         <div class="card-info">3000 · 国服</div>
-        <div class="card-pos">首选 2 · 可 2·4·5 · 顶位上桌</div>
+        <div class="card-pos">首选 2 · 可 2·4·5</div>
       </div>
 
-      <div class="card" data-tier="r2">
-        <div class="card-num">报名 #04</div>
-        <div class="card-tag">内战 2 · 天辉 4 号</div>
+      <div class="card" data-tier="r3">
+        <div class="card-num">报名 #05</div>
+        <div class="card-tag">内战 3 · 夜魇 4 号 · #4·5 重复算 1 人</div>
         <div class="card-name">CY (Cynic)</div>
         <div class="card-info">500 · 东南亚</div>
-        <div class="card-pos">首选 4 · 可 4·5</div>
+        <div class="card-pos">首选 4 · 可 4·5（接龙 #4 笔误 50 分，#5 修正 500 分）</div>
       </div>
 
       <div class="card" data-tier="r1">
-        <div class="card-num">报名 #05</div>
-        <div class="card-tag">内战 1 · 天辉 3 号</div>
+        <div class="card-num">报名 #06</div>
+        <div class="card-tag">内战 1 · 夜魇 3 号 · 顺位首位 / 开房</div>
         <div class="card-name">就硬划</div>
         <div class="card-info">4000 · 东南亚</div>
-        <div class="card-pos">可 1·2·3·4</div>
+        <div class="card-pos">可 1·2·3·4 · 内战 1 顺位首位负责开房</div>
       </div>
 
       <div class="card" data-tier="r2">
-        <div class="card-num">报名 #06</div>
+        <div class="card-num">报名 #07</div>
         <div class="card-tag">内战 2 · 夜魇 4 号</div>
         <div class="card-name">下等马</div>
         <div class="card-info">3000 · 国服</div>
@@ -1327,23 +1516,23 @@
       </div>
 
       <div class="card" data-tier="r2">
-        <div class="card-num">报名 #07</div>
-        <div class="card-tag">内战 2 · 夜魇 1 号</div>
+        <div class="card-num">报名 #08</div>
+        <div class="card-tag">内战 2 · 夜魇 5 号</div>
         <div class="card-name">Error 404</div>
         <div class="card-info">3000</div>
         <div class="card-pos">首选 1 · 可 1·5</div>
       </div>
 
       <div class="card" data-tier="r2">
-        <div class="card-num">报名 #08</div>
-        <div class="card-tag">内战 2 · 天辉 3 号</div>
+        <div class="card-num">报名 #09</div>
+        <div class="card-tag">内战 2 · 夜魇 3 号</div>
         <div class="card-name">憨皮小牛</div>
         <div class="card-info">3000 · 东南亚</div>
         <div class="card-pos">首选 3 · 可 3·4</div>
       </div>
 
       <div class="card" data-tier="r2">
-        <div class="card-num">报名 #09</div>
+        <div class="card-num">报名 #10</div>
         <div class="card-tag">内战 2 · 夜魇 2 号</div>
         <div class="card-name">2</div>
         <div class="card-info">3000 · 外服 + 国服</div>
@@ -1351,15 +1540,15 @@
       </div>
 
       <div class="card" data-tier="r1">
-        <div class="card-num">报名 #10</div>
-        <div class="card-tag">内战 1 · 夜魇 2 号</div>
+        <div class="card-num">报名 #11</div>
+        <div class="card-tag">内战 1 · 天辉 2 号</div>
         <div class="card-name">我王守義</div>
         <div class="card-info">4000</div>
         <div class="card-pos">首选 1 · 可 1·2</div>
       </div>
 
       <div class="card" data-tier="sub">
-        <div class="card-num">报名 #11</div>
+        <div class="card-num">报名 #12</div>
         <div class="card-tag">替补 · 内战 1 / 1 号</div>
         <div class="card-name">不巧者 (Misaka)</div>
         <div class="card-info">7500 · 东南亚</div>
@@ -1367,47 +1556,55 @@
       </div>
 
       <div class="card" data-tier="r1">
-        <div class="card-num">报名 #12</div>
-        <div class="card-tag">内战 1 · 夜魇 4 号</div>
+        <div class="card-num">报名 #13</div>
+        <div class="card-tag">内战 1 · 天辉 5 号</div>
         <div class="card-name">Wayne</div>
         <div class="card-info">6000 · 国服</div>
         <div class="card-pos">可 4·5</div>
       </div>
 
       <div class="card" data-tier="r1">
-        <div class="card-num">报名 #13</div>
+        <div class="card-num">报名 #14</div>
         <div class="card-tag">内战 1 · 天辉 1 号</div>
         <div class="card-name">苏三 (SS)</div>
         <div class="card-info">6000 · 国服</div>
         <div class="card-pos">首选 1</div>
       </div>
 
+      <div class="card" data-tier="r2">
+        <div class="card-num">报名 #15</div>
+        <div class="card-tag">内战 2 · 天辉 2 号 · #15·39 重复算 1 人</div>
+        <div class="card-name">ben</div>
+        <div class="card-info">3300 · 国服</div>
+        <div class="card-pos">首选 1 · 可 1·2·3（接龙 #39 是重复）</div>
+      </div>
+
       <div class="card" data-tier="sub">
-        <div class="card-num">报名 #14</div>
-        <div class="card-tag">观战 / 替补 · 解说房</div>
+        <div class="card-num">报名 #16</div>
+        <div class="card-tag">替补 · 观战可替补</div>
         <div class="card-name">爱丽丝 (Alice)</div>
         <div class="card-info">2500 · 外服</div>
         <div class="card-pos">可 1·4·5 · 观战可替补</div>
       </div>
 
-      <div class="card" data-tier="sub">
-        <div class="card-num">报名 #15</div>
+      <div class="card" data-tier="obs">
+        <div class="card-num">报名 #17</div>
         <div class="card-tag">观战 · 解说房</div>
         <div class="card-name">J.S</div>
         <div class="card-info">纯潜水</div>
         <div class="card-pos">不上场 · 自选观战</div>
       </div>
 
-      <div class="card" data-tier="sub">
-        <div class="card-num">报名 #16</div>
+      <div class="card" data-tier="obs">
+        <div class="card-num">报名 #18</div>
         <div class="card-tag">观战 · 解说房</div>
         <div class="card-name">罗西基 (spimba)</div>
         <div class="card-info">2000 · 东南亚</div>
         <div class="card-pos">仅 3 号位 · 自选观战</div>
       </div>
 
-      <div class="card" data-tier="sub">
-        <div class="card-num">报名 #17</div>
+      <div class="card" data-tier="obs">
+        <div class="card-num">报名 #19</div>
         <div class="card-tag">观战 · 解说房</div>
         <div class="card-name">noobplayer</div>
         <div class="card-info">8000 · 东南亚</div>
@@ -1415,137 +1612,161 @@
       </div>
 
       <div class="card" data-tier="r1">
-        <div class="card-num">报名 #18</div>
+        <div class="card-num">报名 #20</div>
         <div class="card-tag">内战 1 · 夜魇 1 号</div>
         <div class="card-name">赵子龙</div>
         <div class="card-info">5000 · 东南亚</div>
         <div class="card-pos">首选 1</div>
       </div>
 
-      <div class="card" data-tier="r2">
-        <div class="card-num">报名 #19</div>
-        <div class="card-tag">内战 2 · 夜魇 5 号</div>
+      <div class="card" data-tier="r3">
+        <div class="card-num">报名 #21</div>
+        <div class="card-tag">内战 3 · 天辉 5 号</div>
         <div class="card-name">姜生</div>
         <div class="card-info">无段位 · 东南亚</div>
         <div class="card-pos">可 4·5</div>
       </div>
 
       <div class="card" data-tier="r1">
-        <div class="card-num">报名 #20</div>
-        <div class="card-tag">内战 1 · 夜魇 3 号</div>
+        <div class="card-num">报名 #22</div>
+        <div class="card-tag">内战 1 · 天辉 3 号</div>
         <div class="card-name">吴迪</div>
         <div class="card-info">6500 · 东南亚</div>
         <div class="card-pos">仅 3 号位</div>
       </div>
 
-      <div class="card" data-tier="r2">
-        <div class="card-num">报名 #21</div>
-        <div class="card-tag">内战 2 · 天辉 5 号</div>
+      <div class="card" data-tier="r3">
+        <div class="card-num">报名 #23</div>
+        <div class="card-tag">内战 3 · 夜魇 1 号</div>
         <div class="card-name">xp</div>
         <div class="card-info">1500 · 东南亚</div>
         <div class="card-pos">首选 1 · 可 1·4·5</div>
       </div>
 
-      <div class="card" data-tier="r2">
-        <div class="card-num">报名 #22</div>
-        <div class="card-tag">内战 2 · 天辉 2 号</div>
+      <div class="card" data-tier="r3">
+        <div class="card-num">报名 #24</div>
+        <div class="card-tag">内战 3 · 天辉 2 号</div>
         <div class="card-name">攻击精神</div>
         <div class="card-info">1500 · 东南亚</div>
         <div class="card-pos">仅 2 号位</div>
       </div>
 
       <div class="card" data-tier="r1">
-        <div class="card-num">报名 #23</div>
-        <div class="card-tag">内战 1 · 天辉 2 号</div>
+        <div class="card-num">报名 #25</div>
+        <div class="card-tag">内战 1 · 夜魇 2 号</div>
         <div class="card-name">zhou</div>
         <div class="card-info">7000 · 国服</div>
         <div class="card-pos">首选 2 · 可 1·2</div>
       </div>
 
+      <div class="card" data-tier="r1">
+        <div class="card-num">报名 #26</div>
+        <div class="card-tag">内战 1 · 夜魇 4 号</div>
+        <div class="card-name">zk</div>
+        <div class="card-info">6000 · 国服</div>
+        <div class="card-pos">可 2·3·4</div>
+      </div>
+
       <div class="card" data-tier="r2">
-        <div class="card-num">报名 #24</div>
+        <div class="card-num">报名 #27</div>
         <div class="card-tag">内战 2 · 天辉 1 号</div>
         <div class="card-name">剑心仍在</div>
         <div class="card-info">4000 · 国服 / 东南亚</div>
         <div class="card-pos">首选 1</div>
       </div>
 
-      <div class="card" data-tier="r1">
-        <div class="card-num">报名 #25</div>
-        <div class="card-tag">内战 1 · 天辉 4 号</div>
+      <div class="card" data-tier="r3">
+        <div class="card-num">报名 #28</div>
+        <div class="card-tag">内战 3 · 天辉 3 号</div>
         <div class="card-name">老崔 (OB)</div>
         <div class="card-info">3500 · 东南亚</div>
         <div class="card-pos">可 1·3·4</div>
       </div>
 
       <div class="card" data-tier="sub">
-        <div class="card-num">报名 #26</div>
-        <div class="card-tag">替补 · 21:00 后</div>
+        <div class="card-num">报名 #29</div>
+        <div class="card-tag">替补 · 21:00 后才能玩</div>
         <div class="card-name">及时行乐</div>
         <div class="card-info">2500 · 东南亚</div>
         <div class="card-pos">可 2·1 · 21:00 后才能玩</div>
       </div>
 
-      <div class="card" data-tier="sub">
-        <div class="card-num">报名 #27</div>
-        <div class="card-tag">替补 · 段位待补</div>
+      <div class="card" data-tier="r2">
+        <div class="card-num">报名 #30</div>
+        <div class="card-tag">内战 2 · 夜魇 1 号</div>
         <div class="card-name">日天冠绝守门员</div>
-        <div class="card-info">未填段位</div>
-        <div class="card-pos">1 号位 · 报名晚</div>
+        <div class="card-info">6000 · 国服</div>
+        <div class="card-pos">首选 1</div>
       </div>
 
-      <div class="card" data-tier="sub">
-        <div class="card-num">报名 #28</div>
-        <div class="card-tag">替补 · 内战 1 / 1·3·5 号</div>
+      <div class="card" data-tier="r1">
+        <div class="card-num">报名 #31</div>
+        <div class="card-tag">内战 1 · 夜魇 5 号</div>
         <div class="card-name">芥末 (wasabi)</div>
         <div class="card-info">6000 · 国服</div>
-        <div class="card-pos">可 1·3·5 · 报名晚 / 高分替补</div>
+        <div class="card-pos">可 1·3·5</div>
       </div>
 
-      <div class="card" data-tier="sub">
-        <div class="card-num">报名 #29</div>
-        <div class="card-tag">替补 · 内战 2 / 1·2·3 号</div>
+      <div class="card" data-tier="r3">
+        <div class="card-num">报名 #32</div>
+        <div class="card-tag">内战 3 · 夜魇 2 号</div>
         <div class="card-name">大鱼 (DDDash)</div>
         <div class="card-info">3000 · 国服</div>
-        <div class="card-pos">可 3·1·2 · 报名晚</div>
+        <div class="card-pos">首选 3 · 可 3·1·2</div>
       </div>
 
-      <div class="card" data-tier="sub">
-        <div class="card-num">报名 #30</div>
-        <div class="card-tag">替补 · 内战 2 / 4·5 号</div>
+      <div class="card" data-tier="r3">
+        <div class="card-num">报名 #33</div>
+        <div class="card-tag">内战 3 · 天辉 4 号</div>
         <div class="card-name">请神 Fy god 附体</div>
         <div class="card-info">1500 · 国服</div>
-        <div class="card-pos">可 4·5 · 报名晚</div>
+        <div class="card-pos">可 4·5</div>
       </div>
 
-      <div class="card" data-tier="sub">
-        <div class="card-num">报名 #31</div>
-        <div class="card-tag">替补 · 内战 2 / 1·3·4 号</div>
+      <div class="card" data-tier="r3">
+        <div class="card-num">报名 #34</div>
+        <div class="card-tag">内战 3 · 天辉 1 号</div>
         <div class="card-name">LittleKim</div>
         <div class="card-info">2500 · 外服 + 国服</div>
-        <div class="card-pos">可 3·4·1 · 报名晚</div>
+        <div class="card-pos">首选 3 · 可 3·4·1</div>
       </div>
 
-      <div class="card" data-tier="sub">
-        <div class="card-num">报名 #32</div>
+      <div class="card" data-tier="obs">
+        <div class="card-num">报名 #35</div>
         <div class="card-tag">观战 · 解说房</div>
         <div class="card-name">老八</div>
         <div class="card-info">5000 · 东南亚</div>
         <div class="card-pos">可 1·2 · 自选观战</div>
       </div>
 
-      <div class="card" data-tier="sub">
-        <div class="card-num">报名 #33</div>
-        <div class="card-tag">替补 · 内战 1 / 4·5 号</div>
+      <div class="card" data-tier="r1">
+        <div class="card-num">报名 #36</div>
+        <div class="card-tag">内战 1 · 天辉 4 号</div>
         <div class="card-name">qt</div>
         <div class="card-info">5000 · 国服</div>
-        <div class="card-pos">可 4·5 · 报名晚 / 高分替补</div>
+        <div class="card-pos">可 4·5</div>
+      </div>
+
+      <div class="card" data-tier="r3">
+        <div class="card-num">报名 #37</div>
+        <div class="card-tag">内战 3 · 夜魇 5 号</div>
+        <div class="card-name">Yalo</div>
+        <div class="card-info">2500 · 外服</div>
+        <div class="card-pos">首选 4 · 可 4·5·3·2·1</div>
+      </div>
+
+      <div class="card" data-tier="r2">
+        <div class="card-num">报名 #38</div>
+        <div class="card-tag">内战 2 · 天辉 3 号</div>
+        <div class="card-name">AR.Chalice</div>
+        <div class="card-info">4500 · 国服</div>
+        <div class="card-pos">首选 1 · 可 1·3</div>
       </div>
 
     </div>
   </section>
 
-  <div class="footer">2026.5.9 · 原点 DOTA2 · 双桌并行 · 高分桌 + 普通桌 · 按报名顺序排队</div>
+  <div class="footer">2026.5.9 · 原点 DOTA2 · 三桌并行 · 高分桌 + 中分桌 + 普通桌 · 按报名顺序排队</div>
 
 </div>
 </body>
