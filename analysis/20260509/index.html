@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="2026.5.9 原点 Dota2 内战 AI 战报总览 — 5 局完整分析">
+<meta name="theme-color" content="#1a1a1a">
+<title>5.9 内战 AI 战报总览 · 原点 Dota2</title>
+<style>
+  :root {
+    --ink: #1a1a1a; --ink-soft: #444; --ink-mute: #888;
+    --line: #e6e6e6; --bg: #ffffff; --bg-card: #fafafa;
+    --radiant: #2d5a3d; --radiant-bg: #f0f7f2;
+    --dire: #8b3a3a; --dire-bg: #fbf3f3;
+    --gold: #b8860b; --gold-bg: #fdf9ed;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 14px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1080px; margin: 0 auto; padding: 48px 40px 80px; }
+
+  .crumb { font-size: 12px; color: var(--ink-mute); letter-spacing: 1px; padding-bottom: 18px; margin-bottom: 32px; border-bottom: 1px solid var(--line); }
+  .crumb a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px dotted var(--ink-mute); }
+  .crumb a:hover { color: var(--ink); }
+
+  .header { text-align: center; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 2px solid var(--ink); }
+  .header .eyebrow { font-size: 11px; letter-spacing: 5px; color: var(--ink-mute); margin-bottom: 14px; }
+  .header h1 { font-size: 32px; font-weight: 600; letter-spacing: 1px; margin-bottom: 16px; }
+  .header .meta-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--ink-soft); }
+
+  .summary-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 48px; }
+  .summary-card { border: 1px solid var(--line); padding: 18px; text-align: center; }
+  .summary-card .v { font-size: 28px; font-weight: 800; font-feature-settings: "tnum"; line-height: 1; margin-bottom: 6px; }
+  .summary-card .l { font-size: 11px; color: var(--ink-mute); letter-spacing: 2px; }
+  .summary-card.radiant { background: var(--radiant-bg); border-color: var(--radiant); color: var(--radiant); }
+  .summary-card.dire { background: var(--dire-bg); border-color: var(--dire); color: var(--dire); }
+
+  .matches-list h2 { font-size: 20px; font-weight: 700; letter-spacing: 2px; padding-bottom: 12px; margin-bottom: 24px; border-bottom: 2px solid var(--ink); }
+
+  .match-card { display: grid; grid-template-columns: 60px 1fr auto auto; gap: 18px; align-items: center; padding: 22px 24px; border: 1px solid var(--line); margin-bottom: 14px; transition: all 0.2s; text-decoration: none; color: var(--ink); }
+  .match-card:hover { border-color: var(--ink); background: var(--bg-card); }
+  .match-card.radiant-win { border-left: 4px solid var(--radiant); }
+  .match-card.dire-win { border-left: 4px solid var(--dire); }
+  .match-card .mc-num { font-size: 28px; font-weight: 800; color: var(--ink-mute); font-feature-settings: "tnum"; }
+  .match-card .mc-info { min-width: 0; }
+  .match-card .mc-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .match-card .mc-tag { display: inline-block; font-size: 10px; padding: 1px 7px; margin-left: 6px; border: 1px solid var(--ink); letter-spacing: 1px; vertical-align: 2px; }
+  .match-card .mc-desc { font-size: 12px; color: var(--ink-soft); line-height: 1.6; }
+  .match-card .mc-score { text-align: center; font-feature-settings: "tnum"; }
+  .match-card .mc-score .scn { font-size: 22px; font-weight: 800; }
+  .match-card .mc-score .scn .r { color: var(--radiant); }
+  .match-card .mc-score .scn .d { color: var(--dire); }
+  .match-card .mc-score .scl { font-size: 10px; color: var(--ink-mute); letter-spacing: 1px; margin-top: 2px; }
+  .match-card .mc-arrow { font-size: 22px; color: var(--ink-mute); }
+  .match-card:hover .mc-arrow { color: var(--ink); }
+  .match-card.no-report { opacity: 0.6; cursor: default; pointer-events: none; }
+  .match-card.no-report .mc-arrow::after { content: " (战报未完成)"; font-size: 10px; color: var(--ink-mute); }
+
+  .footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 11px; color: var(--ink-mute); text-align: center; line-height: 1.8; }
+  .footer a { color: var(--ink-soft); }
+
+  @media (max-width: 720px) {
+    .page { padding: 24px 16px 48px; }
+    .header h1 { font-size: 22px; }
+    .summary-row { grid-template-columns: 1fr 1fr; }
+    .match-card { grid-template-columns: 1fr; gap: 10px; padding: 16px; }
+    .match-card .mc-num { font-size: 20px; }
+    .match-card .mc-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="crumb">
+    <a href="../../index.html">原点 Dota2 内战</a> ›
+    <a href="../../20260509-内战对战表.html">5.9 对战表</a> ›
+    本期 AI 战报
+  </div>
+
+  <header class="header">
+    <div class="eyebrow">原点 DOTA2 内战 · 本期战报总览</div>
+    <h1>2026.5.9 周六内战 · AI 战报</h1>
+    <div class="meta-row">
+      <span>5 局总分析</span><span>·</span>
+      <span>3 桌并行</span><span>·</span>
+      <span>30 玩家</span><span>·</span>
+      <span>录像深度解析</span>
+    </div>
+  </header>
+
+  <!-- 当晚总览数据 -->
+  <div class="summary-row">
+    <div class="summary-card">
+      <div class="v">5</div>
+      <div class="l">局比赛</div>
+    </div>
+    <div class="summary-card radiant">
+      <div class="v">4</div>
+      <div class="l">天辉胜场</div>
+    </div>
+    <div class="summary-card dire">
+      <div class="v">1</div>
+      <div class="l">夜魇胜场</div>
+    </div>
+    <div class="summary-card">
+      <div class="v">3:36</div>
+      <div class="l">总时长 (小时:分)</div>
+    </div>
+  </div>
+
+  <!-- 战报列表 -->
+  <section class="matches-list">
+    <h2>每局战报（点击进入）</h2>
+
+    <a class="match-card radiant-win no-report" href="20260509-内战1-01-AI战报.html">
+      <div class="mc-num">1</div>
+      <div class="mc-info">
+        <div class="mc-title">内战 1 · 第 1 局 <span class="mc-tag">高分桌</span></div>
+        <div class="mc-desc">37 分钟 · 天辉编织者 Ss 18/4 carry · 比赛 ID 8803928598</div>
+      </div>
+      <div class="mc-score"><div class="scn"><span class="r">51</span> – <span class="d">24</span></div><div class="scl">天辉 大胜</div></div>
+      <div class="mc-arrow">→</div>
+    </a>
+
+    <a class="match-card dire-win no-report" href="20260509-内战1-02-AI战报.html">
+      <div class="mc-num">2</div>
+      <div class="mc-info">
+        <div class="mc-title">内战 1 · 第 2 局 <span class="mc-tag">高分桌</span></div>
+        <div class="mc-desc">48 分钟 · 夜魇琪兰 冰清玉洁梅老八 26/3 神级 carry · 比赛 ID 8804014494</div>
+      </div>
+      <div class="mc-score"><div class="scn"><span class="r">44</span> – <span class="d">57</span></div><div class="scl">夜魇 翻盘</div></div>
+      <div class="mc-arrow">→</div>
+    </a>
+
+    <a class="match-card radiant-win no-report" href="20260509-内战2-01-AI战报.html">
+      <div class="mc-num">3</div>
+      <div class="mc-info">
+        <div class="mc-title">内战 2 · 第 1 局 <span class="mc-tag">中分桌</span></div>
+        <div class="mc-desc">33 分钟 · 天辉斯拉达难为。18/1 速通 · 比赛 ID 8803924412</div>
+      </div>
+      <div class="mc-score"><div class="scn"><span class="r">38</span> – <span class="d">15</span></div><div class="scl">天辉 速通</div></div>
+      <div class="mc-arrow">→</div>
+    </a>
+
+    <a class="match-card radiant-win" href="20260509-内战2-02-AI战报.html">
+      <div class="mc-num">4</div>
+      <div class="mc-info">
+        <div class="mc-title">内战 2 · 第 2 局 <span class="mc-tag">中分桌</span> <span class="mc-tag" style="background:var(--gold);color:#fff;border-color:var(--gold);">⭐ 已完成</span></div>
+        <div class="mc-desc">58 分钟 · 天辉幻影刺客 AR.Chalice 18/4 后期翻盘 · 比赛 ID 8804000163</div>
+      </div>
+      <div class="mc-score"><div class="scn"><span class="r">45</span> – <span class="d">41</span></div><div class="scl">天辉 翻盘</div></div>
+      <div class="mc-arrow">→</div>
+    </a>
+
+    <a class="match-card radiant-win no-report" href="20260509-内战3-01-AI战报.html">
+      <div class="mc-num">5</div>
+      <div class="mc-info">
+        <div class="mc-title">内战 3 · 第 1 局 <span class="mc-tag">普通桌</span></div>
+        <div class="mc-desc">32 分钟 · 天辉痛苦女王 攻撃精神！12/0 单挑 · 比赛 ID 8803895680</div>
+      </div>
+      <div class="mc-score"><div class="scn"><span class="r">33</span> – <span class="d">10</span></div><div class="scl">天辉 大胜</div></div>
+      <div class="mc-arrow">→</div>
+    </a>
+
+  </section>
+
+  <div class="footer">
+    <p>📊 数据来源：<a href="https://github.com/odota/parser" target="_blank">OpenDota Parser</a> 解析 5 局 .dem 录像 → Claude AI 自动生成战报</p>
+    <p>🤖 工具链：parse-replay.ps1 → aggregate.mjs → Claude</p>
+    <p>📖 <a href="../../index.html">回主页</a> · <a href="../../20260509-内战对战表.html">查看对战表</a> · <a href="https://github.com/mrliuzhiyu/OriginDota">GitHub 仓库</a></p>
+    <p style="margin-top: 12px; font-size: 10px;">本期共 5 局，AI 战报正在陆续生成。当前已完成内战 2 第 2 局（点击进入），其余 4 局战报稍后补齐。</p>
+  </div>
+
+</div>
+</body>
+</html>

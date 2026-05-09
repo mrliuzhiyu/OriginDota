@@ -4,6 +4,8 @@
 
 **Pages 链接（发给群里）：** https://mrliuzhiyu.github.io/OriginDota/
 
+> 📂 文件结构 / 命名约定 / 新一期 checklist：见 [STRUCTURE.md](STRUCTURE.md)
+
 ---
 
 ## 文件结构

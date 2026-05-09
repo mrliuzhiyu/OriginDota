@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="2026.5.9 原点 Dota2 内战 · 赛后结算 — 5 局战报、Steam ID 关联、信誉分增减">
+<meta name="theme-color" content="#1a1a1a">
+<title>2026.5.9 原点 Dota2 内战 · 赛后结算</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #555;
+    --ink-mute: #999;
+    --line: #e6e6e6;
+    --line-soft: #f0f0f0;
+    --bg: #ffffff;
+    --bg-card: #fafafa;
+    --bg-warn: #fff5f5;
+    --warn: #c00;
+    --good: #096;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1080px; margin: 0 auto; padding: 56px 40px 80px; }
+
+  /* Header */
+  .header { text-align: center; padding-bottom: 32px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+  .header .eyebrow { font-size: 12px; letter-spacing: 4px; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 12px; }
+  .header h1 { font-size: 32px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  .header .meta { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; font-size: 13px; color: var(--ink-soft); }
+  .header .meta span { position: relative; }
+  .header .meta span + span::before { content: "·"; color: var(--ink-mute); position: absolute; left: -16px; }
+
+  /* Section */
+  .section { margin-bottom: 56px; }
+  .section-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 14px; margin-bottom: 22px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-head h2 { font-size: 22px; font-weight: 600; letter-spacing: 2px; }
+  .section-head .h-meta { font-size: 12px; color: var(--ink-soft); }
+
+  /* Match cards */
+  .matches { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .match {
+    border: 1px solid var(--line); background: var(--bg-card);
+    padding: 18px 20px;
+  }
+  .match-tag { font-size: 11px; letter-spacing: 2px; color: var(--ink-mute); margin-bottom: 6px; }
+  .match-result { font-size: 17px; font-weight: 600; margin-bottom: 4px; letter-spacing: 0.5px; }
+  .match-result .winner-r { color: var(--ink); }
+  .match-result .winner-d { color: var(--ink); }
+  .match-result .vs { color: var(--ink-mute); font-weight: 400; margin: 0 6px; font-size: 13px; }
+  .match-info { font-size: 12px; color: var(--ink-soft); }
+  .match-info b { color: var(--ink); font-weight: 500; }
+  .match.special { border-left: 2px solid var(--warn); background: var(--bg-warn); }
+  .match.special .match-tag { color: var(--warn); font-weight: 600; }
+
+  /* Score table */
+  .score-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+    border: 1px solid var(--line);
+  }
+  .score-table th, .score-table td {
+    padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line-soft);
+  }
+  .score-table th {
+    background: var(--bg-card); font-weight: 600; font-size: 11px; letter-spacing: 1.5px;
+    color: var(--ink-soft); text-transform: uppercase;
+  }
+  .score-table tr:last-child td { border-bottom: none; }
+  .score-table .num { font-feature-settings: "tnum"; color: var(--ink-mute); white-space: nowrap; }
+  .score-table .name-col { font-weight: 600; min-width: 120px; }
+  .score-table .delta { font-weight: 700; font-feature-settings: "tnum"; white-space: nowrap; text-align: right; }
+  .score-table .delta.plus { color: var(--good); }
+  .score-table .delta.minus { color: var(--warn); }
+  .score-table .delta.zero { color: var(--ink-mute); }
+  .score-table .reason { color: var(--ink-soft); font-size: 12px; }
+  .score-table .steam { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px; color: var(--ink-mute); }
+  .score-table tr.fail td { background: var(--bg-warn); }
+  .score-table tr.fail .name-col { color: var(--warn); }
+
+  /* Stats summary */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-bottom: 28px;
+  }
+  .stat {
+    border: 1px solid var(--line); background: var(--bg-card);
+    padding: 16px 18px; text-align: center;
+  }
+  .stat .stat-num { font-size: 28px; font-weight: 700; letter-spacing: 1px; color: var(--ink); font-feature-settings: "tnum"; }
+  .stat .stat-label { font-size: 11px; letter-spacing: 2px; color: var(--ink-mute); margin-top: 4px; text-transform: uppercase; }
+  .stat.warn .stat-num { color: var(--warn); }
+  .stat.good .stat-num { color: var(--good); }
+
+  /* Wild list */
+  .wild-list {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  }
+  .wild {
+    border-left: 2px solid #b8b8b8;
+    padding: 8px 0 8px 14px;
+  }
+  .wild-name { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+  .wild-id { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px; color: var(--ink-mute); }
+  .wild-where { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+
+  /* Notes */
+  .notes { border-top: 1px solid var(--line); padding-top: 32px; color: var(--ink-soft); font-size: 13px; }
+  .notes h3 { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: 2px; margin-bottom: 12px; }
+  .notes ul { list-style: none; padding: 0; }
+  .notes li { padding: 6px 0 6px 16px; position: relative; line-height: 1.7; }
+  .notes li::before { content: "—"; position: absolute; left: 0; color: var(--ink-mute); }
+
+  .footer {
+    margin-top: 48px; text-align: center; font-size: 11px;
+    color: var(--ink-mute); letter-spacing: 2px;
+  }
+
+  /* 手机适配 */
+  @media (max-width: 720px) {
+    .matches { grid-template-columns: 1fr !important; }
+    .stats { grid-template-columns: 1fr 1fr !important; }
+    .wild-list { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 600px) {
+    html, body { font-size: 13px; }
+    .page { padding: 24px 14px 48px; }
+    .header { padding-bottom: 22px; margin-bottom: 28px; }
+    .header h1 { font-size: 21px; margin-bottom: 10px; }
+    .header .meta { gap: 10px 18px; font-size: 12px; }
+    .section-head h2 { font-size: 18px; }
+    .score-table { font-size: 12px; }
+    .score-table th, .score-table td { padding: 8px 8px; }
+    .score-table .name-col { min-width: 80px; }
+    .stat .stat-num { font-size: 22px; }
+  }
+  @media (max-width: 480px) {
+    .score-table .steam, .score-table .reason { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="eyebrow">原点 DOTA2 内战 · 赛后结算</div>
+    <h1>2026.5.9 内战赛后结算</h1>
+    <div class="meta">
+      <span>2026.5.9 周六</span>
+      <span>5 局 · 三桌</span>
+      <span>主力 30 人 · 出席 23 · <b style="color:#c00;">失信 8</b></span>
+      <span>OpenDota 录像解析</span>
+    </div>
+  </header>
+
+  <!-- 五局战报概览 -->
+  <section class="section">
+    <div class="section-head">
+      <h2>五局战报</h2>
+      <span class="h-meta">5 场录像 · 内战 1 ×2 · 内战 2 ×2 · 内战 3 ×1</span>
+    </div>
+    <div class="matches">
+      <div class="match">
+        <div class="match-tag">内战 1 · 第 1 局 · match 8803928598</div>
+        <div class="match-result"><span class="winner-r">天辉胜</span><span class="vs">vs</span><span>夜魇</span> · 51 — 24</div>
+        <div class="match-info">时长 <b>37:07</b> · 高分桌（剑圣语音房）</div>
+        <div class="match-info" style="margin-top:6px; font-size:11px; color:var(--ink-mute);">替补 #12 Misaka 顶替主力上场</div>
+      </div>
+      <div class="match special">
+        <div class="match-tag">⚠ 内战 1 · 第 2 局 · match 8804014494</div>
+        <div class="match-result"><span>天辉</span><span class="vs">vs</span><span class="winner-d">夜魇胜</span> · 44 — 57</div>
+        <div class="match-info">时长 <b>47:54</b> · 高分桌</div>
+        <div class="match-info" style="margin-top:6px; font-size:11px; color:var(--warn);">原内战 1 大半人未到 · 5 个野人 + 借调 #24 攻击精神 / #27 剑心仍在 凑齐</div>
+      </div>
+      <div class="match">
+        <div class="match-tag">内战 2 · 第 1 局 · match 8803924412</div>
+        <div class="match-result"><span class="winner-r">天辉胜</span><span class="vs">vs</span><span>夜魇</span> · 38 — 15</div>
+        <div class="match-info">时长 <b>33:25</b> · 中分桌（小黑语音房）</div>
+        <div class="match-info" style="margin-top:6px; font-size:11px; color:var(--ink-mute);">速通 38-15 · 见 AI 战报</div>
+      </div>
+      <div class="match">
+        <div class="match-tag">内战 2 · 第 2 局 · match 8804000163</div>
+        <div class="match-result"><span class="winner-r">天辉胜</span><span class="vs">vs</span><span>夜魇</span> · 45 — 41</div>
+        <div class="match-info">时长 <b>57:51</b> · 中分桌</div>
+        <div class="match-info" style="margin-top:6px; font-size:11px; color:var(--ink-mute);">PA 后期觉醒翻盘 · 见 AI 战报</div>
+      </div>
+      <div class="match">
+        <div class="match-tag">内战 3 · 第 1 局 · match 8803895680</div>
+        <div class="match-result"><span class="winner-r">天辉胜</span><span class="vs">vs</span><span>夜魇</span> · 33 — 10</div>
+        <div class="match-info">时长 <b>32:08</b> · 普通桌（影魔语音房）</div>
+        <div class="match-info" style="margin-top:6px; font-size:11px; color:var(--ink-mute);">普通桌仅打 1 局</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 信誉分变动总览 -->
+  <section class="section">
+    <div class="section-head">
+      <h2>信誉分变动总览</h2>
+      <span class="h-meta">本期合计变动 +11 分</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat good">
+        <div class="stat-num">+47</div>
+        <div class="stat-label">主力出场加分</div>
+      </div>
+      <div class="stat warn">
+        <div class="stat-num">−40</div>
+        <div class="stat-label">失信扣分</div>
+      </div>
+      <div class="stat good">
+        <div class="stat-num">+1.5</div>
+        <div class="stat-label">开房队长加分</div>
+      </div>
+      <div class="stat good">
+        <div class="stat-num">+2.5</div>
+        <div class="stat-label">替补 / 观战加分</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 失信扣分（红框） -->
+  <section class="section">
+    <div class="section-head" style="border-bottom-color:#c00;">
+      <h2 style="color:#c00;">⚠ 失信扣分 · 8 人</h2>
+      <span class="h-meta">主力锁定后 20:10 仍未进房 · 各 −5 信誉分</span>
+    </div>
+    <table class="score-table">
+      <thead>
+        <tr>
+          <th style="width:60px;">报名</th>
+          <th>玩家</th>
+          <th>原阵位</th>
+          <th>段位</th>
+          <th class="reason" style="text-align:left;">备注</th>
+          <th style="text-align:right; width:80px;">变动</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="fail">
+          <td class="num">#10</td>
+          <td class="name-col">「2」</td>
+          <td>内战 2 · 夜魇 2 号</td>
+          <td>3000</td>
+          <td class="reason">主力锁定后未到 · 第 1 次失信</td>
+          <td class="delta minus">−5</td>
+        </tr>
+        <tr class="fail">
+          <td class="num">#11</td>
+          <td class="name-col">我王守義</td>
+          <td>原内战 1 · 天辉 2 号</td>
+          <td>4000</td>
+          <td class="reason">公告时已失信 · 由 #35 老八顶替 · 第 1 次失信</td>
+          <td class="delta minus">−5</td>
+        </tr>
+        <tr class="fail">
+          <td class="num">#13</td>
+          <td class="name-col">Wayne</td>
+          <td>内战 1 · 天辉 5 号</td>
+          <td>6000</td>
+          <td class="reason">主力锁定后未到 · 第 1 次失信</td>
+          <td class="delta minus">−5</td>
+        </tr>
+        <tr class="fail">
+          <td class="num">#15</td>
+          <td class="name-col">ben</td>
+          <td>内战 2 · 天辉 2 号</td>
+          <td>3300</td>
+          <td class="reason">主力锁定后未到 · 第 1 次失信</td>
+          <td class="delta minus">−5</td>
+        </tr>
+        <tr class="fail">
+          <td class="num">#22</td>
+          <td class="name-col">吴迪</td>
+          <td>内战 1 · 天辉 3 号</td>
+          <td>6500</td>
+          <td class="reason">主力锁定后未到 · 第 1 次失信</td>
+          <td class="delta minus">−5</td>
+        </tr>
+        <tr class="fail">
+          <td class="num">#23</td>
+          <td class="name-col">xp</td>
+          <td>内战 3 · 夜魇 1 号</td>
+          <td>1500</td>
+          <td class="reason">主力锁定后未到 · 第 1 次失信</td>
+          <td class="delta minus">−5</td>
+        </tr>
+        <tr class="fail">
+          <td class="num">#25</td>
+          <td class="name-col">zhou</td>
+          <td>内战 1 · 夜魇 2 号</td>
+          <td>7000</td>
+          <td class="reason">主力锁定后未到 · 第 1 次失信</td>
+          <td class="delta minus">−5</td>
+        </tr>
+        <tr class="fail">
+          <td class="num">#26</td>
+          <td class="name-col">zk</td>
+          <td>内战 1 · 夜魇 4 号</td>
+          <td>6000</td>
+          <td class="reason">主力锁定后未到 · 第 1 次失信</td>
+          <td class="delta minus">−5</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:14px; font-size:12px; color:var(--ink-soft); line-height:1.7;">
+      <b>说明：</b>内战 1 高分桌实际只有 <b>苏三 / qt / 老八 / 赵子龙 / 就硬划 / 芥末 / Misaka（替补转主力）</b>到场，原 5 个主力（吴迪 / Wayne / zhou / zk + 原已失信的王守義）未进房。第 2 局靠借调 #24 攻击精神（原内战 3）/ #27 剑心仍在（原内战 2）+ 5 个野人凑齐。
+    </div>
+  </section>
+
+  <!-- 主力出场 + 信誉分加分 -->
+  <section class="section">
+    <div class="section-head">
+      <h2>出席名单 · 信誉分加分</h2>
+      <span class="h-meta">按报名顺序</span>
+    </div>
+    <table class="score-table">
+      <thead>
+        <tr>
+          <th style="width:60px;">报名</th>
+          <th>玩家</th>
+          <th>Steam 显示名</th>
+          <th class="steam">Steam ID (steamID64)</th>
+          <th class="reason">参加局数</th>
+          <th style="text-align:right; width:80px;">变动</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">#01</td>
+          <td class="name-col">Joy</td>
+          <td>Joy</td>
+          <td class="steam">76561198115714370</td>
+          <td class="reason">内战 2 ×2 · 开房</td>
+          <td class="delta plus">+2.5</td>
+        </tr>
+        <tr>
+          <td class="num">#02</td>
+          <td class="name-col">Tc</td>
+          <td>Tcz2Z</td>
+          <td class="steam">76561199368304530</td>
+          <td class="reason">内战 3 ×1 · 开房</td>
+          <td class="delta plus">+2.5</td>
+        </tr>
+        <tr>
+          <td class="num">#03</td>
+          <td class="name-col">番茄酱</td>
+          <td>爱吃番茄的喵酱</td>
+          <td class="steam">76561198099773950</td>
+          <td class="reason">内战 2 ×2</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#05</td>
+          <td class="name-col">CY (Cynic)</td>
+          <td>Cynic</td>
+          <td class="steam">76561199097471070</td>
+          <td class="reason">内战 3 ×1</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#06</td>
+          <td class="name-col">就硬划</td>
+          <td>划，就硬划</td>
+          <td class="steam">76561198255183470</td>
+          <td class="reason">内战 1 ×1（第 1 局）· 内战 2 ×1（第 2 局借调）</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#07</td>
+          <td class="name-col">下等马</td>
+          <td>下等马给我田忌吧</td>
+          <td class="steam">76561198097773280</td>
+          <td class="reason">内战 2 ×2</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#08</td>
+          <td class="name-col">Error 404</td>
+          <td>Error 404</td>
+          <td class="steam">76561198146766670</td>
+          <td class="reason">内战 2 ×1（第 1 局）</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#09</td>
+          <td class="name-col">憨皮小牛</td>
+          <td>憨皮小牛</td>
+          <td class="steam">76561198082095900</td>
+          <td class="reason">内战 2 ×2</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#12</td>
+          <td class="name-col">不巧者 (Misaka)</td>
+          <td>misaka</td>
+          <td class="steam">76561198407223890</td>
+          <td class="reason">替补 +0.5 · 内战 1 第 1 局替补转主力 +2</td>
+          <td class="delta plus">+2.5</td>
+        </tr>
+        <tr>
+          <td class="num">#14</td>
+          <td class="name-col">苏三 (SS)</td>
+          <td>Ss</td>
+          <td class="steam">76561198140655200</td>
+          <td class="reason">内战 1 ×1（第 1 局）</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#16</td>
+          <td class="name-col">爱丽丝 (Alice)</td>
+          <td>Alice</td>
+          <td class="steam">76561198095303680</td>
+          <td class="reason">内战 3 ×1 · 替补转主力</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#17</td>
+          <td class="name-col">J.S</td>
+          <td colspan="2" class="reason">观战 · 解说房</td>
+          <td class="reason">纯潜水</td>
+          <td class="delta plus">+0.25</td>
+        </tr>
+        <tr>
+          <td class="num">#18</td>
+          <td class="name-col">罗西基 (spimba)</td>
+          <td colspan="2" class="reason">观战 · 影魔解说房</td>
+          <td class="reason">观战</td>
+          <td class="delta plus">+0.25</td>
+        </tr>
+        <tr>
+          <td class="num">#19</td>
+          <td class="name-col">noobplayer</td>
+          <td colspan="2" class="reason">观战 · 剑圣解说房</td>
+          <td class="reason">观战</td>
+          <td class="delta plus">+0.25</td>
+        </tr>
+        <tr>
+          <td class="num">#20</td>
+          <td class="name-col">赵子龙</td>
+          <td>赵子龙</td>
+          <td class="steam">76561198089649340</td>
+          <td class="reason">内战 1 ×2</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#21</td>
+          <td class="name-col">姜生</td>
+          <td>姜生</td>
+          <td class="steam">76561198924148100</td>
+          <td class="reason">内战 3 ×1</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#24</td>
+          <td class="name-col">攻击精神</td>
+          <td>攻撃精神！</td>
+          <td class="steam">76561198156991300</td>
+          <td class="reason">内战 1 ×1（第 2 局借调）· 内战 3 ×1</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#27</td>
+          <td class="name-col">剑心仍在</td>
+          <td>剑心仍在</td>
+          <td class="steam">76561198291988900</td>
+          <td class="reason">内战 1 ×1（第 2 局借调）</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#28</td>
+          <td class="name-col">老崔 (OB)</td>
+          <td colspan="2" class="reason">观战 · 影魔解说房</td>
+          <td class="reason">观战</td>
+          <td class="delta plus">+0.25</td>
+        </tr>
+        <tr>
+          <td class="num">#29</td>
+          <td class="name-col">及时行乐</td>
+          <td colspan="2" class="reason">替补未上场</td>
+          <td class="reason">21:00 后才能玩 · 未上场</td>
+          <td class="delta plus">+0.5</td>
+        </tr>
+        <tr>
+          <td class="num">#30</td>
+          <td class="name-col">日天冠绝守门员</td>
+          <td>吕日天</td>
+          <td class="steam">76561198140957490</td>
+          <td class="reason">内战 2 ×1（第 1 局）</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#31</td>
+          <td class="name-col">芥末 (wasabi)</td>
+          <td>Wasabi</td>
+          <td class="steam">76561198152355630</td>
+          <td class="reason">内战 1 ×2</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#32</td>
+          <td class="name-col">大鱼 (DDDash)</td>
+          <td>DDDash</td>
+          <td class="steam">76561198368559900</td>
+          <td class="reason">内战 3 ×1</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#33</td>
+          <td class="name-col">请神 Fy god 附体</td>
+          <td>请神Fy god附体</td>
+          <td class="steam">76561198113517470</td>
+          <td class="reason">内战 3 ×1</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#34</td>
+          <td class="name-col">LittleKim</td>
+          <td>Kimalwaysright</td>
+          <td class="steam">76561198091059020</td>
+          <td class="reason">内战 3 ×1</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#35</td>
+          <td class="name-col">老八</td>
+          <td>冰清玉洁梅老八</td>
+          <td class="steam">76561198278698980</td>
+          <td class="reason">内战 1 ×2 · 观战转主力顶替 #11</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#36</td>
+          <td class="name-col">qt</td>
+          <td>qt</td>
+          <td class="steam">76561198070167410</td>
+          <td class="reason">内战 1 ×1（第 1 局）· 自愿开房</td>
+          <td class="delta plus">+2.5</td>
+        </tr>
+        <tr>
+          <td class="num">#37</td>
+          <td class="name-col">Yalo</td>
+          <td>Yalo</td>
+          <td class="steam">76561198090667090</td>
+          <td class="reason">内战 3 ×1</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr>
+          <td class="num">#38</td>
+          <td class="name-col">AR.Chalice</td>
+          <td>AR.Chalice</td>
+          <td class="steam">76561198248734380</td>
+          <td class="reason">内战 2 ×2</td>
+          <td class="delta plus">+2</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 野人 / 临时叫人 -->
+  <section class="section">
+    <div class="section-head">
+      <h2>野人 / 临时叫人</h2>
+      <span class="h-meta">9 人 · 不在花名册 · 不参与信誉分</span>
+    </div>
+    <div style="font-size:12px; color:var(--ink-soft); line-height:1.7; margin-bottom:18px;">
+      原报名玩家未到太多，主要是内战 1 桌，第 2 局只能临时拉野人和借调其它桌的人凑齐。这些 Steam ID 不在 37 人接龙花名册里，本期不参与信誉分加减。<b>下次他们如果继续参加，请先报名进花名册。</b>
+    </div>
+    <div class="wild-list">
+      <div class="wild">
+        <div class="wild-name">60</div>
+        <div class="wild-id">76561198255671250</div>
+        <div class="wild-where">内战 1 第 1·2 局</div>
+      </div>
+      <div class="wild">
+        <div class="wild-name">带把少女李狗蛋</div>
+        <div class="wild-id">76561198238437890</div>
+        <div class="wild-where">内战 1 第 1·2 局</div>
+      </div>
+      <div class="wild">
+        <div class="wild-name">A</div>
+        <div class="wild-id">76561198321454270</div>
+        <div class="wild-where">内战 1 第 1 局 · 内战 2 第 2 局</div>
+      </div>
+      <div class="wild">
+        <div class="wild-name">只会辅助混分</div>
+        <div class="wild-id">76561198252431460</div>
+        <div class="wild-where">内战 1 第 2 局</div>
+      </div>
+      <div class="wild">
+        <div class="wild-name">可可托海</div>
+        <div class="wild-id">76561198164671400</div>
+        <div class="wild-where">内战 1 第 2 局</div>
+      </div>
+      <div class="wild">
+        <div class="wild-name">猥琐男</div>
+        <div class="wild-id">76561198100221540</div>
+        <div class="wild-where">内战 1 第 2 局</div>
+      </div>
+      <div class="wild">
+        <div class="wild-name">剑心犹在</div>
+        <div class="wild-id">76561198143911940</div>
+        <div class="wild-where">内战 2 第 1·2 局 <span style="color:var(--warn);">注：与 #27 剑心仍在 不同号</span></div>
+      </div>
+      <div class="wild">
+        <div class="wild-name">难为。</div>
+        <div class="wild-id">76561198100810240</div>
+        <div class="wild-where">内战 2 第 1·2 局</div>
+      </div>
+      <div class="wild">
+        <div class="wild-name">蓝色柚子大王</div>
+        <div class="wild-id">76561198330157860</div>
+        <div class="wild-where">内战 2 第 1·2 局</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 说明 -->
+  <section class="notes">
+    <h3>本期结算说明</h3>
+    <ul>
+      <li><b>规则参考：</b>初始 50 分，满分 100 ｜ 参加一场 +2 ｜ 替补 +0.5 ｜ 观战 +0.25 ｜ 当期开房队长额外 +0.5 ｜ 失信（20:10 仍未进房）：第 1 次 -5 / 第 2 次 -10 / 第 3 次 -15 / 第 4 次 -20。</li>
+      <li><b>「参加一场」的口径：</b>本期按"当晚至少参加 1 局即 +2"结算，不按局数累加。打 2 局和打 1 局都 +2。如果你想改成按每局 +2，本表可重做。</li>
+      <li><b>失信判定依据：</b>OpenDota 录像里没有出现该玩家的 Steam ID = 当晚没进任何一桌的房 = 失信。"野人"指 Steam ID 不在花名册里的玩家，不影响信誉分判定。</li>
+      <li><b>内战 1 桌特殊情况：</b>该桌主力到场严重不足（10 人原阵容到场 5 人），第 2 局借调了 #24 攻击精神（原内战 3 主力）和 #27 剑心仍在（原内战 2 主力）以及 5 个野人。借调玩家本人加分照算，借调行为本身不扣不加。</li>
+      <li><b>参考资料：</b>parsed/20260509/*-summary.json — 5 局 OpenDota 解析 ｜ analysis/20260509/ — 第 1·2 局 AI 战报。</li>
+    </ul>
+
+    <h3 style="margin-top:28px;">下一期改进建议</h3>
+    <ul>
+      <li><b>主力锁定后的成本太低：</b>本期内战 1 桌 10 个主力到 5 个，靠野人凑齐。如果失信扣分提到 -10 起步，或者引入"连续 2 期失信禁赛 1 期"会更紧。</li>
+      <li><b>替补不够：</b>2 个替补不够覆盖一桌人没到的情况。下期建议每桌至少 2 个替补，共 6 个。</li>
+      <li><b>Steam ID 预登记：</b>从下期开始，接龙时附上 Steam ID（或 Dota 个人主页链接），方便录像解析后自动结算信誉分，无需事后手工对账。</li>
+    </ul>
+  </section>
+
+  <div class="footer">2026.5.9 · 原点 DOTA2 · 三桌 5 局 · 赛后结算 · OpenDota 录像驱动</div>
+
+</div>
+</body>
+</html>
