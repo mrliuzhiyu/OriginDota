@@ -1,4 +1,4 @@
-# parse-replay.ps1
+﻿# parse-replay.ps1
 # 把 .dem 录像 POST 到 OpenDota Parser (Docker 在 5600)，得到 JSONL 事件流
 #
 # 用法：
