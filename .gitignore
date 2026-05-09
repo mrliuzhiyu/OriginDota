@@ -1,0 +1,23 @@
+# Dota 2 录像文件（太大，不入 git）
+replays/*.dem
+replays/*.dem.bz2
+
+# 解析中间产物（可重生成）
+parsed/*.jsonl
+parsed/*-summary.json
+
+# Node / Python
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.local
+
+# OS
+Thumbs.db
+.DS_Store
+
+# 编辑器
+.vscode/
+.idea/
+*.swp

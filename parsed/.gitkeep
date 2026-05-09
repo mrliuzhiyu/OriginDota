@@ -1,0 +1,2 @@
+# 解析输出（JSONL 和 summary.json）放这里
+# 都被 .gitignore 排除（可从 .dem 重新生成）

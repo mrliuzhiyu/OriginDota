@@ -1,0 +1,2 @@
+# 把 .dem 录像文件放在这个目录
+# .dem 文件被 .gitignore 排除，不会进 git
