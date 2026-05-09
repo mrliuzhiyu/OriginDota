@@ -19,18 +19,24 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // ===== 加载映射表 =====
 const heroes = JSON.parse(readFileSync(join(__dirname, 'heroes.json'), 'utf-8'));
+const heroesCn = JSON.parse(readFileSync(join(__dirname, 'heroes-cn.json'), 'utf-8'));
 const items = JSON.parse(readFileSync(join(__dirname, 'items.json'), 'utf-8'));
 
+function heroCnName(id) {
+  return heroesCn[String(id)] || null;
+}
 function heroById(id) {
   const h = heroes[String(id)];
-  if (!h) return { id, name: '', localized_name: `Hero${id}` };
-  return h;
+  if (!h) return { id, name: '', localized_name: `Hero${id}`, cn: `英雄${id}` };
+  return { ...h, cn: heroCnName(id) || h.localized_name };
 }
 function heroByNpcName(npc) {
   for (const id in heroes) {
-    if (heroes[id].name === npc) return heroes[id];
+    if (heroes[id].name === npc) {
+      return { ...heroes[id], cn: heroCnName(id) || heroes[id].localized_name };
+    }
   }
-  return { name: npc, localized_name: npc.replace(/^npc_dota_hero_/, '') };
+  return { name: npc, localized_name: npc.replace(/^npc_dota_hero_/, ''), cn: npc.replace(/^npc_dota_hero_/, '') };
 }
 function itemDisplayName(itemKey) {
   if (!itemKey) return '';
@@ -308,7 +314,8 @@ for (let slot = 0; slot < 10; slot++) {
     slot,
     team,
     hero_id: hero?.id || li.hero_id || null,
-    hero: hero?.localized_name || '?',
+    hero: hero?.cn || hero?.localized_name || '?',
+    hero_en: hero?.localized_name || '?',
     hero_npc: hero?.name || '',
     name: epPlayer.playerName || '?',
     steam_id: epPlayer.steamId || '',

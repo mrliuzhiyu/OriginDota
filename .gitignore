@@ -1,10 +1,13 @@
 # Dota 2 录像文件（太大，不入 git）
-replays/*.dem
-replays/*.dem.bz2
+*.dem
+*.dem.bz2
 
 # 解析中间产物（可重生成）
-parsed/*.jsonl
-parsed/*-summary.json
+parsed/**/*.jsonl
+parsed/**/*-summary.json
+
+# tools 临时下载产物
+tools/_*.json
 
 # Node / Python
 node_modules/
