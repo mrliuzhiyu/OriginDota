@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "analysis/20260509/20260509-内战2-02-AI战报.md",
+                "file": "analysis/20260509/20260509-内战3-01-AI战报.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "20260509-内战2-02-AI战报"
+              "title": "20260509-内战3-01-AI战报"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "analysis/20260509/20260509-内战2-02-AI战报.md",
+                "file": "analysis/20260509/20260509-内战3-01-AI战报.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "20260509-内战2-02-AI战报 的反向链接列表"
+              "title": "20260509-内战3-01-AI战报 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "analysis/20260509/20260509-内战2-02-AI战报.md",
+                "file": "analysis/20260509/20260509-内战3-01-AI战报.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "20260509-内战2-02-AI战报 的出链列表"
+              "title": "20260509-内战3-01-AI战报 的出链列表"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "analysis/20260509/20260509-内战2-02-AI战报.md",
+                "file": "analysis/20260509/20260509-内战3-01-AI战报.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "20260509-内战2-02-AI战报 的大纲"
+              "title": "20260509-内战3-01-AI战报 的大纲"
             }
           }
         ]
@@ -185,6 +185,9 @@
   },
   "active": "d87decb545683e3a",
   "lastOpenFiles": [
+    "analysis/20260509/20260509-内战2-02-AI战报.md",
+    "analysis/20260509/20260509-内战3-01-AI战报.html",
+    "analysis/20260509/20260509-内战3-01-AI战报.md",
     "analysis/20260509/20260509-内战2-01-AI战报.html",
     "analysis/20260509/20260509-内战1-02-AI战报.html",
     "tools/render-md.mjs",
@@ -194,13 +197,10 @@
     "tools/node_modules/marked/lib/marked.esm.js.map",
     "tools/node_modules/marked/lib/marked.d.ts",
     "tools/node_modules/marked/lib",
-    "tools/node_modules/marked/bin/marked.js",
-    "tools/node_modules/marked/bin/main.js",
     "tools/node_modules/marked/man/marked.1.md",
     "analysis/20260509/20260509-内战2-01-AI战报.md",
     "analysis/20260509/20260509-内战1-02-AI战报.md",
     "analysis/20260509/20260509-内战1-01-AI战报.md",
-    "analysis/20260509/20260509-内战2-02-AI战报.md",
     "STRUCTURE.md"
   ]
 }
