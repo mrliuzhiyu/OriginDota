@@ -21,26 +21,25 @@ if (existsSync(stratzPath)) {
 }
 
 function diffBadge(d, label = '') {
-  // d = 实战 - 报名: 正=大号藏分嫌疑, 负=小号虚报嫌疑
+  // d = 实战 - 报名: 正=段位低估，负=段位虚高
   if (d == null) return '<span class="b mute">—</span>';
-  const sign = d > 0 ? '+' : '';
   const arrow = d > 0 ? '↑' : (d < 0 ? '↓' : '');
   const text = `${arrow}${Math.abs(d)}${label}`;
-  if (Math.abs(d) < 500) return `<span class="b ok">${text}（诚实）</span>`;
+  if (Math.abs(d) < 500) return `<span class="b ok">${text}</span>`;
   if (Math.abs(d) < 1000) return `<span class="b warn">${text}</span>`;
   return d > 0
-    ? `<span class="b info">${text}（大号？）</span>`
-    : `<span class="b danger">${text}（小号？）</span>`;
+    ? `<span class="b info">${text} 低估</span>`
+    : `<span class="b danger">${text} 虚高</span>`;
 }
 
 function verdict(reported, combat) {
   if (combat == null || reported == null) return '— 未参赛 / 数据不足';
-  // 改方向: 实战 - 报名（正=大号藏分嫌疑，负=小号虚报嫌疑）
+  // 实战 - 报名：正=段位低估（实力高于报名），负=段位虚高（报名高于实力）
   const diff = combat - reported;
-  if (diff >= 1000) return '🔵 大号嫌疑（实力 > 报名 ≥ 1000，藏分子）';
-  if (diff <= -1000) return '🔴 小号嫌疑（报名 > 实力 ≥ 1000，虚报段位）';
-  if (Math.abs(diff) >= 500) return '🟡 略有偏差（500-999）';
-  return '🟢 报名与实力匹配（诚实）';
+  if (diff >= 1000) return '🔵 段位低估';
+  if (diff <= -1000) return '🔴 段位虚高';
+  if (Math.abs(diff) >= 500) return '🟡 略有偏差';
+  return '🟢 报名属实';
 }
 
 const stratzUrl = (id64) => id64
@@ -166,23 +165,23 @@ const html = `<!DOCTYPE html>
   <section class="stats">
     <div class="stat danger">
       <div class="v">${fakeHigh}</div>
-      <div class="l">🔴 小号嫌疑<br>报名 &gt; 实战 ≥ 1000<br><span style="opacity:.6">虚报段位</span></div>
+      <div class="l">🔴 段位虚高<br><span style="opacity:.6">报得比实力高 ≥ 1000</span></div>
     </div>
     <div class="stat info">
       <div class="v">${hidden}</div>
-      <div class="l">🔵 大号嫌疑<br>实战 &gt; 报名 ≥ 1000<br><span style="opacity:.6">藏分</span></div>
+      <div class="l">🔵 段位低估<br><span style="opacity:.6">报得比实力低 ≥ 1000</span></div>
     </div>
     <div class="stat warn">
       <div class="v">${warn}</div>
-      <div class="l">🟡 略偏差<br>差 500-999</div>
+      <div class="l">🟡 略有偏差<br><span style="opacity:.6">差 500-999</span></div>
     </div>
     <div class="stat ok">
       <div class="v">${ok}</div>
-      <div class="l">🟢 诚实<br>差 &lt; 500</div>
+      <div class="l">🟢 报名属实<br><span style="opacity:.6">差 &lt; 500</span></div>
     </div>
     <div class="stat mute">
       <div class="v">${noData}</div>
-      <div class="l">⚪ 未参赛<br>无法核查</div>
+      <div class="l">⚪ 未参赛<br><span style="opacity:.6">无法核查</span></div>
     </div>
   </section>
 
@@ -209,20 +208,20 @@ const html = `<!DOCTYPE html>
     <h2 style="font-size:22px; font-weight:600; padding-bottom:12px; margin-bottom:24px; border-bottom:2px solid var(--ink);">🔬 重点 4 人 · 三角证据深挖</h2>
     <p style="font-size:13px; color:var(--ink-soft); margin-bottom:24px;">
     <b>主轴：AI 实战 MMR</b>（5 局录像表现）｜ <b>辅助：STRATZ 国际服段位</b>（客观但国服数据少）｜ <b>对比：玩家自报段位</b>。
-    判断玩家是否在<b>报小号</b>（实际是大号高手伪装）或<b>报大号</b>（虚报段位炫耀）。
+    判断报名分跟实力是否匹配——<b>段位虚高</b>（吹牛）或<b>段位低估</b>（实力被低估，可能藏分）。
     </p>
 
     <!-- 案例 1: Error 404 -->
     <div class="evidence-card danger">
-      <div class="ec-head">🔴 #08 Error 404 · <b>小号嫌疑（虚报段位 +1000）</b></div>
+      <div class="ec-head">🔴 #08 Error 404 · <b>段位虚高 ↓1075</b></div>
       <div class="ec-grid">
         <div class="ec-cell"><div class="ec-label">报名分</div><div class="ec-val">3000</div><div class="ec-src">玩家自填</div></div>
         <div class="ec-cell"><div class="ec-label">STRATZ 真实</div><div class="ec-val">~1925</div><div class="ec-src">守护 3 · 国际服客观</div></div>
         <div class="ec-cell"><div class="ec-label">AI 实战估算</div><div class="ec-val">~2000</div><div class="ec-src">2-01 录像分析</div></div>
-        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val danger">虚报 +1000</div><div class="ec-src">三角全部印证</div></div>
+        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val danger">段位虚高 ↓1075</div><div class="ec-src">三角全部印证</div></div>
       </div>
       <div class="ec-detail">
-        <p><b>结论：实力偏低但报得高 = 小号假装大号</b>。三角证据如下：</p>
+        <p><b>结论：报得比实力高 1075</b>，三角证据：</p>
         <ul>
           <li><b>STRATZ 客观数据（国际服）</b>：守护 3 = 1925 MMR。这是 STRATZ 极少数能拉到的国服玩家之一，说明他在国际服打过天梯 → 数据可信</li>
           <li><b>2-01 实战表现</b>：天涯墨客 0 杀 11 死 12 助攻，金钱/分 223（中分桌全场最低）。报名 3000 的玩家在中分桌（均分 3580）至少应该 2-3 杀</li>
@@ -234,15 +233,15 @@ const html = `<!DOCTYPE html>
 
     <!-- 案例 2: 赵子龙 -->
     <div class="evidence-card danger">
-      <div class="ec-head">🔴 #20 赵子龙 · <b>小号嫌疑（虚报段位 ~+1000）</b></div>
+      <div class="ec-head">🔴 #20 赵子龙 · <b>段位虚高 ↓1000</b></div>
       <div class="ec-grid">
         <div class="ec-cell"><div class="ec-label">报名分</div><div class="ec-val">5000</div><div class="ec-src">玩家自填</div></div>
         <div class="ec-cell"><div class="ec-label">STRATZ 真实</div><div class="ec-val">未排位</div><div class="ec-src">国服 STRATZ 无数据</div></div>
         <div class="ec-cell"><div class="ec-label">AI 实战估算</div><div class="ec-val">~4000</div><div class="ec-src">1-01 + 1-02 双场</div></div>
-        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val danger">虚报 ~+1000</div><div class="ec-src">双场样本 + 同位对比</div></div>
+        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val danger">段位虚高 ↓1000</div><div class="ec-src">双场样本 + 同位对比</div></div>
       </div>
       <div class="ec-detail">
-        <p><b>结论：实力 4000 但报 5000 = 报得偏高</b>（小号嫌疑较轻）。证据：</p>
+        <p><b>结论：实力 4000 但报 5000，虚高 1000</b>。证据：</p>
         <ul>
           <li><b>1-01 高分桌 1 号位幻影刺客</b>：5/7/7，正补 335（全场最高），金钱/分 551 — 数据像 4500 段位，不像 5000</li>
           <li><b>1-02 高分桌 5 号位司夜刺客</b>：5/15/29，<b>15 死全场最高</b> — 5 号位 15 死说明视野判断 / 走位有问题</li>
@@ -255,15 +254,15 @@ const html = `<!DOCTYPE html>
 
     <!-- 案例 3: AR.Chalice -->
     <div class="evidence-card info">
-      <div class="ec-head">🔵 #38 AR.Chalice · <b>大号嫌疑（藏分 −1300，最强嫌疑）</b></div>
+      <div class="ec-head">🔵 #38 AR.Chalice · <b>段位低估 ↑1300（最严重）</b></div>
       <div class="ec-grid">
         <div class="ec-cell"><div class="ec-label">报名分</div><div class="ec-val">4500</div><div class="ec-src">玩家自填</div></div>
         <div class="ec-cell"><div class="ec-label">STRATZ 真实</div><div class="ec-val">未排位</div><div class="ec-src">国服 STRATZ 无数据</div></div>
         <div class="ec-cell"><div class="ec-label">AI 实战估算</div><div class="ec-val">~5800</div><div class="ec-src">2-01 + 2-02 双场神级</div></div>
-        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val info">藏分 −1300</div><div class="ec-src">双场神级 + 同位对比</div></div>
+        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val info">段位低估 ↑1300</div><div class="ec-src">双场神级 + 同位对比</div></div>
       </div>
       <div class="ec-detail">
-        <p><b>结论：实力 5800 但报 4500 = 大号假装中分玩家</b>（藏分子嫌疑最重）。证据：</p>
+        <p><b>结论：实力 5800 但报 4500，低估 1300</b>（疑似藏分）。证据：</p>
         <ul>
           <li><b>2-01 中分桌主宰（1 号位）</b>：<b>11 杀 0 死</b> 6 助攻，金钱/分 769。1 号 carry 全场 0 死亡是顶级标志（绝大多数 5500+ 玩家也做不到）</li>
           <li><b>2-02 中分桌幻影刺客（1 号位）</b>：<b>18 杀 4 死 15 助攻</b>，金钱/分 797（全场最佳），6 个多杀（4 双 + 2 三）</li>
@@ -276,15 +275,15 @@ const html = `<!DOCTYPE html>
 
     <!-- 案例 4: 攻击精神 -->
     <div class="evidence-card info">
-      <div class="ec-head">🔵 #24 攻击精神 · <b>大号嫌疑（藏分 −1500，最显眼）</b></div>
+      <div class="ec-head">🔵 #24 攻击精神 · <b>段位低估 ↑1500（最显眼）</b></div>
       <div class="ec-grid">
         <div class="ec-cell"><div class="ec-label">报名分</div><div class="ec-val">1500</div><div class="ec-src">玩家自填 仅 2 号位</div></div>
         <div class="ec-cell"><div class="ec-label">STRATZ 真实</div><div class="ec-val">未排位</div><div class="ec-src">国服 STRATZ 无数据</div></div>
         <div class="ec-cell"><div class="ec-label">AI 实战估算</div><div class="ec-val">~3000</div><div class="ec-src">3-01 神级 + 1-02 借调</div></div>
-        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val info">藏分 −1500</div><div class="ec-src">普通桌 0 死神级</div></div>
+        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val info">段位低估 ↑1500</div><div class="ec-src">普通桌 0 死神级</div></div>
       </div>
       <div class="ec-detail">
-        <p><b>结论：实力 3000 但报 1500 = 大号假装新手在普通桌碾压</b>。证据：</p>
+        <p><b>结论：实力 3000 但报 1500，低估 1500</b>（普通桌神级表现明显藏分）。证据：</p>
         <ul>
           <li><b>3-01 普通桌中单痛苦女王</b>：<b>12 杀 0 死</b> 13 助攻，金钱/分 516。<b>0 死亡是全场所有玩家最低死亡数</b>（连 5 号支持都死了 4+ 次）</li>
           <li><b>普通桌均分 1750</b>，对手都是 1500 或更低段位的玩家。在这种环境下打出 mid 痛苦女王 12/0 是「专精玩家碾压低分对手」的典型表现</li>
@@ -329,14 +328,14 @@ const html = `<!DOCTYPE html>
     </ul>
     <h3 style="margin-top:14px;">本期重点关注 4 人</h3>
     <ul>
-      <li>🔴 <b>Error 404 (小号嫌疑)</b>：报 3000 但 STRATZ 守护 3 (1925) + 实战 0/11/12 ｜ <b>实力其实只有 2000</b></li>
-      <li>🔴 <b>赵子龙 (小号嫌疑)</b>：报 5000 但 PA 5/7 + 司夜刺客 5/15 ｜ <b>实力大约 4000</b></li>
-      <li>🔵 <b>AR.Chalice (大号嫌疑)</b>：报 4500 但主宰 11/0 + PA 18/4 双场神级 ｜ <b>实力其实 5800</b></li>
-      <li>🔵 <b>攻击精神 (大号嫌疑)</b>：报 1500 但痛苦女王 12/0 神级 + 高分桌借调能用 ｜ <b>实力其实 3000</b></li>
+      <li>🔴 <b>Error 404</b> · 段位虚高 ↓1075 ｜ 报 3000 但 STRATZ 守护 3 (1925) + 实战 0/11/12 ≈ <b>实力 2000</b></li>
+      <li>🔴 <b>赵子龙</b> · 段位虚高 ↓1000 ｜ 报 5000 但 PA 5/7 + 司夜刺客 5/15 ≈ <b>实力 4000</b></li>
+      <li>🔵 <b>AR.Chalice</b> · 段位低估 ↑1300 ｜ 报 4500 但主宰 11/0 + PA 18/4 双场神级 ≈ <b>实力 5800</b></li>
+      <li>🔵 <b>攻击精神</b> · 段位低估 ↑1500 ｜ 报 1500 但痛苦女王 12/0 神级 + 高分桌借调能用 ≈ <b>实力 3000</b></li>
     </ul>
-    <p style="margin-top:10px;"><b>术语说明</b>：<br>
-    🔴 <b>小号嫌疑</b> = 报名段位高于实战 = 真实是低段玩家但报得高（虚报段位）<br>
-    🔵 <b>大号嫌疑</b> = 报名段位低于实战 = 真实是高段大佬但报得低（藏分子，欺负低分桌）</p>
+    <p style="margin-top:10px;"><b>术语</b>：<br>
+    🔴 <b>段位虚高</b>↓ = 报名分高于实战水平（吹牛 / 实力不符）<br>
+    🔵 <b>段位低估</b>↑ = 报名分低于实战水平（藏分 / 大佬潜伏）</p>
   </div>
 
   <div class="footer">
@@ -352,8 +351,8 @@ const html = `<!DOCTYPE html>
 writeFileSync(join(__dirname, '..', 'analysis', '段位真实度.html'), html);
 console.log('✓ analysis/段位真实度.html 已生成');
 console.log(`\n核查结果：`);
-console.log(`  🔴 小号嫌疑（虚报段位）: ${fakeHigh} 人 (报名 > 实战 ≥ 1000)`);
-console.log(`  🔵 大号嫌疑（藏分子）: ${hidden} 人 (实战 > 报名 ≥ 1000)`);
+console.log(`  🔴 段位虚高: ${fakeHigh} 人 (报名 > 实战 ≥ 1000)`);
+console.log(`  🔵 段位低估: ${hidden} 人 (实战 > 报名 ≥ 1000)`);
 console.log(`  🟡 略偏差: ${warn} 人`);
-console.log(`  🟢 匹配（诚实）: ${ok} 人`);
+console.log(`  🟢 报名属实: ${ok} 人`);
 console.log(`  ⊘ 未参赛: ${noData} 人`);
