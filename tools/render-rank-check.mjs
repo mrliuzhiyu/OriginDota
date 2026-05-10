@@ -195,6 +195,119 @@ const html = `<!DOCTYPE html>
     </tbody>
   </table>
 
+  <!-- 三角证据深挖 -->
+  <section style="margin-top:48px;">
+    <h2 style="font-size:22px; font-weight:600; padding-bottom:12px; margin-bottom:24px; border-bottom:2px solid var(--ink);">🔬 重点 4 人 · 三角证据深挖</h2>
+    <p style="font-size:13px; color:var(--ink-soft); margin-bottom:24px;">
+    交叉印证三个数据源：<b>玩家自报分</b>（主观）+ <b>STRATZ 真实段位</b>（国际服客观）+ <b>本期 AI 实战 MMR</b>（5 局录像分析）。
+    至少两项相互印证才是确凿证据。
+    </p>
+
+    <!-- 案例 1: Error 404 -->
+    <div class="evidence-card danger">
+      <div class="ec-head">🔴 #08 Error 404 · 高分低报 +1075（最确凿）</div>
+      <div class="ec-grid">
+        <div class="ec-cell"><div class="ec-label">报名分</div><div class="ec-val">3000</div><div class="ec-src">玩家自填</div></div>
+        <div class="ec-cell"><div class="ec-label">STRATZ 真实</div><div class="ec-val">~1925</div><div class="ec-src">守护 3 · 国际服客观</div></div>
+        <div class="ec-cell"><div class="ec-label">AI 实战估算</div><div class="ec-val">~2000</div><div class="ec-src">2-01 录像分析</div></div>
+        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val danger">虚高 ~1000</div><div class="ec-src">三角全部印证</div></div>
+      </div>
+      <div class="ec-detail">
+        <p><b>关键证据</b>：</p>
+        <ul>
+          <li><b>STRATZ 数据（国际服）</b>：守护 3，对应 ~1925 MMR。这是 STRATZ 极少数能拉到的国服玩家之一，说明该玩家在国际服打过 ranked → 数据可信</li>
+          <li><b>2-01 实战</b>：天涯墨客 0 杀 11 死 12 助攻，金钱/分 223（中分桌全场最低之一）。报名 3000 的玩家在中分桌（均分 3580）至少应该 2-3 杀</li>
+          <li><b>STRATZ + 实战双重印证</b>：1925 vs 2000，两个独立数据源给出几乎相同结论 → 实战 MMR 大约就是 2000，报名 3000 虚高约 1000</li>
+        </ul>
+        <p><b>建议</b>：下期改报 2000-2500，更符合实力。本人不必失信扣分（这次因未到已扣 −5），但报名分应该校准。</p>
+      </div>
+    </div>
+
+    <!-- 案例 2: 赵子龙 -->
+    <div class="evidence-card danger">
+      <div class="ec-head">🔴 #20 赵子龙 · 高分低报 ~+1000（双场样本）</div>
+      <div class="ec-grid">
+        <div class="ec-cell"><div class="ec-label">报名分</div><div class="ec-val">5000</div><div class="ec-src">玩家自填</div></div>
+        <div class="ec-cell"><div class="ec-label">STRATZ 真实</div><div class="ec-val">未排位</div><div class="ec-src">国服 STRATZ 无数据</div></div>
+        <div class="ec-cell"><div class="ec-label">AI 实战估算</div><div class="ec-val">~4000</div><div class="ec-src">1-01 + 1-02 双场</div></div>
+        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val danger">虚高 ~1000</div><div class="ec-src">双场样本 + 同位对比</div></div>
+      </div>
+      <div class="ec-detail">
+        <p><b>关键证据</b>：</p>
+        <ul>
+          <li><b>1-01 高分桌 1 号位幻影刺客</b>：5/7/7，正补 335（全场最高），金钱/分 551 — 数据像 4500 段位，不像 5000</li>
+          <li><b>1-02 高分桌 5 号位司夜刺客</b>：5/15/29，<b>15 死全场最高</b> — 5 号位 15 死说明视野判断 / 走位有问题</li>
+          <li><b>同位对比</b>：报 6000 的 苏三 SS 在 1-01 编织者 1 号位打出 18/4，<b>报 4500 的 AR.Chalice 在 2-01 主宰 1 号位打出 11/0</b> — 5000 段位的 PA 至少 8/4 起步，5/7 偏低</li>
+          <li><b>桌位印证</b>：1-01 是高分桌（均分 5650），赵子龙是其中报名最低的（5000 vs 队友 6000+）— 即使按下限算，5/7 PA 也偏弱</li>
+        </ul>
+        <p><b>建议</b>：下期改报 4000-4500。如果坚持 5000，下期再观察 2-3 场后定论。<b>但要警惕</b>：可能是当晚状态不好 / 不熟悉英雄。</p>
+      </div>
+    </div>
+
+    <!-- 案例 3: AR.Chalice -->
+    <div class="evidence-card info">
+      <div class="ec-head">🔵 #38 AR.Chalice · 低分高报（藏分）−1300（最强藏分嫌疑）</div>
+      <div class="ec-grid">
+        <div class="ec-cell"><div class="ec-label">报名分</div><div class="ec-val">4500</div><div class="ec-src">玩家自填</div></div>
+        <div class="ec-cell"><div class="ec-label">STRATZ 真实</div><div class="ec-val">未排位</div><div class="ec-src">国服 STRATZ 无数据</div></div>
+        <div class="ec-cell"><div class="ec-label">AI 实战估算</div><div class="ec-val">~5800</div><div class="ec-src">2-01 + 2-02 双场神级</div></div>
+        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val info">藏分 ~1300</div><div class="ec-src">双场神级 + 同位对比</div></div>
+      </div>
+      <div class="ec-detail">
+        <p><b>关键证据</b>：</p>
+        <ul>
+          <li><b>2-01 中分桌主宰（1 号位）</b>：<b>11 杀 0 死</b> 6 助攻，金钱/分 769。1 号 carry 全场 0 死亡是顶级 carry 标志（绝大多数 5500+ 玩家也做不到）</li>
+          <li><b>2-02 中分桌幻影刺客（1 号位）</b>：<b>18 杀 4 死 15 助攻</b>，金钱/分 797（全场最佳），6 个多杀（4 双 + 2 三）</li>
+          <li><b>关键同位对比</b>：报 <b>6000</b> 的 苏三 SS 在 1-01 编织者 1 号位打出 18/4/12 — <b>跟 AR.Chalice 18/4 PA 数据完全一样</b>。但 SS 报 6000，AR.Chalice 报 4500</li>
+          <li><b>稳定性印证</b>：双场都是顶级（不是单场运气）。0 死 carry + 6 个多杀 = 走位、装备节奏、收割能力全到顶级</li>
+        </ul>
+        <p><b>建议</b>：下期建议改报 <b>5500-6000</b>，否则会被自动调到中分桌后再次碾压（破坏体验）。如本人坚持 4500，可能是新练号或换玩法，建议群里观察。</p>
+      </div>
+    </div>
+
+    <!-- 案例 4: 攻击精神 -->
+    <div class="evidence-card info">
+      <div class="ec-head">🔵 #24 攻击精神 · 低分高报（藏分）−1500（最显眼）</div>
+      <div class="ec-grid">
+        <div class="ec-cell"><div class="ec-label">报名分</div><div class="ec-val">1500</div><div class="ec-src">玩家自填 仅 2 号位</div></div>
+        <div class="ec-cell"><div class="ec-label">STRATZ 真实</div><div class="ec-val">未排位</div><div class="ec-src">国服 STRATZ 无数据</div></div>
+        <div class="ec-cell"><div class="ec-label">AI 实战估算</div><div class="ec-val">~3000</div><div class="ec-src">3-01 神级 + 1-02 借调</div></div>
+        <div class="ec-cell highlight"><div class="ec-label">综合判定</div><div class="ec-val info">藏分 ~1500</div><div class="ec-src">普通桌 0 死神级</div></div>
+      </div>
+      <div class="ec-detail">
+        <p><b>关键证据</b>：</p>
+        <ul>
+          <li><b>3-01 普通桌中单痛苦女王</b>：<b>12 杀 0 死</b> 13 助攻，金钱/分 516。<b>0 死亡是全场所有玩家最低死亡数</b>（连 5 号支持都死了 4+ 次）</li>
+          <li><b>普通桌均分 1750</b>，对手都是 1500 或更低段位的玩家。在这种环境下打出 mid 痛苦女王 12/0 是「专精玩家碾压低分对手」的典型表现</li>
+          <li><b>1-02 借调到高分桌</b>：4 号位痛苦女王 5/10/22，金钱/分 395。借调到 5500+ 高分桌也能拿 5 杀 22 助攻 → 实力远超 1500</li>
+          <li><b>专精迹象</b>：报名时写「仅 2 号位」 — 通常这种"仅 X 位"玩家把一个位置 / 几个英雄练得很专精，实战大于天梯段位</li>
+        </ul>
+        <p><b>建议</b>：下期建议改报 <b>2500-3000</b>。痛苦女王是本命英雄，普通桌让他玩痛苦女王基本就是碾压。可以考虑：（1）升到中分桌；或（2）禁他用痛苦女王（强制换英雄看真实水平）。</p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .evidence-card { border:2px solid var(--line); padding:20px 24px; margin-bottom:20px; background:var(--bg); }
+    .evidence-card.danger { border-color:var(--danger); background:#fff8f8; }
+    .evidence-card.info { border-color:var(--info); background:#f0f8fa; }
+    .ec-head { font-size:16px; font-weight:700; margin-bottom:14px; padding-bottom:10px; border-bottom:1px dashed var(--line); }
+    .ec-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; margin-bottom:14px; }
+    .ec-cell { padding:10px 12px; background:var(--bg); border:1px solid var(--line); text-align:center; }
+    .ec-cell.highlight { background:#fffae8; border-color:var(--gold); }
+    .ec-cell .ec-label { font-size:10px; letter-spacing:1px; color:var(--ink-mute); margin-bottom:4px; }
+    .ec-cell .ec-val { font-size:18px; font-weight:700; font-feature-settings:"tnum"; }
+    .ec-cell .ec-val.danger { color:var(--danger); font-size:15px; }
+    .ec-cell .ec-val.info { color:var(--info); font-size:15px; }
+    .ec-cell .ec-src { font-size:10px; color:var(--ink-mute); margin-top:4px; }
+    .ec-detail { font-size:13px; color:var(--ink-soft); line-height:1.7; }
+    .ec-detail p { margin-bottom:8px; }
+    .ec-detail ul { margin-left:20px; }
+    .ec-detail li { margin-bottom:6px; }
+    .ec-detail b { color:var(--ink); }
+    @media (max-width:760px) { .ec-grid { grid-template-columns:1fr 1fr; } }
+  </style>
+
   <div class="notes">
     <h3>关于核查方法</h3>
     <ul>
