@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>段位真实度核查 · 原点 Dota2 内战</title>
+<meta name="theme-color" content="#1a1a1a">
+<style>
+  :root { --ink:#1a1a1a; --ink-soft:#444; --ink-mute:#888; --line:#e6e6e6; --bg:#fff; --bg-card:#fafafa;
+    --ok:#2d5a3d; --ok-bg:#f0f7f2; --warn:#b8860b; --warn-bg:#fdf9ed; --danger:#c00; --danger-bg:#fef2f2; --info:#1f6f8b; --info-bg:#eef6f9; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.7}
+  .page{max-width:1200px;margin:0 auto;padding:48px 32px 80px}
+  .actions{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid var(--line)}
+  .crumb{font-size:12px;color:var(--ink-mute);letter-spacing:1px}
+  .crumb a{color:var(--ink-soft);text-decoration:none;border-bottom:1px dotted var(--ink-mute)}
+  .actions button{padding:8px 14px;font-size:12px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);cursor:pointer;font-family:inherit;letter-spacing:1px}
+  header{text-align:center;margin-bottom:36px;padding-bottom:24px;border-bottom:2px solid var(--ink)}
+  header .eyebrow{font-size:11px;letter-spacing:5px;color:var(--ink-mute);margin-bottom:12px}
+  header h1{font-size:28px;font-weight:600;letter-spacing:1px}
+  header .meta{margin-top:10px;font-size:13px;color:var(--ink-soft)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px}
+  .stat{border:1px solid var(--line);background:var(--bg-card);padding:18px;text-align:center}
+  .stat .v{font-size:30px;font-weight:700;font-feature-settings:"tnum"}
+  .stat .l{font-size:11px;letter-spacing:2px;color:var(--ink-mute);margin-top:4px}
+  .stat.ok .v{color:var(--ok)}
+  .stat.warn .v{color:var(--warn)}
+  .stat.danger .v{color:var(--danger)}
+  .stat.mute .v{color:var(--ink-mute)}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:32px}
+  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+  th{font-size:11px;letter-spacing:1px;color:var(--ink-mute);background:var(--bg-card);font-weight:500}
+  td.num{text-align:right;font-feature-settings:"tnum";font-weight:500}
+  td.name{font-weight:600}
+  td.name .note{font-weight:400;font-size:11px;color:var(--ink-mute)}
+  td.status{font-size:12px;color:var(--ink-soft)}
+  tr.row-danger td{background:var(--danger-bg)}
+  tr.row-info td{background:var(--info-bg)}
+  tr.row-mute td{color:var(--ink-mute)}
+  tr.row-mute td.name{color:var(--ink)}
+  .b{display:inline-block;padding:2px 8px;font-size:11px;font-weight:600;letter-spacing:0.5px;border-radius:2px}
+  .b.ok{background:var(--ok-bg);color:var(--ok)}
+  .b.warn{background:var(--warn-bg);color:var(--warn)}
+  .b.danger{background:var(--danger-bg);color:var(--danger)}
+  .b.mute{background:#f5f5f5;color:var(--ink-mute)}
+  .notes{margin-top:32px;padding:18px 22px;background:var(--bg-card);border-left:3px solid var(--ink-mute);font-size:12px;color:var(--ink-soft);line-height:1.8}
+  .notes h3{font-size:13px;color:var(--ink);margin-bottom:8px;letter-spacing:1px}
+  .footer{margin-top:32px;padding-top:18px;border-top:1px solid var(--line);font-size:11px;color:var(--ink-mute);text-align:center}
+  a{color:var(--ink-soft)}
+  @media print {
+    .actions{display:none}
+    body{font-size:11px}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="actions">
+    <div class="crumb">
+      <a href="../index.html">原点 Dota2 内战</a> ›
+      <a href="../20260509-内战对战表.html">5.9 对战表</a> ›
+      段位真实度核查
+    </div>
+    <button onclick="window.print()">下载 PDF</button>
+  </div>
+
+  <header>
+    <div class="eyebrow">原点 DOTA2 内战 · 防止虚报</div>
+    <h1>段位真实度核查</h1>
+    <div class="meta">数据来源：STRATZ GraphQL · 38 位报名玩家 · 报名分 vs STRATZ 真实段位对比</div>
+  </header>
+
+  <section class="stats">
+    <div class="stat danger">
+      <div class="v">1</div>
+      <div class="l">疑似虚报（差≥1000）</div>
+    </div>
+    <div class="stat ok">
+      <div class="v">1</div>
+      <div class="l">报名匹配</div>
+    </div>
+    <div class="stat warn">
+      <div class="v">0</div>
+      <div class="l">低分高报（差≤−1000）</div>
+    </div>
+    <div class="stat mute">
+      <div class="v">35</div>
+      <div class="l">数据不足 / 待人工核查</div>
+    </div>
+  </section>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:55px;">报名</th>
+        <th>玩家</th>
+        <th class="num">报名分</th>
+        <th>STRATZ 段位</th>
+        <th class="num">估算 MMR</th>
+        <th class="num">差距</th>
+        <th>STRATZ 战绩</th>
+        <th>主页</th>
+        <th>结论</th>
+      </tr>
+    </thead>
+    <tbody>
+  <tr class="row-mute">
+    <td class="num">#01</td>
+    <td class="name">Joy <span class="note">（Unexpected token '<', "<!DOCTYPE "... is not valid JSON）</span></td>
+    <td class="num">3000</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/155448633" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#02</td>
+    <td class="name">Tc</td>
+    <td class="num">1000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/1408038802" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#03</td>
+    <td class="name">番茄酱</td>
+    <td class="num">3000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/139508222" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#05</td>
+    <td class="name">CY (Cynic)</td>
+    <td class="num">500</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/1137205342" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#06</td>
+    <td class="name">就硬划</td>
+    <td class="num">4000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/294917742" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#07</td>
+    <td class="name">下等马</td>
+    <td class="num">3000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>72 场 / 38 胜（53%）</td>
+    <td><a href="https://stratz.com/players/137507552" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-danger">
+    <td class="num">#08</td>
+    <td class="name">Error 404</td>
+    <td class="num">3000</td>
+    <td>守护 3</td>
+    <td class="num">1925</td>
+    <td class="num"><span class="b danger">+1075</span></td>
+    <td>637 场 / 308 胜（48%）</td>
+    <td><a href="https://stratz.com/players/186500942" target="_blank">主页</a></td>
+    <td class="status">⚠ 高分低报（实际段位低于报名）</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#09</td>
+    <td class="name">憨皮小牛</td>
+    <td class="num">3000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/121830172" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#10</td>
+    <td class="name">「2」 <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">3000</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#11</td>
+    <td class="name">我王守義 <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">4000</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#12</td>
+    <td class="name">不巧者 (Misaka)</td>
+    <td class="num">7500</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/446958162" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#13</td>
+    <td class="name">Wayne <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">6000</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#14</td>
+    <td class="name">苏三 (SS)</td>
+    <td class="num">6000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/180389472" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#15</td>
+    <td class="name">ben <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">3300</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#16</td>
+    <td class="name">爱丽丝 (Alice)</td>
+    <td class="num">2500</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/135037952" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#17</td>
+    <td class="name">J.S <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">—</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#18</td>
+    <td class="name">罗西基 (spimba) <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">2000</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#19</td>
+    <td class="name">noobplayer <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">8000</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#20</td>
+    <td class="name">赵子龙</td>
+    <td class="num">5000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/129383612" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#21</td>
+    <td class="name">姜生 <span class="note">（无段位）</span></td>
+    <td class="num">0</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/963882372" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#22</td>
+    <td class="name">吴迪 <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">6500</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#23</td>
+    <td class="name">xp <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">1500</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#24</td>
+    <td class="name">攻击精神</td>
+    <td class="num">1500</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/196725572" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#25</td>
+    <td class="name">zhou <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">7000</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#26</td>
+    <td class="name">zk <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">6000</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#27</td>
+    <td class="name">剑心仍在</td>
+    <td class="num">4000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/331723172" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#28</td>
+    <td class="name">老崔 (OB) <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">3500</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#29</td>
+    <td class="name">及时行乐 <span class="note">（Steam ID 未填）</span></td>
+    <td class="num">2500</td>
+    <td>—</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="status">— 未提供 Steam ID</td>
+  </tr>
+  <tr class="">
+    <td class="num">#30</td>
+    <td class="name">日天冠绝守门员</td>
+    <td class="num">6000</td>
+    <td>超凡入圣（不朽） · 榜 4389</td>
+    <td class="num">5500</td>
+    <td class="num"><span class="b warn">+500</span></td>
+    <td>15709 场 / 7842 胜（50%）</td>
+    <td><a href="https://stratz.com/players/180691762" target="_blank">主页</a></td>
+    <td class="status">✓ 报名与实际段位匹配</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#31</td>
+    <td class="name">芥末 (wasabi)</td>
+    <td class="num">6000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/192089902" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#32</td>
+    <td class="name">大鱼 (DDDash)</td>
+    <td class="num">3000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/408294172" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#33</td>
+    <td class="name">请神 Fy god 附体</td>
+    <td class="num">1500</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/153251742" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#34</td>
+    <td class="name">LittleKim</td>
+    <td class="num">2500</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/130793292" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#35</td>
+    <td class="name">老八</td>
+    <td class="num">5000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/318433252" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#36</td>
+    <td class="name">qt</td>
+    <td class="num">5000</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/109901682" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#37</td>
+    <td class="name">Yalo</td>
+    <td class="num">2500</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>80 场 / 48 胜（60%）</td>
+    <td><a href="https://stratz.com/players/130401362" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+  <tr class="row-mute">
+    <td class="num">#38</td>
+    <td class="name">AR.Chalice</td>
+    <td class="num">4500</td>
+    <td>未排位</td>
+    <td class="num">—</td>
+    <td class="num"><span class="b mute">无数据</span></td>
+    <td>—</td>
+    <td><a href="https://stratz.com/players/288468652" target="_blank">主页</a></td>
+    <td class="status">— STRATZ 数据不足，待人工核查</td>
+  </tr>
+    </tbody>
+  </table>
+
+  <div class="notes">
+    <h3>关于数据</h3>
+    <ul style="margin-left:20px;">
+      <li><b>STRATZ 段位</b>：优先用当季 seasonRank；当季无数据则查最近天梯比赛平均段位；都无数据则标"未排位"</li>
+      <li><b>差距 ≥ +1000</b>（红色行）= 玩家报名分明显高于 STRATZ 真实段位 → <b>疑似高分低报</b>，建议管理员核实</li>
+      <li><b>差距 ≤ −1000</b>（蓝色行）= 报名分低于 STRATZ 真实段位 → 可能是马甲号或埋深</li>
+      <li><b>未排位</b>：STRATZ 拉不到段位（可能没刷段位赛、或 Steam ID 错误、或国服数据不全）— 点"主页"链接手动核查</li>
+      <li><b>STRATZ 国服数据局限</b>：很多国服玩家不在 STRATZ 主流数据池里，数据完整度不如东南亚/欧服。这是常态，不代表玩家可疑</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>📊 数据来源 <a href="https://stratz.com" target="_blank">STRATZ.com</a> · 自动生成 · 信誉分系统配套工具</p>
+    <p>🔄 更新方式：<code>node tools/rank-check.mjs</code> → <code>node tools/render-rank-check.mjs</code></p>
+  </div>
+
+</div>
+</body>
+</html>
