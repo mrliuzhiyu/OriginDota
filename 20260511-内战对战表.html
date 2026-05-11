@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="2026.5.11 周一 21:00 原点 Dota2 内战对战表 — RD 模式，单桌 5v5">
+<meta name="theme-color" content="#1a1a1a">
+<title>2026.5.11 原点 Dota2 内战对战表 · 周一晚 21:00</title>
+<style>
+  :root {
+    --ink: #1a1a1a; --ink-soft: #444; --ink-mute: #888;
+    --line: #e6e6e6; --line-soft: #f0f0f0;
+    --bg: #ffffff; --bg-card: #fafafa; --bg-soft: #f5f5f5;
+    --radiant: #2d5a3d; --radiant-bg: #f0f7f2;
+    --dire: #8b3a3a; --dire-bg: #fbf3f3;
+    --gold: #b8860b; --gold-bg: #fdf9ed;
+    --red: #c00;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1080px; margin: 0 auto; padding: 48px 32px 80px; }
+
+  .header { text-align: center; padding-bottom: 28px; border-bottom: 2px solid var(--ink); margin-bottom: 32px; }
+  .header .eyebrow { font-size: 12px; letter-spacing: 4px; color: var(--ink-mute); margin-bottom: 12px; }
+  .header h1 { font-size: 30px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  .header .meta { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--ink-soft); }
+  .header .meta span { position: relative; }
+  .header .meta span + span::before { content: "·"; color: var(--ink-mute); position: absolute; left: -14px; }
+
+  .find-room { border: 2px solid var(--ink); background: #fff; padding: 22px 26px; margin-bottom: 28px; text-align: center; }
+  .find-room .label { font-size: 11px; letter-spacing: 4px; color: var(--ink-mute); margin-bottom: 10px; }
+  .find-room .body { font-size: 16px; font-weight: 600; line-height: 1.9; }
+  .find-room .body .chip { background: var(--ink); color: #fff; padding: 3px 10px; font-weight: 700; letter-spacing: 1px; }
+  .find-room .body .pwd { background: #fff5f5; color: var(--red); padding: 3px 10px; font-weight: 700; letter-spacing: 2px; font-size: 18px; border: 1px solid var(--red); }
+
+  .captain { border: 1px solid var(--ink); padding: 18px 22px; margin-bottom: 32px; display: flex; gap: 16px; align-items: center; }
+  .captain .badge { font-size: 10px; letter-spacing: 2px; color: var(--ink); border: 1px solid var(--ink); padding: 3px 8px; font-weight: 600; flex-shrink: 0; }
+  .captain .info { flex: 1; }
+  .captain .name { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .captain .name span { font-size: 11px; color: var(--ink-mute); letter-spacing: 1px; margin-left: 8px; font-weight: 400; }
+  .captain .duty { font-size: 12px; color: var(--ink-soft); }
+  .captain .duty b { color: var(--ink); }
+
+  .battle-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; margin-bottom: 22px; border-bottom: 2px solid var(--ink); }
+  .battle-head h2 { font-size: 22px; font-weight: 600; letter-spacing: 2px; }
+  .battle-head .b-meta { font-size: 12px; color: var(--ink-soft); }
+  .teams { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+  .team { border: 1px solid var(--line); background: var(--bg-card); }
+  .team-head { padding: 18px 22px 14px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; }
+  .team.radiant .team-head { background: var(--radiant-bg); }
+  .team.dire .team-head { background: var(--dire-bg); }
+  .team-name { font-size: 19px; font-weight: 700; letter-spacing: 1px; }
+  .team-name .en { font-size: 11px; color: var(--ink-mute); letter-spacing: 3px; margin-left: 6px; font-weight: 400; }
+  .team.radiant .team-name { color: var(--radiant); }
+  .team.dire .team-name { color: var(--dire); }
+  .team-score { font-size: 12px; color: var(--ink-soft); }
+  .team-score b { color: var(--ink); font-weight: 700; font-size: 15px; margin-left: 4px; }
+
+  .slot { display: grid; grid-template-columns: 32px 1fr auto; gap: 14px; padding: 13px 22px; border-bottom: 1px solid var(--line-soft); align-items: center; }
+  .slot:last-child { border-bottom: none; }
+  .slot .pos { font-size: 20px; font-weight: 700; }
+  .slot .info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .slot .name { font-size: 15px; font-weight: 500; }
+  .slot .name .num { display: inline-block; margin-right: 6px; padding: 1px 6px; font-size: 10px; border: 1px solid var(--line); color: var(--ink-mute); letter-spacing: 1px; vertical-align: 1px; }
+  .slot .sub { font-size: 12px; color: var(--ink-mute); display: flex; gap: 10px; flex-wrap: wrap; }
+  .slot .sub .pref { color: var(--ink-soft); }
+  .slot .role { text-align: right; font-size: 11px; color: var(--ink-mute); letter-spacing: 1px; line-height: 1.3; }
+  .slot .role b { display: block; font-size: 12px; color: var(--ink-soft); font-weight: 500; margin-bottom: 2px; }
+  .slot.warn { background: #fffae8; }
+  .slot.warn .name::before { content: "⚠ "; color: var(--gold); }
+
+  .team-foot { padding: 12px 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-mute); letter-spacing: 1px; }
+
+  .subs { border: 1px solid var(--line); background: var(--bg-card); padding: 20px 24px; margin-bottom: 24px; }
+  .subs h3 { font-size: 13px; letter-spacing: 3px; color: var(--ink); font-weight: 600; margin-bottom: 14px; }
+  .subs h3 .meta { font-size: 11px; color: var(--ink-mute); letter-spacing: 2px; margin-left: 10px; font-weight: 400; }
+  .subs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .sub-card { border-left: 2px solid #b8b8b8; padding: 4px 0 4px 12px; }
+  .sub-card.obs { border-left-color: #d8d8d8; opacity: 0.85; }
+  .sub-card.ban { border-left-color: var(--red); background: #fff5f5; padding-left: 12px; padding-right: 12px; }
+  .sub-card .sc-name { font-size: 14px; font-weight: 600; }
+  .sub-card.ban .sc-name { color: var(--red); }
+  .sub-card .sc-name .num { display: inline-block; margin-right: 6px; padding: 1px 6px; font-size: 10px; border: 1px solid var(--line); color: var(--ink-mute); }
+  .sub-card .sc-info { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+  .sub-card .sc-pos { font-size: 11px; color: var(--ink-mute); margin-top: 2px; }
+  .sub-card.ban .sc-pos { color: var(--red); font-weight: 600; }
+
+  .notes { border-top: 1px solid var(--line); padding-top: 28px; color: var(--ink-soft); font-size: 13px; margin-top: 32px; }
+  .notes h3 { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: 2px; margin-bottom: 10px; margin-top: 22px; }
+  .notes h3:first-child { margin-top: 0; }
+  .notes ul { list-style: none; padding: 0; }
+  .notes li { padding: 5px 0 5px 16px; position: relative; line-height: 1.7; }
+  .notes li::before { content: "—"; position: absolute; left: 0; color: var(--ink-mute); }
+  .notes b { color: var(--ink); }
+
+  .footer { margin-top: 40px; text-align: center; font-size: 11px; color: var(--ink-mute); letter-spacing: 2px; }
+
+  @media (max-width: 720px) {
+    .page { padding: 24px 14px 48px; }
+    .header h1 { font-size: 22px; }
+    .teams { grid-template-columns: 1fr; }
+    .subs-grid { grid-template-columns: 1fr; }
+    .slot { padding: 11px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="eyebrow">原点 DOTA2 内战 · 周一晚单桌</div>
+    <h1>原点 Dota2 内战对战表</h1>
+    <div class="meta">
+      <span>2026.5.11 周一 21:00</span>
+      <span>RD 模式（Random Draft）</span>
+      <span>19 人接龙 · 10 主力 · 4 替补 · 4 观战 · 1 禁赛</span>
+      <span>纯娱乐 · 均衡洗牌</span>
+    </div>
+  </header>
+
+  <div class="find-room">
+    <div class="label">怎么找到房间</div>
+    <div class="body">
+      Dota 大厅 → 服务器 <span class="chip">上海电信</span> → 搜房名 <span class="chip">原点 Dota 内战</span><br>
+      密码 <span class="pwd">2016</span> ｜ 房主 ID <b>155448633（Joy）</b>
+    </div>
+  </div>
+
+  <div class="captain">
+    <span class="badge">开房 · 观战</span>
+    <div class="info">
+      <div class="name">Joy<span>报名 #1 · 本期观战开房，不参赛</span></div>
+      <div class="duty">由 Joy 开房，房名「<b>原点 Dota 内战</b>」，密码 <b>2016</b>，服务器上海电信，模式 RD</div>
+    </div>
+  </div>
+
+  <div class="battle-head">
+    <h2>主对局 5v5</h2>
+    <div class="b-meta">综合分 天辉 23000 ｜ 夜魇 20500 ｜ 差 2500 ｜ <b style="color:#c00;">⚠ 苏三 / 李狗蛋观战后 B 队偏弱</b></div>
+  </div>
+  <div class="teams">
+
+    <div class="team radiant">
+      <div class="team-head">
+        <div class="team-name">天辉<span class="en">RADIANT</span></div>
+        <div class="team-score">综合分<b>23000</b></div>
+      </div>
+      <div class="slot">
+        <div class="pos">1</div>
+        <div class="info">
+          <div class="name"><span class="num">#8</span>高手灬坟墓</div>
+          <div class="sub"><span>5500 · 国服</span><span class="pref">2·1·3 → 1</span></div>
+        </div>
+        <div class="role"><b>大哥位</b>Carry</div>
+      </div>
+      <div class="slot">
+        <div class="pos">2</div>
+        <div class="info">
+          <div class="name"><span class="num">#13</span>缙云 ⭐</div>
+          <div class="sub"><span>10000 · 东南亚</span><span class="pref">仅 2 号位 ✓</span></div>
+        </div>
+        <div class="role"><b>中单</b>Mid</div>
+      </div>
+      <div class="slot">
+        <div class="pos">3</div>
+        <div class="info">
+          <div class="name"><span class="num">#3</span>罗西基 (spimba)</div>
+          <div class="sub"><span>2500 · 东南亚</span><span class="pref">仅 3 号位 ✓</span></div>
+        </div>
+        <div class="role"><b>劣单</b>Offlane</div>
+      </div>
+      <div class="slot">
+        <div class="pos">4</div>
+        <div class="info">
+          <div class="name"><span class="num">#5</span>下等马</div>
+          <div class="sub"><span>3000 · 国服</span><span class="pref">1·3·4·5 → 4</span></div>
+        </div>
+        <div class="role"><b>游走辅助</b>Soft Support</div>
+      </div>
+      <div class="slot">
+        <div class="pos">5</div>
+        <div class="info">
+          <div class="name"><span class="num">#15</span>秋时天</div>
+          <div class="sub"><span>2000 · 国服</span><span class="pref">1·3·5 → 5 ✓</span></div>
+        </div>
+        <div class="role"><b>硬辅</b>Hard Support</div>
+      </div>
+      <div class="team-foot">
+        <span>核心位 1+2+3:&nbsp; 18000</span>
+        <span>辅助位 4+5:&nbsp; 5000</span>
+      </div>
+    </div>
+
+    <div class="team dire">
+      <div class="team-head">
+        <div class="team-name">夜魇<span class="en">DIRE</span></div>
+        <div class="team-score">综合分<b>20500</b></div>
+      </div>
+      <div class="slot">
+        <div class="pos">1</div>
+        <div class="info">
+          <div class="name"><span class="num">#10</span>豆皮（高手）</div>
+          <div class="sub"><span>3000 · 国服</span><span class="pref">仅 1 号位 ✓ · 次数 0 优先上</span></div>
+        </div>
+        <div class="role"><b>大哥位</b>Carry</div>
+      </div>
+      <div class="slot">
+        <div class="pos">2</div>
+        <div class="info">
+          <div class="name"><span class="num">#7</span>及时行乐</div>
+          <div class="sub"><span>2500 · 东南亚</span><span class="pref">2·1 → 2 ✓</span></div>
+        </div>
+        <div class="role"><b>中单</b>Mid</div>
+      </div>
+      <div class="slot">
+        <div class="pos">3</div>
+        <div class="info">
+          <div class="name"><span class="num">#11</span>粪海狂蛆</div>
+          <div class="sub"><span>7000 · 东南亚</span><span class="pref">1·2·3 → 3</span></div>
+        </div>
+        <div class="role"><b>劣单</b>Offlane</div>
+      </div>
+      <div class="slot">
+        <div class="pos">4</div>
+        <div class="info">
+          <div class="name"><span class="num">#9</span>番茄酱</div>
+          <div class="sub"><span>3000 · 国服</span><span class="pref">2·4·5 → 4 ✓</span></div>
+        </div>
+        <div class="role"><b>游走辅助</b>Soft Support</div>
+      </div>
+      <div class="slot warn">
+        <div class="pos">5</div>
+        <div class="info">
+          <div class="name"><span class="num">#17</span>老八</div>
+          <div class="sub"><span>5000 · 东南亚</span><span class="pref">报 1·2 → 协调 5</span></div>
+        </div>
+        <div class="role"><b>硬辅</b>Hard Support</div>
+      </div>
+      <div class="team-foot">
+        <span>核心位 1+2+3:&nbsp; 12500</span>
+        <span>辅助位 4+5:&nbsp; 8000</span>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="subs">
+    <h3>替补 <span class="meta">4 人 · 临时缺人时按队列顶上</span></h3>
+    <div class="subs-grid">
+      <div class="sub-card">
+        <div class="sc-name"><span class="num">#4</span>AR.Chalice</div>
+        <div class="sc-info">4500 · 国服</div>
+        <div class="sc-pos">1·3 号位</div>
+      </div>
+      <div class="sub-card">
+        <div class="sc-name"><span class="num">#18</span>剑心仍在</div>
+        <div class="sc-info">4000 · 国服/东南亚</div>
+        <div class="sc-pos">仅 1 号位</div>
+      </div>
+      <div class="sub-card">
+        <div class="sc-name"><span class="num">#12</span>憨皮小牛</div>
+        <div class="sc-info">3000 · 东南亚</div>
+        <div class="sc-pos">3·4 号位</div>
+      </div>
+      <div class="sub-card">
+        <div class="sc-name"><span class="num">#2</span>攻击精神</div>
+        <div class="sc-info">1500 · 东南亚</div>
+        <div class="sc-pos">仅 2 号位</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="subs">
+    <h3>观战 <span class="meta">4 人 · 在解说房观战</span></h3>
+    <div class="subs-grid">
+      <div class="sub-card obs">
+        <div class="sc-name"><span class="num">#1</span>Joy</div>
+        <div class="sc-info">3000 · 国服 · 开房</div>
+        <div class="sc-pos">本期只开房观战</div>
+      </div>
+      <div class="sub-card obs">
+        <div class="sc-name"><span class="num">#14</span>苏三 (SS)</div>
+        <div class="sc-info">6000 · 国服</div>
+        <div class="sc-pos">仅 1 号 · 本人选择观战</div>
+      </div>
+      <div class="sub-card obs">
+        <div class="sc-name"><span class="num">#19</span>李狗蛋</div>
+        <div class="sc-info">6500 · 东南亚</div>
+        <div class="sc-pos">仅 3 号 · 本人选择观战</div>
+      </div>
+      <div class="sub-card obs">
+        <div class="sc-name"><span class="num">#16</span>麦子</div>
+        <div class="sc-info">2000 中军 · 国服/东南亚</div>
+        <div class="sc-pos">2·4·5 · 自选观战</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="subs">
+    <h3 style="color: var(--red);">⚠ 禁赛 <span class="meta" style="color: var(--red);">1 人 · 无段位玩家不参赛</span></h3>
+    <div class="subs-grid">
+      <div class="sub-card ban">
+        <div class="sc-name"><span class="num">#6</span>就硬划</div>
+        <div class="sc-info">无段位 · 东南亚</div>
+        <div class="sc-pos">报 1·2·3·4 但<b>未填具体段位</b>，本期不参赛</div>
+      </div>
+    </div>
+    <div style="margin-top:14px; font-size:12px; color:var(--ink-soft); padding:10px 12px; background:#fff5f5; border-left:3px solid var(--red);">
+      <b style="color:var(--red);">规则：</b>报名时必须填具体段位分数。"无段位 / 未填" 视为不诚实报名，本期不安排参赛。补填段位后下期参与。
+    </div>
+  </section>
+
+  <section class="notes">
+
+    <h3>参赛规则（本期适用）</h3>
+    <ul>
+      <li><b>参赛优先级：</b>次数少的优先 &gt; 分数匹配合理 &gt; 报名接龙时间</li>
+      <li><b>有人本次没排上：</b>下次会优先安排，请谅解（豆皮 #10 本期次数 0 但因「仅 1 号位」被下到替补）</li>
+      <li><b>无段位不参赛：</b>报名必须填具体段位（如 3000、5000），写「无段位」者本期禁赛</li>
+      <li><b>纯娱乐：</b>本期 RD 模式，不做 AI 战报分析，均衡洗牌为主</li>
+      <li><b>有事请 18:00 前取消接龙</b>，方便统计</li>
+    </ul>
+
+    <h3>分桌依据 + 临时调整</h3>
+    <ul>
+      <li><b>主力 10 人</b>：8 个次数 0（罗西基/及时行乐/高手坟墓/粪海狂蛆/缙云/秋时天/老八/<b>豆皮</b>）+ 1 个次数 2 补 4 号位（下等马）+ 1 个次数 2 补 4·5 辅助（番茄酱）</li>
+      <li><b>苏三 SS / 李狗蛋本人选择观战</b>（原排进主力，本人改观战，最终阵容调整）</li>
+      <li><b>豆皮（次数 0）顶 B 队 1 号 carry</b>：苏三观战后，按"次数少优先"豆皮上场（虽然只有 3000 段位）</li>
+      <li><b>就硬划「无段位」禁赛</b>：本期不参赛，下期补段位后再报</li>
+      <li><b>⚠️ B 队偏弱</b>：豆皮 3000 替苏三 6000 后，夜魇综合分 20500 vs 天辉 23000，差 2500。建议群里讨论：是否换 AR.Chalice (4500，1·3 号位) 顶豆皮？</li>
+    </ul>
+
+    <h3>位置匹配（10/10 完美）</h3>
+    <ul>
+      <li><b>天辉队 5 个位置全部按报名匹配</b>，包括 10000 分缙云的 2 号位</li>
+      <li><b>夜魇队 4/5 完美</b>，仅老八（报 1·2）被协调到 5 号 hard support</li>
+      <li><b>缙云（10000）队友段位</b>：高手坟墓 5500 carry + 罗西基 2500 offlane + 下等马 3000 游走 + 秋时天 2000 hard — 缙云中单核心带队</li>
+    </ul>
+
+    <h3>时间节点</h3>
+    <ul>
+      <li><b>18:00 前</b>：可自由取消（接龙里删除自己即可）</li>
+      <li><b>20:30</b>：锁定名单</li>
+      <li><b>21:00</b>：进入房间</li>
+      <li><b>21:00-21:10</b>：等迟到玩家</li>
+      <li><b>21:10</b>：开打 — 仍未进房 = 失信扣信誉分</li>
+    </ul>
+
+    <h3>信誉分制度（参考）</h3>
+    <ul>
+      <li>初始 50 · 满分 100</li>
+      <li>参加一场 +2 ｜ 替补 +0.5 ｜ 观战 +0.25 ｜ 开房队长额外 +0.5</li>
+      <li>失信（21:10 开打时未进房，被顶替）：第 1 次 -5 ｜ 第 2 次 -10 ｜ 第 3 次 -15 ｜ 第 4 次 -20</li>
+      <li>扣完归零，半年内不可参加内战</li>
+    </ul>
+
+  </section>
+
+  <div class="footer">2026.5.11 · 原点 DOTA2 · 单桌 5v5 · 周一晚 21:00 · RD 模式</div>
+
+</div>
+</body>
+</html>
