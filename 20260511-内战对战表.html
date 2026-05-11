@@ -95,21 +95,162 @@
 
   .footer { margin-top: 40px; text-align: center; font-size: 11px; color: var(--ink-mute); letter-spacing: 2px; }
 
+  .voice { border: 1px solid var(--line); background: var(--bg-card); padding: 20px 24px; margin-bottom: 28px; }
+  .voice h3 { font-size: 13px; letter-spacing: 3px; color: var(--ink); font-weight: 600; margin-bottom: 4px; }
+  .voice .v-sub { font-size: 11px; color: var(--ink-mute); letter-spacing: 1px; margin-bottom: 14px; }
+  .voice .v-link { display: inline-block; margin-bottom: 14px; padding: 6px 12px; background: var(--ink); color: #fff; font-size: 12px; letter-spacing: 1px; text-decoration: none; }
+  .voice .v-link:hover { background: var(--ink-soft); }
+  .voice-rows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .v-room { border-left: 3px solid var(--ink-mute); padding: 8px 0 8px 12px; background: #fff; }
+  .v-room.radiant { border-left-color: var(--radiant); background: var(--radiant-bg); }
+  .v-room.dire { border-left-color: var(--dire); background: var(--dire-bg); }
+  .v-room.cast { border-left-color: var(--gold); background: var(--gold-bg); }
+  .v-room .vr-tag { font-size: 10px; letter-spacing: 2px; color: var(--ink-mute); margin-bottom: 3px; }
+  .v-room .vr-name { font-size: 14px; font-weight: 600; }
+  .v-room .vr-note { font-size: 11px; color: var(--ink-mute); margin-top: 2px; }
+  .voice-inactive { margin-top: 14px; padding: 10px 12px; background: var(--bg-soft); font-size: 12px; color: var(--ink-mute); }
+  .voice-inactive b { color: var(--ink-soft); }
+
   @media (max-width: 720px) {
     .page { padding: 24px 14px 48px; }
     .header h1 { font-size: 22px; }
     .teams { grid-template-columns: 1fr; }
     .subs-grid { grid-template-columns: 1fr; }
     .slot { padding: 11px 16px; }
+    .voice-rows { grid-template-columns: 1fr !important; }
+  }
+
+  /* ====== 赛后结果条 ====== */
+  .result-bar { margin-bottom: 40px; border: 2px solid var(--ink); }
+  .result-banner {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 28px; gap: 20px; flex-wrap: wrap;
+    background: linear-gradient(135deg, var(--dire-bg) 0%, #fff 60%, var(--radiant-bg) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  .rb-left { flex: 1 1 auto; }
+  .rb-eyebrow { font-size: 11px; letter-spacing: 4px; color: var(--ink-mute); margin-bottom: 8px; }
+  .rb-scoreline { font-size: 30px; font-weight: 700; letter-spacing: 1px; display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
+  .rb-team { font-size: 30px; }
+  .rb-team.rb-radiant { color: var(--radiant); opacity: 0.55; }
+  .rb-team.rb-dire { color: var(--dire); }
+  .rb-team.rb-win { font-size: 34px; }
+  .rb-vs { color: var(--ink-mute); font-weight: 400; }
+  .rb-meta { font-size: 12px; color: var(--ink-soft); letter-spacing: 0.5px; }
+  .rb-meta b { color: var(--ink); font-feature-settings: "tnum"; }
+  .rb-mvp {
+    flex: 0 0 auto; text-align: right;
+    border-left: 1px solid var(--line); padding-left: 22px; min-width: 200px;
+  }
+  .rb-mvp-label { font-size: 10px; letter-spacing: 3px; color: var(--gold); font-weight: 600; margin-bottom: 4px; }
+  .rb-mvp-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .rb-mvp-kda { font-size: 12px; color: var(--ink-soft); font-feature-settings: "tnum"; }
+
+  .result-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .rg-team { padding: 16px 22px; }
+  .rg-team.rg-loss { background: #fafafa; border-right: 1px solid var(--line); }
+  .rg-team.rg-win  { background: var(--dire-bg); }
+  .rg-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .rg-name { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+  .rg-loss .rg-name { color: var(--ink-mute); }
+  .rg-win  .rg-name { color: var(--dire); }
+  .rg-tag { font-size: 11px; color: var(--ink-mute); letter-spacing: 1px; }
+  .rg-win .rg-tag { color: var(--dire); font-weight: 600; }
+  .rg-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .rg-table td { padding: 6px 0; border-bottom: 1px solid var(--line-soft); }
+  .rg-table tr:last-child td { border-bottom: none; }
+  .rg-table .p-name { font-weight: 500; }
+  .rg-table .p-sub { font-size: 10px; color: var(--ink-mute); font-weight: 400; margin-left: 2px; letter-spacing: 0; }
+  .rg-table .p-kda { text-align: center; font-feature-settings: "tnum"; color: var(--ink-soft); white-space: nowrap; }
+  .rg-table .p-econ { text-align: right; font-feature-settings: "tnum"; color: var(--ink-mute); font-size: 12px; }
+  .rg-table tr.p-mvp td { background: #fff8e5; font-weight: 600; }
+  .rg-table tr.p-mvp .p-name { color: var(--gold); }
+
+  .result-note {
+    padding: 12px 22px; background: var(--bg-soft);
+    font-size: 12px; color: var(--ink-soft); line-height: 1.7;
+    border-top: 1px solid var(--line);
+  }
+  .result-note b { color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .result-banner { padding: 18px 16px; gap: 14px; }
+    .rb-scoreline { font-size: 24px; gap: 10px; }
+    .rb-team { font-size: 24px; }
+    .rb-team.rb-win { font-size: 28px; }
+    .rb-mvp { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; min-width: 0; text-align: left; width: 100%; }
+    .result-grid { grid-template-columns: 1fr; }
+    .rg-team.rg-loss { border-right: none; border-bottom: 1px solid var(--line); }
+    .rg-table { font-size: 12px; }
+    .rg-table .p-econ { font-size: 11px; }
+    .result-note { padding: 12px 16px; font-size: 11px; }
   }
 </style>
 </head>
 <body>
 <div class="page">
 
+  <!-- ====== 赛后结果条 ====== -->
+  <section class="result-bar">
+    <div class="result-banner">
+      <div class="rb-left">
+        <div class="rb-eyebrow">本期赛果 · 已结束</div>
+        <div class="rb-scoreline">
+          <span class="rb-team rb-radiant">天辉 33</span>
+          <span class="rb-vs">:</span>
+          <span class="rb-team rb-dire rb-win">48 夜魇 ✓</span>
+        </div>
+        <div class="rb-meta">时长 49:55 · 队长模式 · 比赛 ID <b>8806988261</b> · 2026/5/11 22:16</div>
+      </div>
+      <div class="rb-mvp">
+        <div class="rb-mvp-label">⭐ 全场最佳</div>
+        <div class="rb-mvp-name">缙云 · 大保健</div>
+        <div class="rb-mvp-kda">25 / 2 / 18 ｜ 42,680 经济</div>
+      </div>
+    </div>
+
+    <div class="result-grid">
+      <div class="rg-team rg-loss">
+        <div class="rg-head">
+          <span class="rg-name">天辉</span>
+          <span class="rg-tag">败 · 33 击杀</span>
+        </div>
+        <table class="rg-table">
+          <tr><td class="p-name">高手灬坟墓</td><td class="p-kda">4 / 13 / 23</td><td class="p-econ">13,352</td></tr>
+          <tr><td class="p-name">下等马 <span class="p-sub">（替补 #5 顶上）</span></td><td class="p-kda">5 / 10 / 15</td><td class="p-econ">17,546</td></tr>
+          <tr><td class="p-name">攻击精神 <span class="p-sub">（替补 #2 顶上）</span></td><td class="p-kda">4 / 11 / 10</td><td class="p-econ">12,836</td></tr>
+          <tr><td class="p-name">老八 <span class="p-sub">（冰清玉洁梅）</span></td><td class="p-kda">9 / 4 / 14</td><td class="p-econ">28,066</td></tr>
+          <tr><td class="p-name">大鱼 <span class="p-sub">（DDDash · 临时加）</span></td><td class="p-kda">9 / 11 / 19</td><td class="p-econ">21,064</td></tr>
+        </table>
+      </div>
+      <div class="rg-team rg-win">
+        <div class="rg-head">
+          <span class="rg-name">夜魇 ✓</span>
+          <span class="rg-tag">胜 · 48 击杀</span>
+        </div>
+        <table class="rg-table">
+          <tr><td class="p-name">Joy <span class="p-sub">（改打 · 27 助攻团魂）</span></td><td class="p-kda">3 / 8 / 27</td><td class="p-econ">15,451</td></tr>
+          <tr><td class="p-name">AR.Chalice <span class="p-sub">（替补 #4 顶上）</span></td><td class="p-kda">13 / 5 / 13</td><td class="p-econ">32,762</td></tr>
+          <tr class="p-mvp"><td class="p-name">缙云 ⭐ <span class="p-sub">（全场最佳）</span></td><td class="p-kda">25 / 2 / 18</td><td class="p-econ">42,680</td></tr>
+          <tr><td class="p-name">番茄酱 <span class="p-sub">（替补 #9 顶上）</span></td><td class="p-kda">3 / 9 / 26</td><td class="p-econ">12,488</td></tr>
+          <tr><td class="p-name">TczZZ <span class="p-sub">（临时加 · 不在接龙）</span></td><td class="p-kda">3 / 9 / 17</td><td class="p-econ">17,525</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="result-note">
+      <b>实际上场 ≠ 事前计划：</b>
+      原 10 主力里 <b>7 人未到</b>（罗西基 / 及时行乐 / 豆皮 / 粪海狂蛆 / 苏三 / 秋时天 / 李狗蛋）·
+      替补 4 人顶上（攻击精神 · AR.Chalice · 下等马 · 番茄酱）·
+      Joy 改打不观战 · 临时加 2 人（大鱼 · TczZZ）·
+      模式从 RD 改为队长模式
+    </div>
+  </section>
+  <!-- ====== /赛后结果条 ====== -->
+
   <header class="header">
     <div class="eyebrow">原点 DOTA2 内战 · 周一晚单桌</div>
-    <h1>原点 Dota2 内战对战表</h1>
+    <h1>原点 Dota2 内战对战表 <span style="font-size:12px; color:var(--ink-mute); letter-spacing:2px; margin-left:8px; font-weight:400;">事前计划 · 留档</span></h1>
     <div class="meta">
       <span>2026.5.11 周一 21:00</span>
       <span>RD 模式（Random Draft）</span>
@@ -133,6 +274,32 @@
       <div class="duty">由 Joy 开房，房名「<b>原点 Dota 内战</b>」，密码 <b>2016</b>，服务器上海电信，模式 RD</div>
     </div>
   </div>
+
+  <section class="voice">
+    <h3>语音房间</h3>
+    <div class="v-sub">本期单桌只用「剑圣」一组（小黑 / 影魔 两组保留不开）</div>
+    <a class="v-link" href="https://chat.xiaoheihe.cn/ia8us87s" target="_blank" rel="noopener">打开黑盒语音 →</a>
+    <div class="voice-rows">
+      <div class="v-room radiant">
+        <div class="vr-tag">天辉队 · RADIANT</div>
+        <div class="vr-name">天辉剑圣</div>
+        <div class="vr-note">5 人开黑频道</div>
+      </div>
+      <div class="v-room dire">
+        <div class="vr-tag">夜魇队 · DIRE</div>
+        <div class="vr-name">夜魇剑圣</div>
+        <div class="vr-note">5 人开黑频道</div>
+      </div>
+      <div class="v-room cast">
+        <div class="vr-tag">观战 · 解说</div>
+        <div class="vr-name">剑圣解说/观战频道</div>
+        <div class="vr-note">观战玩家进这里</div>
+      </div>
+    </div>
+    <div class="voice-inactive">
+      <b>本期未启用：</b>小黑组（天辉小黑 / 夜魇小黑 / 小黑解说）·  影魔组（天辉影魔 / 夜魇影魔 / 影魔解说）— 单桌不需要，保留备用
+    </div>
+  </section>
 
   <div class="battle-head">
     <h2>主对局 5v5</h2>
