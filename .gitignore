@@ -5,6 +5,7 @@
 # 解析中间产物（可重生成）
 parsed/**/*.jsonl
 parsed/**/*-summary.json
+parsed/**/*-lane.json
 
 # tools 临时下载产物
 tools/_*.json
