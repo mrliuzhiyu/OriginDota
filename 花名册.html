@@ -130,6 +130,17 @@
     <div class="stat danger"><div class="v">2</div><div class="l">永久拉黑</div></div>
   </div>
 
+  <nav style="border:1px solid var(--ink);padding:14px 18px;margin-bottom:24px;background:var(--bg-card);">
+    <div style="font-size:11px;letter-spacing:3px;color:var(--ink-mute);margin-bottom:8px;">快速跳转 · QUICK NAV</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:13px;line-height:1.9;">
+      <a href="#sec-active" style="color:var(--ink);text-decoration:none;border:1px solid var(--ink);padding:3px 10px;">已上场 29 人 →</a>
+      <a href="#sec-signedup" style="color:var(--ink);text-decoration:none;border:1px solid var(--ink);padding:3px 10px;">报名未上场 →</a>
+      <a href="#sec-late" style="color:var(--danger);text-decoration:none;border:1px solid var(--danger);padding:3px 10px;">失信扣分 →</a>
+      <a href="#sec-behavior" style="color:var(--danger);text-decoration:none;border:1px solid var(--danger);padding:3px 10px;background:var(--danger-bg);"><b>⚠ 行为问题区 →</b></a>
+      <a href="#sec-wild" style="color:var(--ink);text-decoration:none;border:1px solid var(--ink);padding:3px 10px;">野人 →</a>
+    </div>
+  </nav>
+
   <!-- ====== 已上场玩家 ====== -->
   <section id="sec-active">
     <h2>已上场玩家 <span class="sub">29 人 · 按总参赛局数排序 · 英雄 icon hover 看名</span></h2>
@@ -617,7 +628,7 @@
   </section>
 
   <!-- ====== 报名但未上场 ====== -->
-  <section>
+  <section id="sec-signedup">
     <h2>报名但未上场 <span class="sub">14 人 · 含观战 / 替补未顶 / 5/13 即将首战</span></h2>
     <table class="r">
       <thead>
@@ -651,7 +662,7 @@
   </section>
 
   <!-- ====== 失信扣分 ====== -->
-  <section>
+  <section id="sec-late">
     <h2 style="color:var(--danger);">失信扣分 <span class="sub" style="color:var(--danger);">7 人 · 5/9 主力锁定后未进房 · 各 -5 信誉</span></h2>
     <table class="r">
       <thead>
@@ -675,29 +686,102 @@
     </table>
   </section>
 
-  <!-- ====== 永久拉黑 ====== -->
-  <section>
-    <h2 style="color:var(--danger);">⚠ 永久拉黑 <span class="sub" style="color:var(--danger);">2 人 · 后续所有内战不再安排</span></h2>
+  <!-- ====== 行为问题区 ====== -->
+  <section id="sec-behavior" style="border-top:2px solid var(--danger);padding-top:18px;margin-top:32px;">
+    <h2 style="color:var(--danger);">⚠ 行为问题区 <span class="sub" style="color:var(--danger);">永久拉黑 / 退群 / 情绪不稳定 / 骂人 — 行为类型 + 具体事件存档</span></h2>
+
+    <div style="background:var(--danger-bg);border-left:3px solid var(--danger);padding:12px 16px;margin-bottom:18px;font-size:12px;line-height:1.7;color:var(--ink-soft);">
+      <b style="color:var(--danger);">行为分级说明：</b><br>
+      <b>永久拉黑</b> — 后续所有内战不再安排（最严重，按 ID 匹配）｜
+      <b>退群</b> — 已自行退出群聊，不再接龙｜
+      <b>情绪不稳定</b> — 内战中出现明显情绪波动 / 摔键盘 / 队友体感强（观察期）｜
+      <b>骂人</b> — 群内或游戏内对他人有言语攻击记录（取证后标注）<br>
+      <span style="color:var(--ink-mute);">每条记录尽量带"时间 + 事件 + 具体行为"，避免模糊指控</span>
+    </div>
+
+    <!-- ── 4.1 永久拉黑 ── -->
+    <h3 style="font-size:13px;color:var(--danger);letter-spacing:2px;margin:18px 0 10px;">A · 永久拉黑 <span style="color:var(--ink-mute);font-weight:400;font-size:11px;letter-spacing:1px;">2 人 · 后续所有内战不再安排</span></h3>
     <table class="r">
       <thead>
         <tr>
-          <th style="width:200px;">群里称呼 / 游戏 ID</th>
-          <th style="width:80px;text-align:right;">自报段位</th>
-          <th style="width:70px;">服务器</th>
-          <th style="width:80px;">偏好位</th>
+          <th style="width:170px;">群里称呼 / 游戏 ID</th>
+          <th style="width:75px;text-align:right;">自报段位</th>
+          <th style="width:65px;">服务器</th>
+          <th style="width:60px;">偏好位</th>
+          <th style="width:130px;">具体行为</th>
           <th>说明（含 Steam / Dota ID）</th>
-          <th style="width:120px;">状态</th>
+          <th style="width:100px;">状态</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="danger"><td class="name">玩家「13」</td><td class="num">1000 卫士</td><td>东南亚</td><td>4·5</td><td>2026/5/13 起永久拉黑，所有内战不再安排参与</td><td><span class="b danger">永久拉黑</span></td></tr>
-        <tr class="danger"><td class="name">带把少女李狗蛋 <span style="color:var(--ink-mute);font-size:10px;font-weight:400;">（疑同 5/11「李狗蛋」#19）</span></td><td class="num">6500（自报）</td><td>东南亚</td><td>仅 3</td><td>2026/5/13 起永久拉黑 · Steam ID <b style="font-family:monospace;">76561198238437890</b> · Dota ID <a href="https://www.opendota.com/players/278172162" target="_blank" style="font-family:monospace;">278172162</a> · 5/9 内战 1 以野人身份打 2 局 · 后续所有内战按上述 ID 匹配，不再安排</td><td><span class="b danger">永久拉黑</span></td></tr>
+        <tr class="danger"><td class="name">玩家「13」</td><td class="num">1000 卫士</td><td>东南亚</td><td>4·5</td><td><span class="b danger">骂人？</span> <span class="b danger">情绪不稳定？</span><br><span style="font-size:10px;color:var(--ink-mute);">具体行为待 Joy 补</span></td><td>2026/5/13 起永久拉黑，所有内战不再安排参与（拉黑原因待补充具体行为细节）</td><td><span class="b danger">永久拉黑</span></td></tr>
+        <tr class="danger"><td class="name">带把少女李狗蛋 <span style="color:var(--ink-mute);font-size:10px;font-weight:400;">（疑同 5/11「李狗蛋」#19）</span></td><td class="num">6500（自报）</td><td>东南亚</td><td>仅 3</td><td><span class="b danger">骂人？</span> <span class="b danger">情绪不稳定？</span><br><span style="font-size:10px;color:var(--ink-mute);">具体行为待 Joy 补</span></td><td>2026/5/13 起永久拉黑 · Steam ID <b style="font-family:monospace;">76561198238437890</b> · Dota ID <a href="https://www.opendota.com/players/278172162" target="_blank" style="font-family:monospace;">278172162</a> · 5/9 内战 1 以野人身份打 2 局 · 后续所有内战按上述 ID 匹配，不再安排</td><td><span class="b danger">永久拉黑</span></td></tr>
       </tbody>
     </table>
+
+    <!-- ── 4.2 退群 ── -->
+    <h3 style="font-size:13px;color:var(--warn);letter-spacing:2px;margin:24px 0 10px;">B · 退群 <span style="color:var(--ink-mute);font-weight:400;font-size:11px;letter-spacing:1px;">0 人 · 已自行退出群聊，不再接龙</span></h3>
+    <table class="r">
+      <thead>
+        <tr>
+          <th style="width:170px;">群里称呼 / 游戏 ID</th>
+          <th style="width:120px;">退群时间</th>
+          <th style="width:130px;">退群前最后动作</th>
+          <th>说明</th>
+          <th style="width:100px;">状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="mute"><td colspan="5" style="text-align:center;font-size:12px;padding:14px;color:var(--ink-mute);">暂无 · 后续如有人退群，按"退群时间 / 最后动作 / 群里发言"存档</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── 4.3 情绪不稳定 ── -->
+    <h3 style="font-size:13px;color:var(--warn);letter-spacing:2px;margin:24px 0 10px;">C · 情绪不稳定 <span style="color:var(--ink-mute);font-weight:400;font-size:11px;letter-spacing:1px;">0 人 · 观察期 · 暂未升级到拉黑</span></h3>
+    <table class="r">
+      <thead>
+        <tr>
+          <th style="width:170px;">群里称呼 / 游戏 ID</th>
+          <th style="width:120px;">事件时间</th>
+          <th style="width:130px;">事件类型</th>
+          <th>具体描述</th>
+          <th style="width:100px;">处理</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="mute"><td colspan="5" style="text-align:center;font-size:12px;padding:14px;color:var(--ink-mute);">暂无记录 · 例：游戏中摔鼠标 / 突然挂机 / 队友 / OB 反馈情绪激动 — Joy 补具体事件后填入</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ── 4.4 骂人 ── -->
+    <h3 style="font-size:13px;color:var(--warn);letter-spacing:2px;margin:24px 0 10px;">D · 骂人 <span style="color:var(--ink-mute);font-weight:400;font-size:11px;letter-spacing:1px;">0 人 · 群内 / 游戏内言语攻击记录</span></h3>
+    <table class="r">
+      <thead>
+        <tr>
+          <th style="width:170px;">群里称呼 / 游戏 ID</th>
+          <th style="width:120px;">事件时间</th>
+          <th style="width:130px;">场景</th>
+          <th>具体内容（截图 / 截录 / 关键词）</th>
+          <th style="width:100px;">处理</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="mute"><td colspan="5" style="text-align:center;font-size:12px;padding:14px;color:var(--ink-mute);">暂无记录 · 例：5/X 内战中 X 号位骂 Y 号位"垃圾"/"菜b" — Joy 补具体证据后填入，避免模糊指控</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:18px;padding:10px 14px;background:var(--bg-soft);font-size:11px;color:var(--ink-mute);line-height:1.7;">
+      <b style="color:var(--ink-soft);">填写规则：</b>
+      ① 必须有时间（哪期内战 / 哪一天的群聊）｜
+      ② 必须有具体事件描述（避免"性格不好"这种模糊词）｜
+      ③ 涉及骂人需有截图 / 录屏 / 多人佐证｜
+      ④ 情绪不稳定先进观察区，连续 2 次再考虑升级｜
+      ⑤ Joy 是唯一录入人，其他玩家反馈走 Joy 私信。
+    </div>
   </section>
 
   <!-- ====== 野人 / 临时叫人 ====== -->
-  <section>
+  <section id="sec-wild">
     <h2>野人 / 临时叫人 <span class="sub">9 人 · 5/9 当晚现叫，Steam ID 不在花名册，不参与信誉分</span></h2>
     <table class="r">
       <thead>
