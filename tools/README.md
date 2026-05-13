@@ -85,7 +85,44 @@ git push
 |---|---|
 | `parse-replay.ps1` | PowerShell 包装：调 Docker parser，POST .dem，存 JSONL |
 | `aggregate.mjs` | Node.js 聚合：读 JSONL 流，输出结构化 summary |
+| `rank-check.mjs` | STRATZ 段位真实度核查（需 STRATZ_TOKEN） |
+| `opendota-deepdive.mjs` | OpenDota 段位深挖（无需 token，给"自报无段位"的人推荐分段） |
 | `README.md` | 本文件 |
+
+## 段位深挖工具（opendota-deepdive）
+
+给"自报无段位 / 估分不准 / 冠绝快速匹配玩家"这类玩家自动推荐段位。
+
+**用法：**
+
+```powershell
+# 单个玩家
+node tools/opendota-deepdive.mjs 350060373
+
+# 批量（多个 Dota account_id）
+node tools/opendota-deepdive.mjs 350060373 130401362 294917742
+
+# 从文件读 ID（每行一个）
+node tools/opendota-deepdive.mjs --file tools/deepdive-ids.txt
+
+# 全员（读 players.json 里有 steam_id 的所有人）
+node tools/opendota-deepdive.mjs --all
+```
+
+**输出：**
+
+- `tools/deepdive-output.json` — 机器可读，每人完整字段
+- `tools/deepdive-report.md` — 人读，每人一段总结，可粘到花名册"段位深挖"区
+
+**判断逻辑：** 推荐段位 = 三个数据源 MMR 的中位数：
+
+- ① OpenDota Turbo MMR 估算
+- ② 最近 30 局 lobby 平均段位中位数
+- ③ Profile rank_tier（含冠绝榜上排名）
+
+主玩位置 = 历史 lane_role + 最近 30 局 lane_role 加权（最近 ×10）的众数。
+
+**速率：** OpenDota 免费 API 每分钟 60 次，每人 4 个请求 → 单人间隔 5 秒（脚本里写死），批量 10 人约 50 秒。如果遇到 OpenDota 临时 500（counts 偶发），脚本会自动重试 2 次，仍失败则跳过该字段继续。
 
 ## summary.json 输出结构
 

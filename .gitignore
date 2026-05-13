@@ -9,6 +9,10 @@ parsed/**/*-summary.json
 # tools 临时下载产物
 tools/_*.json
 
+# tools 运行时输出（每次脚本重新生成）
+tools/deepdive-output.json
+tools/deepdive-report.md
+
 # Node / Python
 node_modules/
 __pycache__/
