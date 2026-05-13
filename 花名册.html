@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1a1a1a">
-<meta name="description" content="原点 Dota2 内战 · 全员花名册 — 所有出现过的玩家、游戏 ID、自报段位、参赛局数、英雄战绩、信誉分">
+<meta name="description" content="原点 Dota2 内战 · 全员花名册 — 所有出现过的玩家、Dota ID、自报段位、AI 实战分、参赛局数、英雄战绩、信誉分">
 <title>原点 Dota2 内战 · 全员花名册</title>
 <style>
   :root {
@@ -19,39 +19,37 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased}
-  .page{max-width:1280px;margin:0 auto;padding:40px 28px 80px}
+  .page{max-width:1320px;margin:0 auto;padding:40px 24px 80px}
 
   .crumb{font-size:12px;color:var(--ink-mute);letter-spacing:1px;margin-bottom:18px}
   .crumb a{color:var(--ink-soft);text-decoration:none;border-bottom:1px dotted var(--ink-mute)}
 
-  header{text-align:center;margin-bottom:32px;padding-bottom:22px;border-bottom:2px solid var(--ink)}
+  header{text-align:center;margin-bottom:30px;padding-bottom:22px;border-bottom:2px solid var(--ink)}
   header .eyebrow{font-size:11px;letter-spacing:5px;color:var(--ink-mute);margin-bottom:10px}
   header h1{font-size:28px;font-weight:600;letter-spacing:1px;margin-bottom:8px}
   header .meta{font-size:13px;color:var(--ink-soft)}
 
-  .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:32px}
+  .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:30px}
   .stat{border:1px solid var(--line);background:var(--bg-card);padding:14px 10px;text-align:center}
   .stat .v{font-size:26px;font-weight:700;font-feature-settings:"tnum"}
   .stat .l{font-size:10px;letter-spacing:1.5px;color:var(--ink-mute);margin-top:2px}
-  .stat.ok .v{color:var(--ok)}
-  .stat.warn .v{color:var(--warn)}
-  .stat.danger .v{color:var(--danger)}
-  .stat.info .v{color:var(--info)}
+  .stat.ok .v{color:var(--ok)} .stat.warn .v{color:var(--warn)}
+  .stat.danger .v{color:var(--danger)} .stat.info .v{color:var(--info)}
   .stat.mute .v{color:var(--ink-mute)}
 
-  section{margin-bottom:40px}
-  section > h2{font-size:18px;font-weight:600;letter-spacing:2px;padding-bottom:10px;margin-bottom:16px;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+  section{margin-bottom:36px}
+  section > h2{font-size:18px;font-weight:600;letter-spacing:2px;padding-bottom:10px;margin-bottom:14px;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
   section > h2 .sub{font-size:12px;color:var(--ink-mute);font-weight:400;letter-spacing:1px}
 
-  /* 桌面表格 */
-  table.r{width:100%;border-collapse:collapse;font-size:13px}
-  table.r th,table.r td{padding:10px 8px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  table.r{width:100%;border-collapse:collapse;font-size:12.5px}
+  table.r th,table.r td{padding:9px 7px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
   table.r th{font-size:10px;letter-spacing:1.5px;color:var(--ink-mute);background:var(--bg-card);font-weight:500;white-space:nowrap}
   table.r td.num{text-align:right;font-feature-settings:"tnum";white-space:nowrap}
   table.r td.name{font-weight:600;white-space:nowrap}
-  table.r td.id-c{font-size:12px;color:var(--ink-soft);font-family:ui-monospace,"SF Mono",Menlo,monospace}
-  table.r td.note{font-size:11px;color:var(--ink-soft);line-height:1.5}
-  table.r td.heroes{font-size:11px;color:var(--ink-soft);line-height:1.5;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+  table.r td.id-c{font-size:11.5px;color:var(--ink-soft);font-family:ui-monospace,"SF Mono",Menlo,monospace}
+  table.r td.dota-id{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:11.5px;color:var(--info);text-align:right;font-feature-settings:"tnum"}
+  table.r td.dota-id a{color:var(--info);text-decoration:none;border-bottom:1px dotted var(--info)}
+  table.r td.heroes{font-size:11.5px;color:var(--ink-soft);line-height:1.7}
   table.r tr.danger td{background:var(--danger-bg)}
   table.r tr.warn td{background:var(--warn-bg)}
   table.r tr.mute td{color:var(--ink-mute)}
@@ -66,8 +64,18 @@
 
   .games{font-size:10px;color:var(--ink-mute);font-feature-settings:normal;white-space:nowrap}
   .match-id{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:10px;color:var(--ink-mute)}
+  .match-id a{color:var(--ink-mute);text-decoration:none;border-bottom:1px dotted var(--ink-mute)}
 
-  /* 移动端：表格转卡片 */
+  /* 英雄 icon (Steam CDN 是 32×18 横版，按 6:3.4 比例) */
+  .hicon{display:inline-block;width:28px;height:16px;vertical-align:-4px;margin-right:4px;border-radius:2px;background:#222;object-fit:cover}
+  .hero-name{font-weight:500;color:var(--ink)}
+
+  /* AI 实战分 cell */
+  .ai-cell{text-align:right;font-feature-settings:"tnum";white-space:nowrap}
+  .ai-cell .ai-v{font-weight:600}
+  .ai-cell .ai-delta{display:block;font-size:10px;color:var(--ink-mute);font-weight:400}
+
+  /* 移动端 */
   .mobile-cards{display:none}
   .card{border:1px solid var(--line);background:var(--bg-card);padding:14px 16px;margin-bottom:10px}
   .card.danger{background:var(--danger-bg);border-left:3px solid var(--danger)}
@@ -76,10 +84,10 @@
   .card .c-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;flex-wrap:wrap;gap:6px}
   .card .c-name{font-size:15px;font-weight:600}
   .card .c-mmr{font-size:13px;color:var(--ink-soft);font-feature-settings:"tnum"}
-  .card .c-id{font-size:12px;color:var(--ink-soft);font-family:ui-monospace,"SF Mono",Menlo,monospace;margin-bottom:6px}
-  .card .c-meta{font-size:11px;color:var(--ink-mute);margin-bottom:8px;line-height:1.6}
-  .card .c-meta b{color:var(--ink-soft)}
-  .card .c-heroes{font-size:11px;color:var(--ink-soft);line-height:1.6;padding-top:8px;border-top:1px solid var(--line-soft)}
+  .card .c-row{font-size:12px;color:var(--ink-soft);margin-bottom:4px}
+  .card .c-row b{color:var(--ink)}
+  .card .c-id{font-size:11px;color:var(--ink-soft);font-family:ui-monospace,"SF Mono",Menlo,monospace;margin-bottom:6px}
+  .card .c-heroes{font-size:11.5px;color:var(--ink-soft);line-height:1.8;padding-top:8px;border-top:1px solid var(--line-soft);margin-top:6px}
   .card .c-badges{margin-top:6px}
 
   .notes{margin-top:18px;padding:16px 20px;background:var(--bg-card);border-left:3px solid var(--ink-mute);font-size:12px;color:var(--ink-soft);line-height:1.8}
@@ -92,7 +100,7 @@
 
   @media (max-width: 900px) {
     .stats{grid-template-columns:repeat(3,1fr)}
-    table.r{display:none}
+    section table.r{display:none}
     .mobile-cards{display:block}
     .page{padding:24px 14px 48px}
     header h1{font-size:22px}
@@ -105,12 +113,12 @@
 <body>
 <div class="page">
 
-  <div class="crumb"><a href="index.html">← 返回首页</a> · <a href="20260513-内战对战表.html">5/13 对战表</a></div>
+  <div class="crumb"><a href="index.html">← 返回首页</a> · <a href="20260513-内战对战表.html">5/13 对战表</a> · <a href="analysis/段位真实度.html">段位真实度</a></div>
 
   <header>
     <div class="eyebrow">原点 DOTA2 内战 · 全员档案</div>
     <h1>全员花名册</h1>
-    <div class="meta">覆盖 2026/5/9 · 5/11 · 5/13 三期内战 · 截至 2026-05-13</div>
+    <div class="meta">覆盖 2026/5/9 · 5/11 · 5/13 三期内战 · 截至 2026-05-13 · Dota ID 可点击跳 OpenDota 主页</div>
   </header>
 
   <div class="stats">
@@ -122,149 +130,168 @@
     <div class="stat danger"><div class="v">1</div><div class="l">永久拉黑</div></div>
   </div>
 
-  <!-- ====== 已上场玩家（活跃） ====== -->
-  <section>
-    <h2>已上场玩家 <span class="sub">29 人 · 按总参赛局数排序 · 数据来源：OpenDota 解析</span></h2>
+  <!-- ====== 已上场玩家 ====== -->
+  <section id="sec-active">
+    <h2>已上场玩家 <span class="sub">29 人 · 按总参赛局数排序 · 英雄 icon hover 看名</span></h2>
 
-    <!-- 桌面表格 -->
     <table class="r">
       <thead>
         <tr>
-          <th style="width:140px;">群里称呼</th>
-          <th style="width:170px;">游戏内 ID</th>
+          <th style="width:110px;">群里称呼</th>
+          <th style="width:150px;">游戏内 ID</th>
+          <th style="width:90px;text-align:right;">Dota ID</th>
           <th style="width:80px;text-align:right;">自报段位</th>
-          <th style="width:70px;">服务器</th>
+          <th style="width:90px;text-align:right;">AI 实战分</th>
+          <th style="width:60px;">服务器</th>
           <th style="width:80px;">偏好位</th>
-          <th style="width:70px;text-align:right;">总局数</th>
-          <th>英雄战绩 / Match</th>
-          <th style="width:120px;">状态</th>
+          <th style="width:55px;text-align:right;">局数</th>
+          <th>英雄战绩</th>
+          <th style="width:110px;">状态</th>
         </tr>
       </thead>
       <tbody>
 
         <tr>
-          <td class="name">老八<span class="games"> · 5/9 · 5/11</span></td>
+          <td class="name">老八<span class="games"> · 5/9·5/11</span></td>
           <td class="id-c">冰清玉洁梅老八</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/318433252" target="_blank" rel="noopener">318433252</a></td>
           <td class="num">5000</td>
+          <td class="ai-cell"><span class="ai-v">—</span><span class="ai-delta">AI 未评</span></td>
           <td>东南亚</td>
-          <td>1·2 / 5</td>
+          <td>1·2 → 5</td>
           <td class="num">3 局</td>
           <td class="heroes">
-            <b>5/9 内战 1·1</b> 拉比克 4 号 <b>9/5/26</b> <span class="match-id">8803928598</span><br>
-            <b>5/9 内战 1·2</b> 琪兰 1 号 <b>26/3/26</b> <span class="match-id">8804014494</span><br>
-            <b>5/11</b> 9/4/14 <span class="match-id">8806988261</span>
+            <b>5/9 内战 1·1</b> 拉比克 4 号 <b>9/5/26</b> <span class="match-id"><a href="https://www.opendota.com/matches/8803928598" target="_blank">8803928598</a></span><br>
+            <b>5/9 内战 1·2</b> 琪兰 1 号 <b>26/3/26</b> <span class="match-id"><a href="https://www.opendota.com/matches/8804014494" target="_blank">8804014494</a></span><br>
+            <b>5/11</b> 9/4/14 <span class="match-id"><a href="https://www.opendota.com/matches/8806988261" target="_blank">8806988261</a></span>
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
-          <td class="name">攻击精神<span class="games"> · 5/9 · 5/11 · 5/13</span></td>
+          <td class="name">攻击精神<span class="games"> · 5/9·5/11·5/13</span></td>
           <td class="id-c">攻撃精神！</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/196725572" target="_blank">196725572</a></td>
           <td class="num">1500→2000</td>
+          <td class="ai-cell"><span class="ai-v" style="color:var(--info)">3000</span><span class="ai-delta">↑1500 低估</span></td>
           <td>东南亚</td>
           <td>仅 2</td>
           <td class="num">3 局</td>
           <td class="heroes">
             <b>5/9 内战 1·2</b>（借调）痛苦女王 4 号 <b>5/10/22</b><br>
-            <b>5/9 内战 3·1</b> 痛苦女王 2 号 <b>12/0/13</b> <span class="match-id">8803895680</span><br>
-            <b>5/11</b>（替补#2 顶上）4/11/10 <span class="match-id">8806988261</span><br>
+            <b>5/9 内战 3·1</b> 痛苦女王 2 号 <b>12/0/13</b> <span class="match-id"><a href="https://www.opendota.com/matches/8803895680" target="_blank">8803895680</a></span><br>
+            <b>5/11</b>（替补#2 顶上）4/11/10<br>
             <b>5/13</b> 已分到夜魇 2 号位
           </td>
-          <td><span class="b ok">+2 信誉</span><span class="b info">段位↑1500</span></td>
+          <td><span class="b ok">+2</span><span class="b info">藏分</span></td>
         </tr>
 
         <tr>
-          <td class="name">AR.Chalice<span class="games"> · 5/9 · 5/11</span></td>
+          <td class="name">AR.Chalice<span class="games"> · 5/9·5/11</span></td>
           <td class="id-c">AR.Chalice</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/288468652" target="_blank">288468652</a></td>
           <td class="num">4500</td>
+          <td class="ai-cell"><span class="ai-v" style="color:var(--info)">5800</span><span class="ai-delta">↑1300 低估</span></td>
           <td>国服</td>
           <td>1·3</td>
           <td class="num">3 局</td>
           <td class="heroes">
-            <b>5/9 内战 2·1</b> Juggernaut 2 号 <b>11/0/6</b> <span class="match-id">8803924412</span><br>
-            <b>5/9 内战 2·2</b> Phantom Assassin 1 号 <b>18/4/15</b> <span class="match-id">8804000163</span><br>
-            <b>5/11</b>（替补#4 顶上）13/5/13 <span class="match-id">8806988261</span>
+            <b>5/9 内战 2·1</b> 主宰 2 号 <b>11/0/6</b> <span class="match-id"><a href="https://www.opendota.com/matches/8803924412" target="_blank">8803924412</a></span><br>
+            <b>5/9 内战 2·2</b> 幻影刺客 1 号 <b>18/4/15</b> <span class="match-id"><a href="https://www.opendota.com/matches/8804000163" target="_blank">8804000163</a></span><br>
+            <b>5/11</b>（替补#4 顶上）13/5/13
           </td>
-          <td><span class="b ok">+2 信誉</span><span class="b info">段位↑1300</span></td>
+          <td><span class="b ok">+2</span><span class="b info">藏分</span></td>
         </tr>
 
         <tr>
-          <td class="name">下等马<span class="games"> · 5/9 · 5/11 · 5/13 不安排</span></td>
+          <td class="name">下等马<span class="games"> · 5/9·5/11 · 5/13 不安排</span></td>
           <td class="id-c">下等马给我田忌吧</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/137507552" target="_blank">137507552</a></td>
           <td class="num">3000</td>
+          <td class="ai-cell"><span class="ai-v">2800</span><span class="ai-delta">↓200 属实</span></td>
           <td>国服</td>
           <td>1·3·4·5</td>
           <td class="num">3 局</td>
           <td class="heroes">
-            <b>5/9 内战 2·1</b> Lich 4 号 <b>3/9/7</b><br>
-            <b>5/9 内战 2·2</b> Winter Wyvern 5 号 <b>0/12/27</b><br>
+            <b>5/9 内战 2·1</b> 巫妖 4 号 <b>3/9/7</b><br>
+            <b>5/9 内战 2·2</b> 寒冬飞龙 5 号 <b>0/12/27</b><br>
             <b>5/11</b>（替补#5 顶上）5/10/15
           </td>
-          <td><span class="b ok">+2 信誉</span><span class="b mute">5/13 超分段</span></td>
+          <td><span class="b ok">+2</span><span class="b mute">5/13 超分段</span></td>
         </tr>
 
         <tr>
-          <td class="name">Joy <span class="games">· 群主 · 5/9 · 5/11</span></td>
+          <td class="name">Joy <span class="games">· 群主 · 5/9·5/11</span></td>
           <td class="id-c">Joy</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/155448633" target="_blank">155448633</a></td>
           <td class="num">3000</td>
+          <td class="ai-cell"><span class="ai-v" style="color:var(--ok)">3000</span><span class="ai-delta">0 属实</span></td>
           <td>国服</td>
           <td>1·4·5</td>
           <td class="num">3 局</td>
           <td class="heroes">
-            <b>5/9 内战 2·1</b> Shadow Demon 5 号 <b>2/5/19</b><br>
-            <b>5/9 内战 2·2</b> Rubick 5 号 <b>3/8/29</b><br>
+            <b>5/9 内战 2·1</b> 暗影恶魔 5 号 <b>2/5/19</b><br>
+            <b>5/9 内战 2·2</b> 拉比克 5 号 <b>3/8/29</b><br>
             <b>5/11</b> 3/8/27（27 助攻团魂）
           </td>
-          <td><span class="b ok">+2.5</span><span class="b info">QQ 155448633</span></td>
+          <td><span class="b ok">+2.5</span><span class="b info">群主</span></td>
         </tr>
 
         <tr>
-          <td class="name">番茄酱<span class="games"> · 5/9 · 5/11</span></td>
+          <td class="name">番茄酱<span class="games"> · 5/9·5/11</span></td>
           <td class="id-c">爱吃番茄的喵酱</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/139508222" target="_blank">139508222</a></td>
           <td class="num">3000</td>
+          <td class="ai-cell"><span class="ai-v">2800</span><span class="ai-delta">↓200 属实</span></td>
           <td>国服</td>
           <td>2·4·5</td>
           <td class="num">3 局</td>
           <td class="heroes">
-            <b>5/9 内战 2·1</b> Dazzle 4 号 <b>2/5/19</b><br>
-            <b>5/9 内战 2·2</b> Dark Willow 4 号 <b>6/8/28</b><br>
+            <b>5/9 内战 2·1</b> 戴泽 4 号 <b>2/5/19</b><br>
+            <b>5/9 内战 2·2</b> 黑暗仙女 4 号 <b>6/8/28</b><br>
             <b>5/11</b>（替补#9 顶上）3/9/26
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
           <td class="name">就硬划<span class="games"> · 5/9</span></td>
           <td class="id-c">划，就硬划</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/294917742" target="_blank">294917742</a></td>
           <td class="num">4000</td>
+          <td class="ai-cell"><span class="ai-v" style="color:var(--ok)">4000</span><span class="ai-delta">0 属实</span></td>
           <td>东南亚</td>
           <td>1·2·3·4</td>
           <td class="num">2 局</td>
           <td class="heroes">
             <b>5/9 内战 1·1</b> 斯拉达 3 号 <b>5/11/8</b><br>
-            <b>5/9 内战 2·2</b>（借调）Void Spirit 3 号 <b>10/10/19</b>
+            <b>5/9 内战 2·2</b>（借调）虚无之灵 3 号 <b>10/10/19</b>
           </td>
-          <td><span class="b ok">+2 信誉</span><span class="b danger">5/11 无段位禁赛</span></td>
+          <td><span class="b ok">+2</span><span class="b danger">5/11 无段位禁赛</span></td>
         </tr>
 
         <tr>
           <td class="name">憨皮小牛<span class="games"> · 5/9 · 5/13 不安排</span></td>
           <td class="id-c">憨皮小牛</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/121830172" target="_blank">121830172</a></td>
           <td class="num">3000</td>
+          <td class="ai-cell"><span class="ai-v">3800</span><span class="ai-delta">↑800</span></td>
           <td>东南亚</td>
           <td>3·4</td>
           <td class="num">2 局</td>
           <td class="heroes">
-            <b>5/9 内战 2·1</b> Dawnbreaker 3 号 <b>6/6/5</b><br>
-            <b>5/9 内战 2·2</b> Necrophos 2 号 <b>10/8/22</b>
+            <b>5/9 内战 2·1</b> 破晓辰星 3 号 <b>6/6/5</b><br>
+            <b>5/9 内战 2·2</b> 瘟疫法师 2 号 <b>10/8/22</b>
           </td>
-          <td><span class="b ok">+2 信誉</span><span class="b mute">5/13 超分段</span></td>
+          <td><span class="b ok">+2</span><span class="b mute">5/13 超分段</span></td>
         </tr>
 
         <tr>
           <td class="name">赵子龙<span class="games"> · 5/9</span></td>
           <td class="id-c">赵子龙</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/129383612" target="_blank">129383612</a></td>
           <td class="num">5000</td>
+          <td class="ai-cell"><span class="ai-v" style="color:var(--danger)">4000</span><span class="ai-delta">↓1000 虚高</span></td>
           <td>—</td>
           <td>1</td>
           <td class="num">2 局</td>
@@ -272,13 +299,15 @@
             <b>5/9 内战 1·1</b> 幻影刺客 1 号 <b>5/7/7</b><br>
             <b>5/9 内战 1·2</b> 司夜刺客 5 号 <b>5/15/29</b>
           </td>
-          <td><span class="b ok">+2 信誉</span><span class="b info">段位↓1000</span></td>
+          <td><span class="b ok">+2</span><span class="b danger">虚报</span></td>
         </tr>
 
         <tr>
           <td class="name">Wasabi（芥末）<span class="games"> · 5/9</span></td>
           <td class="id-c">Wasabi</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/192089902" target="_blank">192089902</a></td>
           <td class="num">6000</td>
+          <td class="ai-cell"><span class="ai-v">—</span><span class="ai-delta">同名借调待确认</span></td>
           <td>国服</td>
           <td>1·3·5</td>
           <td class="num">2 局</td>
@@ -286,28 +315,32 @@
             <b>5/9 内战 1·1</b> 术士 5 号 <b>3/11/14</b><br>
             <b>5/9 内战 1·2</b> 莱恩 4 号 <b>10/13/32</b>
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
-          <td class="name">Tc<span class="games"> · 5/9 · 5/11 · 5/13</span></td>
-          <td class="id-c">Tcz2Z（5/11 笔误「TczZZ」）</td>
+          <td class="name">Tc<span class="games"> · 5/9·5/11·5/13</span></td>
+          <td class="id-c">Tcz2Z（5/11 笔误 TczZZ）</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/1408038802" target="_blank">1408038802</a></td>
           <td class="num">1000 卫士</td>
+          <td class="ai-cell"><span class="ai-v">1500</span><span class="ai-delta">↑500 属实</span></td>
           <td>国服</td>
           <td>3·4</td>
           <td class="num">2 局</td>
           <td class="heroes">
-            <b>5/9 内战 3·1</b> 半人马 3 号 <b>1/6/7</b> · 5/9 自愿开房<br>
+            <b>5/9 内战 3·1</b> 半人马战行者 3 号 <b>1/6/7</b> · 5/9 自愿开房<br>
             <b>5/11</b>（临时加 · 不在接龙）3/9/17<br>
             <b>5/13</b> 已分到夜魇 4 号位
           </td>
-          <td><span class="b ok">+2.5 含开房</span></td>
+          <td><span class="b ok">+2.5</span></td>
         </tr>
 
         <tr>
-          <td class="name">大鱼（DDDash）<span class="games"> · 5/9 · 5/11 · 5/13 替补</span></td>
+          <td class="name">大鱼（DDDash）<span class="games"> · 5/9·5/11·5/13 替补</span></td>
           <td class="id-c">DDDash</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/408294172" target="_blank">408294172</a></td>
           <td class="num">3000→2500</td>
+          <td class="ai-cell"><span class="ai-v">2500</span><span class="ai-delta">↓500 属实</span></td>
           <td>国服</td>
           <td>3·1·2</td>
           <td class="num">2 局</td>
@@ -316,65 +349,75 @@
             <b>5/11</b>（临时加）9/11/19<br>
             <b>5/13</b> 替补 · 顶 3 号 / 核心位
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
           <td class="name">Ss（苏三）<span class="games"> · 5/9</span></td>
           <td class="id-c">Ss</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/180389472" target="_blank">180389472</a></td>
           <td class="num">6000</td>
+          <td class="ai-cell"><span class="ai-v">5800</span><span class="ai-delta">↓200 属实</span></td>
           <td>国服</td>
           <td>仅 1</td>
           <td class="num">1 局</td>
           <td class="heroes">
             <b>5/9 内战 1·1</b> 编织者 1 号 <b>18/4/12</b>（9 个多杀当家）
           </td>
-          <td><span class="b ok">+2 信誉</span><span class="b mute">5/11 自选观战</span></td>
+          <td><span class="b ok">+2</span><span class="b mute">5/11 观战</span></td>
         </tr>
 
         <tr>
-          <td class="name">不巧者（Misaka）<span class="games"> · 5/9</span></td>
+          <td class="name">Misaka（不巧者）<span class="games"> · 5/9</span></td>
           <td class="id-c">misaka</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/446958162" target="_blank">446958162</a></td>
           <td class="num">7500</td>
+          <td class="ai-cell"><span class="ai-v" style="color:var(--danger)">5500</span><span class="ai-delta">↓2000 虚高</span></td>
           <td>东南亚</td>
           <td>仅 1</td>
           <td class="num">1 局</td>
           <td class="heroes">
             <b>5/9 内战 1·1</b> 暗影萨满 4 号 <b>2/13/16</b>
           </td>
-          <td><span class="b ok">+2.5 替补转主力</span></td>
+          <td><span class="b ok">+2.5</span><span class="b danger">虚报</span></td>
         </tr>
 
         <tr>
           <td class="name">qt<span class="games"> · 5/9</span></td>
           <td class="id-c">qt</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/109901682" target="_blank">109901682</a></td>
           <td class="num">5000</td>
+          <td class="ai-cell"><span class="ai-v">4800</span><span class="ai-delta">↓200 属实</span></td>
           <td>国服</td>
           <td>4·5</td>
           <td class="num">1 局</td>
           <td class="heroes">
             <b>5/9 内战 1·1</b> 裂魂人 5 号 <b>7/6/29</b> · 5/9 自愿开房
           </td>
-          <td><span class="b ok">+2.5 含开房</span></td>
+          <td><span class="b ok">+2.5</span></td>
         </tr>
 
         <tr>
           <td class="name">剑心仍在<span class="games"> · 5/9</span></td>
-          <td class="id-c">剑心仍在 <span style="color:var(--ink-mute);">≠ 野人「剑心犹在」</span></td>
+          <td class="id-c">剑心仍在 <span style="color:var(--ink-mute);font-size:10px;">≠ 野人「剑心犹在」</span></td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/331723172" target="_blank">331723172</a></td>
           <td class="num">4000</td>
+          <td class="ai-cell"><span class="ai-v">4200</span><span class="ai-delta">↑200 属实</span></td>
           <td>国服/东南亚</td>
           <td>仅 1</td>
           <td class="num">1 局</td>
           <td class="heroes">
             <b>5/9 内战 1·2</b>（借调）影魔 2 号 <b>7/5/17</b>
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
-          <td class="name">爱丽丝（Alice）<span class="games"> · 5/9 · 5/13</span></td>
+          <td class="name">爱丽丝（Alice）<span class="games"> · 5/9·5/13</span></td>
           <td class="id-c">Alice</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/135037952" target="_blank">135037952</a></td>
           <td class="num">2500</td>
+          <td class="ai-cell"><span class="ai-v">3200</span><span class="ai-delta">↑700</span></td>
           <td>外服</td>
           <td>1·4·5</td>
           <td class="num">1 局</td>
@@ -382,65 +425,75 @@
             <b>5/9 内战 3·1</b> 幽鬼 1 号 <b>8/2/14</b>（替补转主力）<br>
             <b>5/13</b> 已分到天辉 1 号位
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
           <td class="name">LittleKim<span class="games"> · 5/9</span></td>
           <td class="id-c">Kimalwaysright</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/130793292" target="_blank">130793292</a></td>
           <td class="num">2500</td>
+          <td class="ai-cell"><span class="ai-v">3200</span><span class="ai-delta">↑700</span></td>
           <td>外服+国服</td>
           <td>3·4·1</td>
           <td class="num">1 局</td>
           <td class="heroes">
             <b>5/9 内战 3·1</b> 马格纳斯 3 号 <b>7/2/18</b>
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
           <td class="name">请神 Fy god 附体<span class="games"> · 5/9</span></td>
           <td class="id-c">请神Fy god附体</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/153251742" target="_blank">153251742</a></td>
           <td class="num">1500</td>
+          <td class="ai-cell"><span class="ai-v">2200</span><span class="ai-delta">↑700</span></td>
           <td>国服</td>
           <td>4·5</td>
           <td class="num">1 局</td>
           <td class="heroes">
             <b>5/9 内战 3·1</b> 拉比克 5 号 <b>4/2/22</b>
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
           <td class="name">姜生<span class="games"> · 5/9</span></td>
           <td class="id-c">姜生</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/963882372" target="_blank">963882372</a></td>
           <td class="num">无段位</td>
+          <td class="ai-cell"><span class="ai-v" style="color:var(--info)">1800</span><span class="ai-delta">↑1800 低估</span></td>
           <td>东南亚</td>
           <td>4·5</td>
           <td class="num">1 局</td>
           <td class="heroes">
             <b>5/9 内战 3·1</b> 海民 4 号 <b>2/4/19</b>
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span><span class="b info">藏分</span></td>
         </tr>
 
         <tr>
           <td class="name">xp<span class="games"> · 5/9</span></td>
           <td class="id-c">What is Win？</td>
+          <td class="dota-id">—</td>
           <td class="num">1500</td>
+          <td class="ai-cell"><span class="ai-v">1700</span><span class="ai-delta">↑200 属实</span></td>
           <td>东南亚</td>
           <td>1·4·5</td>
           <td class="num">1 局</td>
           <td class="heroes">
             <b>5/9 内战 3·1</b> 齐天大圣 1 号 <b>4/4/3</b> · 到位补登
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
-          <td class="name">Yalo<span class="games"> · 5/9 · 5/13</span></td>
+          <td class="name">Yalo<span class="games"> · 5/9·5/13</span></td>
           <td class="id-c">Yalo</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/130401362" target="_blank">130401362</a></td>
           <td class="num">2500→2000</td>
+          <td class="ai-cell"><span class="ai-v">1800</span><span class="ai-delta">↓700</span></td>
           <td>外服</td>
           <td>4·5·3·2·1</td>
           <td class="num">1 局</td>
@@ -448,53 +501,61 @@
             <b>5/9 内战 3·1</b> 戒灵 2 号 <b>2/7/4</b><br>
             <b>5/13</b> 已分到天辉 5 号位
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
           <td class="name">Cynic（CY）<span class="games"> · 5/9</span></td>
           <td class="id-c">Cynic</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/1137205342" target="_blank">1137205342</a></td>
           <td class="num">500</td>
+          <td class="ai-cell"><span class="ai-v">800</span><span class="ai-delta">↑300 属实</span></td>
           <td>东南亚</td>
           <td>4·5</td>
           <td class="num">1 局</td>
           <td class="heroes">
             <b>5/9 内战 3·1</b> 食人魔法师 5 号 <b>0/8/2</b>
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
           <td class="name">日天<span class="games"> · 5/9</span></td>
           <td class="id-c">吕日天 / 日天冠绝守门员</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/180691762" target="_blank">180691762</a></td>
           <td class="num">6000</td>
+          <td class="ai-cell"><span class="ai-v">5500</span><span class="ai-delta">↓500</span></td>
           <td>国服</td>
           <td>1</td>
           <td class="num">1 局</td>
           <td class="heroes">
-            <b>5/9 内战 2·1</b> Faceless Void 1 号 <b>4/7/6</b>
+            <b>5/9 内战 2·1</b> 虚空假面 1 号 <b>4/7/6</b>
           </td>
-          <td><span class="b ok">+2 信誉</span></td>
+          <td><span class="b ok">+2</span></td>
         </tr>
 
         <tr>
-          <td class="name">Error 404<span class="games"> · 5/9 · 5/13</span></td>
+          <td class="name">Error 404<span class="games"> · 5/9·5/13</span></td>
           <td class="id-c">Error 404</td>
+          <td class="dota-id"><a href="https://www.opendota.com/players/186500942" target="_blank">186500942</a></td>
           <td class="num">3000→2000</td>
+          <td class="ai-cell"><span class="ai-v" style="color:var(--danger)">2000</span><span class="ai-delta">↓1000 虚高→已修正</span></td>
           <td>东南亚</td>
           <td>1·5·3</td>
           <td class="num">1 局</td>
           <td class="heroes">
-            <b>5/9 内战 2·1</b> Grimstroke 5 号 <b>0/11/12</b><br>
+            <b>5/9 内战 2·1</b> 天涯墨客 5 号 <b>0/11/12</b><br>
             <b>5/13</b> 已分到夜魇 5 号位
           </td>
-          <td><span class="b ok">+2 信誉</span><span class="b info">段位↓1075</span></td>
+          <td><span class="b ok">+2</span><span class="b info">已校准</span></td>
         </tr>
 
         <tr>
           <td class="name">高手灬坟墓<span class="games"> · 5/11</span></td>
           <td class="id-c">高手灬坟墓</td>
+          <td class="dota-id">—</td>
           <td class="num">5500</td>
+          <td class="ai-cell"><span class="ai-v">—</span><span class="ai-delta">数据未解析</span></td>
           <td>国服</td>
           <td>2·1·3 → 1</td>
           <td class="num">1 局</td>
@@ -507,34 +568,39 @@
         <tr>
           <td class="name">缙云 ⭐<span class="games"> · 5/11 MVP</span></td>
           <td class="id-c">大保健</td>
+          <td class="dota-id">—</td>
           <td class="num">10000</td>
+          <td class="ai-cell"><span class="ai-v">—</span><span class="ai-delta">高分桌 MVP</span></td>
           <td>东南亚</td>
           <td>仅 2</td>
           <td class="num">1 局</td>
           <td class="heroes">
-            <b>5/11</b> 夜魇 2 号 <b>25/2/18</b> · <b>全场最佳</b> · 42,680 经济
+            <b>5/11</b> 夜魇 2 号 <b>25/2/18</b> · <b>全场最佳 · 42,680 经济</b>
           </td>
           <td><span class="b warn">⭐ MVP</span></td>
         </tr>
 
         <tr>
           <td class="name">麦子<span class="games"> · 5/11 观战 · 5/13 主力</span></td>
-          <td class="id-c">（待确认）</td>
+          <td class="id-c">（待）</td>
+          <td class="dota-id">—</td>
           <td class="num">2000 中军</td>
+          <td class="ai-cell"><span class="ai-v">—</span><span class="ai-delta">未参赛</span></td>
           <td>国服/东南亚</td>
           <td>2·4·5 → 2</td>
           <td class="num">0 局</td>
           <td class="heroes">
-            <b>5/11</b> 本人自选观战<br>
             <b>5/13</b> 已分到天辉 2 号位（待打）
           </td>
           <td><span class="b mute">即将首战</span></td>
         </tr>
 
         <tr>
-          <td class="name">老杨<span class="games"> · 5/13 主力 · 房主</span></td>
-          <td class="id-c">（待确认）</td>
+          <td class="name">老杨<span class="games"> · 5/13 · 房主</span></td>
+          <td class="id-c">（待）</td>
+          <td class="dota-id">—</td>
           <td class="num">2500</td>
+          <td class="ai-cell"><span class="ai-v">—</span><span class="ai-delta">未参赛</span></td>
           <td>东南亚</td>
           <td>3·1 → 3</td>
           <td class="num">0 局</td>
@@ -547,20 +613,18 @@
       </tbody>
     </table>
 
-    <!-- 移动端卡片 -->
     <div class="mobile-cards" id="active-cards"></div>
   </section>
 
   <!-- ====== 报名但未上场 ====== -->
   <section>
-    <h2>报名但未上场 <span class="sub">19 人 · 包含观战 / 替补未顶 / 5/13 即将首战</span></h2>
-
+    <h2>报名但未上场 <span class="sub">14 人 · 含观战 / 替补未顶 / 5/13 即将首战</span></h2>
     <table class="r">
       <thead>
         <tr>
           <th style="width:140px;">群里称呼</th>
-          <th style="width:170px;">游戏内 ID</th>
           <th style="width:80px;text-align:right;">自报段位</th>
+          <th style="width:90px;text-align:right;">AI 实战分</th>
           <th style="width:70px;">服务器</th>
           <th style="width:80px;">偏好位</th>
           <th>情况说明</th>
@@ -568,22 +632,20 @@
         </tr>
       </thead>
       <tbody>
-
-        <tr class="mute"><td class="name">鱼头</td><td class="id-c">（待）</td><td class="num">2500</td><td>东南亚</td><td>1·2·3</td><td>5/13 已分到夜魇 1 号位</td><td><span class="b mute">5/13 即将首战</span></td></tr>
-        <tr class="mute"><td class="name">陆柒</td><td class="id-c">（待）</td><td class="num">2500</td><td>—</td><td>3·1</td><td>5/13 已分到天辉 3 号位</td><td><span class="b mute">5/13 即将首战</span></td></tr>
-        <tr class="mute"><td class="name">Patrick</td><td class="id-c">（待）</td><td class="num">1000</td><td>东南亚</td><td>1·3 → 协调 4</td><td>5/13 天辉 4 号位（顶替永久拉黑的 13）</td><td><span class="b mute">5/13 即将首战</span></td></tr>
-        <tr class="mute"><td class="name">罗西基（spimba）</td><td class="id-c">（无 Steam）</td><td class="num">2000~2500</td><td>东南亚</td><td>仅 3</td><td>5/9 自选观战 · 5/11 原 10 主力但未到房 · 5/13 因此不安排</td><td><span class="b warn">5/11 主力未到</span></td></tr>
-        <tr class="mute"><td class="name">及时行乐</td><td class="id-c">（无 Steam）</td><td class="num">2500</td><td>东南亚</td><td>2·1</td><td>5/9 21:00 后才能玩 / 替补未上 · 5/11 主力未到</td><td><span class="b warn">5/11 主力未到</span></td></tr>
-        <tr class="mute"><td class="name">豆皮</td><td class="id-c">高手 · 5/11 顶 #11</td><td class="num">3000</td><td>国服</td><td>仅 1</td><td>5/11 次数 0 优先安排但当晚未到</td><td><span class="b warn">5/11 主力未到</span></td></tr>
-        <tr class="mute"><td class="name">粪海狂蛆</td><td class="id-c">（无 Steam）</td><td class="num">7000</td><td>东南亚</td><td>1·2·3</td><td>5/11 主力 3 号位 · 当晚未到</td><td><span class="b warn">5/11 主力未到</span></td></tr>
-        <tr class="mute"><td class="name">秋时天</td><td class="id-c">（无 Steam）</td><td class="num">2000</td><td>国服</td><td>1·3·5</td><td>5/11 主力 5 号位 · 当晚未到</td><td><span class="b warn">5/11 主力未到</span></td></tr>
-        <tr class="mute"><td class="name">李狗蛋</td><td class="id-c">（5/11 观战；与野人「带把少女李狗蛋」疑似同人）</td><td class="num">6500</td><td>东南亚</td><td>仅 3</td><td>5/11 自报观战 · 与野人疑似同人</td><td><span class="b mute">5/11 自选观战</span></td></tr>
-        <tr class="mute"><td class="name">J.S</td><td class="id-c">（无 Steam）</td><td class="num">纯潜水</td><td>—</td><td>—</td><td>5/9 观战 · 解说房</td><td><span class="b mute">+0.25 观战</span></td></tr>
-        <tr class="mute"><td class="name">noobplayer</td><td class="id-c">（无 Steam）</td><td class="num">8000</td><td>东南亚</td><td>4·5</td><td>5/9 自选观战</td><td><span class="b mute">+0.25 观战</span></td></tr>
-        <tr class="mute"><td class="name">老崔（OB）</td><td class="id-c">（无 Steam）</td><td class="num">3500</td><td>东南亚</td><td>1·3·4</td><td>5/9 自选观战</td><td><span class="b mute">+0.25 观战</span></td></tr>
-        <tr class="mute"><td class="name">贾xy</td><td class="id-c">（待）</td><td class="num">3500</td><td>东南亚</td><td>仅 2</td><td>5/13 超 2500 分段，本期不安排</td><td><span class="b mute">5/13 超分段</span></td></tr>
-        <tr class="mute"><td class="name">Tamako</td><td class="id-c">（无段位匹配中）</td><td class="num">无段位</td><td>国服</td><td>1·5 匹配</td><td>5/13 无段位，本期不安排</td><td><span class="b mute">无段位</span></td></tr>
-
+        <tr class="mute"><td class="name">鱼头</td><td class="num">2500</td><td class="ai-cell"><span class="ai-v">—</span></td><td>东南亚</td><td>1·2·3</td><td>5/13 已分到夜魇 1 号位</td><td><span class="b mute">5/13 首战</span></td></tr>
+        <tr class="mute"><td class="name">陆柒</td><td class="num">2500</td><td class="ai-cell"><span class="ai-v">—</span></td><td>—</td><td>3·1</td><td>5/13 已分到天辉 3 号位</td><td><span class="b mute">5/13 首战</span></td></tr>
+        <tr class="mute"><td class="name">Patrick</td><td class="num">1000</td><td class="ai-cell"><span class="ai-v">—</span></td><td>东南亚</td><td>1·3 → 协调 4</td><td>5/13 天辉 4 号位（顶替永久拉黑的 13）</td><td><span class="b mute">5/13 首战</span></td></tr>
+        <tr class="warn"><td class="name">罗西基（spimba）</td><td class="num">2000~2500</td><td class="ai-cell"><span class="ai-v">—</span></td><td>东南亚</td><td>仅 3</td><td>5/9 观战 · 5/11 原 10 主力但未到房 · 5/13 因此不安排</td><td><span class="b warn">5/11 主力未到</span></td></tr>
+        <tr class="warn"><td class="name">及时行乐</td><td class="num">2500</td><td class="ai-cell"><span class="ai-v">—</span></td><td>东南亚</td><td>2·1</td><td>5/9 21:00 后才能玩 / 替补未上 · 5/11 主力未到</td><td><span class="b warn">5/11 主力未到</span></td></tr>
+        <tr class="warn"><td class="name">豆皮</td><td class="num">3000</td><td class="ai-cell"><span class="ai-v">—</span></td><td>国服</td><td>仅 1</td><td>5/11 次数 0 优先安排但当晚未到</td><td><span class="b warn">5/11 主力未到</span></td></tr>
+        <tr class="warn"><td class="name">粪海狂蛆</td><td class="num">7000</td><td class="ai-cell"><span class="ai-v">—</span></td><td>东南亚</td><td>1·2·3</td><td>5/11 主力 3 号位 · 当晚未到</td><td><span class="b warn">5/11 主力未到</span></td></tr>
+        <tr class="warn"><td class="name">秋时天</td><td class="num">2000</td><td class="ai-cell"><span class="ai-v">—</span></td><td>国服</td><td>1·3·5</td><td>5/11 主力 5 号位 · 当晚未到</td><td><span class="b warn">5/11 主力未到</span></td></tr>
+        <tr class="mute"><td class="name">李狗蛋</td><td class="num">6500</td><td class="ai-cell"><span class="ai-v">—</span></td><td>东南亚</td><td>仅 3</td><td>5/11 自报观战（与野人「带把少女李狗蛋」疑似同人）</td><td><span class="b mute">5/11 观战</span></td></tr>
+        <tr class="mute"><td class="name">J.S</td><td class="num">纯潜水</td><td class="ai-cell"><span class="ai-v">—</span></td><td>—</td><td>—</td><td>5/9 观战 · 解说房</td><td><span class="b mute">+0.25 观战</span></td></tr>
+        <tr class="mute"><td class="name">noobplayer</td><td class="num">8000</td><td class="ai-cell"><span class="ai-v">—</span></td><td>东南亚</td><td>4·5</td><td>5/9 自选观战</td><td><span class="b mute">+0.25 观战</span></td></tr>
+        <tr class="mute"><td class="name">老崔（OB）</td><td class="num">3500</td><td class="ai-cell"><span class="ai-v">—</span></td><td>东南亚</td><td>1·3·4</td><td>5/9 自选观战</td><td><span class="b mute">+0.25 观战</span></td></tr>
+        <tr class="mute"><td class="name">贾xy</td><td class="num">3500</td><td class="ai-cell"><span class="ai-v">—</span></td><td>东南亚</td><td>仅 2</td><td>5/13 超 2500 分段，本期不安排</td><td><span class="b mute">5/13 超分段</span></td></tr>
+        <tr class="mute"><td class="name">Tamako</td><td class="num">无段位</td><td class="ai-cell"><span class="ai-v">—</span></td><td>国服</td><td>1·5 匹配</td><td>5/13 无段位，本期不安排</td><td><span class="b mute">无段位</span></td></tr>
       </tbody>
     </table>
   </section>
@@ -591,7 +653,6 @@
   <!-- ====== 失信扣分 ====== -->
   <section>
     <h2 style="color:var(--danger);">失信扣分 <span class="sub" style="color:var(--danger);">7 人 · 5/9 主力锁定后未进房 · 各 -5 信誉</span></h2>
-
     <table class="r">
       <thead>
         <tr>
@@ -617,7 +678,6 @@
   <!-- ====== 永久拉黑 ====== -->
   <section>
     <h2 style="color:var(--danger);">⚠ 永久拉黑 <span class="sub" style="color:var(--danger);">1 人 · 后续所有内战不再安排</span></h2>
-
     <table class="r">
       <thead>
         <tr>
@@ -638,61 +698,119 @@
   <!-- ====== 野人 / 临时叫人 ====== -->
   <section>
     <h2>野人 / 临时叫人 <span class="sub">9 人 · 5/9 当晚现叫，Steam ID 不在花名册，不参与信誉分</span></h2>
-
     <table class="r">
       <thead>
         <tr>
           <th style="width:170px;">游戏内 ID</th>
-          <th style="width:70px;text-align:right;">局数</th>
+          <th style="width:90px;text-align:right;">Dota ID</th>
+          <th style="width:55px;text-align:right;">局数</th>
           <th>英雄战绩</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td class="id-c">带把少女李狗蛋</td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 1·1</b> 潮汐 3 号 <b>11/2/26</b>（疯狗团魂） · <b>5/9 内战 1·2</b> 斯拉达 1 号 <b>8/7/20</b><br><span style="color:var(--ink-mute);">与 5/11 报名的「李狗蛋」疑似同人</span></td></tr>
-        <tr><td class="id-c">60</td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 1·1</b> 风暴之灵 2 号 <b>9/9/10</b> · <b>5/9 内战 1·2</b> 幻影刺客 2 号 <b>20/11/16</b></td></tr>
-        <tr><td class="id-c">A</td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 1·1</b> 大地之灵 4 号 <b>6/7/30</b> · <b>5/9 内战 2·2</b> Elder Titan 4 号 <b>9/7/24</b></td></tr>
-        <tr><td class="id-c">难为。</td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 2·1</b> Slardar 1 号 <b>18/1/17</b> · <b>5/9 内战 2·2</b> Leshrac 2 号 <b>16/8/20</b></td></tr>
-        <tr><td class="id-c">蓝色柚子大王</td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 2·1</b> Rubick 3 号 <b>5/5/20</b> · <b>5/9 内战 2·2</b> Slardar 3 号 <b>2/14/21</b></td></tr>
-        <tr><td class="id-c">剑心犹在<span style="color:var(--ink-mute);"> · ≠ 花名册「剑心仍在」</span></td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 2·1</b> Ember Spirit 2 号 <b>2/6/8</b> · <b>5/9 内战 2·2</b> Juggernaut 1 号 <b>12/8/17</b></td></tr>
-        <tr><td class="id-c">只会辅助混分</td><td class="num">1 局</td><td class="heroes"><b>5/9 内战 1·2</b> 暗影萨满 5 号 <b>6/17/24</b></td></tr>
-        <tr><td class="id-c">可可托海</td><td class="num">1 局</td><td class="heroes"><b>5/9 内战 1·2</b> 凤凰 3 号 <b>5/13/20</b></td></tr>
-        <tr><td class="id-c">猥琐男</td><td class="num">1 局</td><td class="heroes"><b>5/9 内战 1·2</b> 野兽之神 3 号 <b>9/9/20</b></td></tr>
+        <tr><td class="id-c">带把少女李狗蛋 <span style="color:var(--ink-mute);font-size:10px;">疑同 5/11「李狗蛋」</span></td><td class="dota-id"><a href="https://www.opendota.com/players/278172162" target="_blank">278172162</a></td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 1·1</b> 潮汐猎人 3 号 <b>11/2/26</b>（疯狗团魂） · <b>5/9 内战 1·2</b> 斯拉达 1 号 <b>8/7/20</b></td></tr>
+        <tr><td class="id-c">60</td><td class="dota-id"><a href="https://www.opendota.com/players/295405522" target="_blank">295405522</a></td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 1·1</b> 风暴之灵 2 号 <b>9/9/10</b> · <b>5/9 内战 1·2</b> 幻影刺客 2 号 <b>20/11/16</b></td></tr>
+        <tr><td class="id-c">A</td><td class="dota-id"><a href="https://www.opendota.com/players/361188542" target="_blank">361188542</a></td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 1·1</b> 大地之灵 4 号 <b>6/7/30</b> · <b>5/9 内战 2·2</b> 上古巨神 4 号 <b>9/7/24</b></td></tr>
+        <tr><td class="id-c">难为。</td><td class="dota-id"><a href="https://www.opendota.com/players/140544512" target="_blank">140544512</a></td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 2·1</b> 斯拉达 1 号 <b>18/1/17</b> · <b>5/9 内战 2·2</b> 拉席克 2 号 <b>16/8/20</b></td></tr>
+        <tr><td class="id-c">蓝色柚子大王</td><td class="dota-id"><a href="https://www.opendota.com/players/369892132" target="_blank">369892132</a></td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 2·1</b> 拉比克 3 号 <b>5/5/20</b> · <b>5/9 内战 2·2</b> 斯拉达 3 号 <b>2/14/21</b></td></tr>
+        <tr><td class="id-c">剑心犹在 <span style="color:var(--ink-mute);font-size:10px;">≠ 花名册「剑心仍在」</span></td><td class="dota-id"><a href="https://www.opendota.com/players/183646212" target="_blank">183646212</a></td><td class="num">2 局</td><td class="heroes"><b>5/9 内战 2·1</b> 灰烬之灵 2 号 <b>2/6/8</b> · <b>5/9 内战 2·2</b> 主宰 1 号 <b>12/8/17</b></td></tr>
+        <tr><td class="id-c">只会辅助混分</td><td class="dota-id"><a href="https://www.opendota.com/players/292165732" target="_blank">292165732</a></td><td class="num">1 局</td><td class="heroes"><b>5/9 内战 1·2</b> 暗影萨满 5 号 <b>6/17/24</b></td></tr>
+        <tr><td class="id-c">可可托海</td><td class="dota-id"><a href="https://www.opendota.com/players/204405672" target="_blank">204405672</a></td><td class="num">1 局</td><td class="heroes"><b>5/9 内战 1·2</b> 凤凰 3 号 <b>5/13/20</b></td></tr>
+        <tr><td class="id-c">猥琐男</td><td class="dota-id"><a href="https://www.opendota.com/players/139955812" target="_blank">139955812</a></td><td class="num">1 局</td><td class="heroes"><b>5/9 内战 1·2</b> 野兽之神 3 号 <b>9/9/20</b></td></tr>
       </tbody>
     </table>
   </section>
 
   <!-- ====== 数据说明 ====== -->
   <section class="notes">
-    <h3>数据来源与字段说明</h3>
+    <h3>字段说明</h3>
     <ul>
-      <li><b>覆盖期次：</b>2026/5/9（5 局）· 5/11（1 局）· 5/13（接龙 + 分队，未开打）</li>
-      <li><b>match ID：</b>OpenDota 比赛 ID — 录像解析得到。访问 <span class="match-id">https://www.opendota.com/matches/&lt;ID&gt;</span> 可看详情</li>
-      <li><b>游戏内 ID：</b>Dota 客户端里显示的名字。同一人可能有"群里称呼"≠"游戏内 ID"，如：老八 → 冰清玉洁梅老八；下等马 → 下等马给我田忌吧；缙云 → 大保健（MVP）</li>
-      <li><b>Steam ID 未列：</b>按你要求不展示（太长且非必要）。底层数据里有 Steam 17 位 ID，用于跨期识别同一人</li>
-      <li><b>段位：</b>玩家在接龙里自报的 MMR 数字（不是天梯接口拉的）。同一人不同期自报可能不一致（如 DDDash 5/9 报 3000、5/13 报 2500），用箭头标变化</li>
-      <li><b>信誉分：</b>来自 5/9 赛后结算 — 上场 +2、替补 +0.5、观战 +0.25、开房 +0.5、失信 -5 / -10 / -15 / -20</li>
-      <li><b>段位↑/↓：</b>5/9 段位真实度核查结果（见 <a href="analysis/段位真实度.html">段位真实度.html</a>）— ↑ 表示报低了，↓ 表示报高了</li>
-      <li><b>"野人"与"花名册"：</b>5/9 内战 1·2 局原 10 主力没到 5 人，临时拉了 9 个野人凑齐（Steam ID 不在 37 人接龙花名册里）。从下期开始要求野人也得提前报名</li>
+      <li><b>Dota ID：</b>Dota 2 账号 ID（Steam account_id / friend ID），点击跳 OpenDota 主页可看实时段位和最近比赛。Joy 的 ID = 155448633（用户提供，与 5/9 录入的 Steam17 转换值 155448642 差 9，按用户为准）</li>
+      <li><b>AI 实战分：</b>来自 <a href="analysis/段位真实度.html">段位真实度核查</a> — AI 基于 5/9 录像表现 + STRATZ 数据估算的实战 MMR。↑ 表示报名分低估实力（藏分），↓ 表示报名分虚高（吹牛）</li>
+      <li><b>游戏内 ID：</b>Dota 客户端里显示的名字。同一人可能"群里称呼"≠"游戏内 ID"，如：老八 → 冰清玉洁梅老八；缙云 → 大保健；下等马 → 下等马给我田忌吧</li>
+      <li><b>英雄 icon：</b>使用 Steam 官方 CDN — 数据源 odota/dotaconstants（OpenDota 同一套）。如果 icon 加载失败，会回退到灰色方块</li>
+      <li><b>match ID 链接：</b>点击跳 OpenDota.com，可看完整对局详情</li>
+      <li><b>信誉分：</b>5/9 赛后结算 — 上场 +2、替补 +0.5、观战 +0.25、开房 +0.5、失信 -5 / -10 / -15 / -20</li>
     </ul>
 
-    <h3 style="margin-top:18px;">待确认 / 字段缺失</h3>
+    <h3 style="margin-top:18px;">字段缺失 / 待确认</h3>
     <ul>
-      <li><b>5/11 与 5/13 新人 Steam ID 未解析</b>（高手灬坟墓 / 缙云大保健 / 麦子 / 老杨 / 陆柒 / Patrick / 鱼头 / 贾xy / Tamako 等）— 5/11 录像没做完整解析，5/13 还没打</li>
-      <li><b>李狗蛋 vs 带把少女李狗蛋</b>：5/11 #19「李狗蛋」与 5/9 野人「带把少女李狗蛋」（Steam 76561198238437890）疑似同人，未确认</li>
-      <li><b>剑心仍在 ≠ 剑心犹在</b>：两个 Steam 账号，5/9 结算已明确</li>
-      <li><b>Tc 在 5/11 战报写作「TczZZ」</b>：与 5/9 dota_name「Tcz2Z」不同，疑为 5/11 录入笔误</li>
+      <li><b>5/11 与 5/13 新人 Dota ID 未解析</b>（高手灬坟墓 / 缙云大保健 / 麦子 / 老杨 / 陆柒 / Patrick / 鱼头 / 贾xy / Tamako 等）— 5/11 录像没做完整解析，5/13 还没打。下期录像跑完会自动补</li>
+      <li><b>李狗蛋 vs 带把少女李狗蛋</b>：5/11 #19「李狗蛋」与 5/9 野人「带把少女李狗蛋」（Dota ID 278172162）疑似同人</li>
+      <li><b>Wasabi（芥末）AI 评分缺失</b>：段位真实度页注"1-01 / 1-02 出现的 Wasabi 玩家可能是同名借调，待确认"</li>
+      <li><b>老八 AI 评分缺失</b>：段位真实度页标"观战"，但实际打了 2 局 + 5/11 一局，可能是页面判断错误</li>
     </ul>
   </section>
 
-  <div class="footer">原点 DOTA2 内战 · 全员花名册 · 截至 2026-05-13 · 数据来源：OpenDota 解析 + 群接龙 + 赛后结算</div>
+  <div class="footer">原点 DOTA2 内战 · 全员花名册 · 截至 2026-05-13 · 数据：OpenDota + 群接龙 + 段位真实度 AI 核查</div>
 
 </div>
 
 <script>
-  // 移动端：把"已上场"表格的 tbody 行渲染成卡片
+  // ====== 英雄 icon 注入 ======
+  // 中文/英文别名 → Dota internal name（去 cdn 拿 icon）
+  const HERO_MAP = {
+    '编织者': 'weaver',
+    '潮汐猎人': 'tidehunter', '潮汐': 'tidehunter',
+    '拉比克': 'rubick', 'Rubick': 'rubick',
+    '大地之灵': 'earth_spirit',
+    '裂魂人': 'spirit_breaker',
+    '幻影刺客': 'phantom_assassin', 'Phantom Assassin': 'phantom_assassin',
+    '风暴之灵': 'storm_spirit',
+    '斯拉达': 'slardar', 'Slardar': 'slardar',
+    '暗影萨满': 'shadow_shaman',
+    '术士': 'warlock', 'Warlock': 'warlock',
+    '莱恩': 'lion', 'Lion': 'lion',
+    '影魔': 'nevermore',
+    '司夜刺客': 'nyx_assassin',
+    '琪兰': 'kez',
+    '凤凰': 'phoenix',
+    '痛苦女王': 'queenofpain',
+    '野兽之神': 'primal_beast',
+    '主宰': 'juggernaut', 'Juggernaut': 'juggernaut',
+    '灰烬之灵': 'ember_spirit', 'Ember Spirit': 'ember_spirit',
+    '拉席克': 'leshrac', 'Leshrac': 'leshrac',
+    '黑暗仙女': 'dark_willow', 'Dark Willow': 'dark_willow',
+    '戴泽': 'dazzle', 'Dazzle': 'dazzle',
+    '暗影恶魔': 'shadow_demon', 'Shadow Demon': 'shadow_demon',
+    '虚空假面': 'faceless_void', 'Faceless Void': 'faceless_void',
+    '巫妖': 'lich', 'Lich': 'lich',
+    '天涯墨客': 'grimstroke', 'Grimstroke': 'grimstroke',
+    '破晓辰星': 'dawnbreaker', 'Dawnbreaker': 'dawnbreaker',
+    '瘟疫法师': 'necrolyte', 'Necrophos': 'necrolyte',
+    '虚无之灵': 'void_spirit', 'Void Spirit': 'void_spirit',
+    '上古巨神': 'elder_titan', 'Elder Titan': 'elder_titan',
+    '寒冬飞龙': 'winter_wyvern', 'Winter Wyvern': 'winter_wyvern',
+    '幽鬼': 'spectre',
+    '马格纳斯': 'magnataur',
+    '海民': 'tusk',
+    '齐天大圣': 'monkey_king',
+    '戒灵': 'ringmaster',
+    '半人马战行者': 'centaur', '半人马': 'centaur',
+    '食人魔法师': 'ogre_magi'
+  };
+  const CDN = 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/';
+  // 长 key 先匹配，避免"风暴" 误匹配"风暴之灵"
+  const HERO_KEYS = Object.keys(HERO_MAP).sort((a,b)=>b.length-a.length);
+  function injectIcons(html) {
+    if (!html) return html;
+    // 用占位符避免多次替换同一段
+    let out = html;
+    HERO_KEYS.forEach(name=>{
+      const slug = HERO_MAP[name];
+      const re = new RegExp('(?<![<a-zA-Z_])' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+      out = out.replace(re, `<img class="hicon" src="${CDN}${slug}.png" alt="${name}" title="${name}"><span class="hero-name">${name}</span>`);
+    });
+    return out;
+  }
+  document.querySelectorAll('td.heroes, .c-heroes').forEach(el=>{
+    el.innerHTML = injectIcons(el.innerHTML);
+  });
+
+  // ====== 移动端：第一张表 → 卡片 ======
   (function(){
     if (window.matchMedia('(min-width: 901px)').matches) return;
-    const table = document.querySelector('section table.r');
+    const table = document.querySelector('#sec-active table.r');
     if (!table) return;
     const rows = table.tBodies[0].rows;
     const out = document.getElementById('active-cards');
@@ -703,11 +821,12 @@
       const card = document.createElement('div');
       card.className = 'card' + cls;
       card.innerHTML = `
-        <div class="c-head"><div class="c-name">${td[0].innerHTML}</div><div class="c-mmr">${td[2].textContent} ｜ ${td[5].textContent}</div></div>
-        <div class="c-id">${td[1].innerHTML}</div>
-        <div class="c-meta"><b>服务器：</b>${td[3].textContent} ｜ <b>偏好位：</b>${td[4].textContent}</div>
-        <div class="c-heroes">${td[6].innerHTML}</div>
-        <div class="c-badges">${td[7].innerHTML}</div>
+        <div class="c-head"><div class="c-name">${td[0].innerHTML}</div><div class="c-mmr">${td[3].textContent} ｜ ${td[7].textContent}</div></div>
+        <div class="c-id">${td[1].innerHTML} · ID: ${td[2].innerHTML}</div>
+        <div class="c-row"><b>AI 实战分：</b>${td[4].innerHTML}</div>
+        <div class="c-row"><b>服务器：</b>${td[5].textContent} ｜ <b>偏好位：</b>${td[6].textContent}</div>
+        <div class="c-heroes">${injectIcons(td[8].innerHTML)}</div>
+        <div class="c-badges">${td[9].innerHTML}</div>
       `;
       out.appendChild(card);
     }
