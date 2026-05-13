@@ -127,7 +127,7 @@
     <div class="stat mute"><div class="v">19</div><div class="l">报名未上场</div></div>
     <div class="stat warn"><div class="v">9</div><div class="l">野人 / 临时加</div></div>
     <div class="stat danger"><div class="v">7</div><div class="l">失信扣分</div></div>
-    <div class="stat danger"><div class="v">2</div><div class="l">永久拉黑</div></div>
+    <div class="stat danger"><div class="v">3</div><div class="l">永久拉黑</div></div>
   </div>
 
   <nav style="border:1px solid var(--ink);padding:14px 18px;margin-bottom:24px;background:var(--bg-card);">
@@ -484,19 +484,19 @@
           <td><span class="b ok">+2</span><span class="b info">藏分</span></td>
         </tr>
 
-        <tr>
+        <tr class="danger">
           <td class="name">xp<span class="games"> · 5/9</span></td>
           <td class="id-c">What is Win？</td>
-          <td class="dota-id">—</td>
+          <td class="dota-id" style="color:var(--danger);font-weight:600;">待解析</td>
           <td class="num">1500</td>
           <td class="ai-cell"><span class="ai-v">1700</span><span class="ai-delta">↑200 属实</span></td>
           <td>东南亚</td>
           <td>1·4·5</td>
           <td class="num">1 局</td>
           <td class="heroes">
-            <b>5/9 内战 3·1</b> 齐天大圣 1 号 <b>4/4/3</b> · 到位补登
+            <b>5/9 内战 3·1</b> 齐天大圣 1 号 <b>4/4/3</b> · 到位补登 · <b style="color:var(--danger);">2026/5/13 起永久拉黑（见下方拉黑表）</b>
           </td>
-          <td><span class="b ok">+2</span></td>
+          <td><span class="b danger">永久拉黑</span></td>
         </tr>
 
         <tr>
@@ -688,7 +688,7 @@
 
   <!-- ====== 永久拉黑 ====== -->
   <section id="sec-behavior">
-    <h2 style="color:var(--danger);">⚠ 永久拉黑 <span class="sub" style="color:var(--danger);">2 人 · 恶意行为 / 后续所有内战不再安排</span></h2>
+    <h2 style="color:var(--danger);">⚠ 永久拉黑 <span class="sub" style="color:var(--danger);">3 人 · 恶意行为 / 后续所有内战不再安排</span></h2>
     <div style="font-size:12px;color:var(--ink-mute);margin-bottom:14px;line-height:1.6;">
       Dota 局内骂人在所难免，不专门记录。这里只列<b style="color:var(--danger);">恶意行为</b>（恶意捣乱 / 故意送 / 长期挂机 / 严重攻击他人 / 多次失约 等）— 由 Joy 综合判断升级到永久拉黑。
     </div>
@@ -706,8 +706,15 @@
       <tbody>
         <tr class="danger"><td class="name">玩家「13」</td><td class="num">1000 卫士</td><td>东南亚</td><td>4·5</td><td>2026/5/13 起永久拉黑，所有内战不再安排参与</td><td><span class="b danger">永久拉黑</span></td></tr>
         <tr class="danger"><td class="name">带把少女李狗蛋 <span style="color:var(--ink-mute);font-size:10px;font-weight:400;">（疑同 5/11「李狗蛋」#19）</span></td><td class="num">6500（自报）</td><td>东南亚</td><td>仅 3</td><td>2026/5/13 起永久拉黑 · Steam ID <b style="font-family:monospace;">76561198238437890</b> · Dota ID <a href="https://www.opendota.com/players/278172162" target="_blank" style="font-family:monospace;">278172162</a> · 5/9 内战 1 以野人身份打 2 局 · 后续所有内战按上述 ID 匹配，不再安排</td><td><span class="b danger">永久拉黑</span></td></tr>
+        <tr class="danger"><td class="name">xp <span style="color:var(--ink-mute);font-size:10px;font-weight:400;">（5/9 报名 #23 · 到位补登）</span></td><td class="num">1500（AI 1700）</td><td>东南亚</td><td>1·4·5</td><td>2026/5/13 起永久拉黑 · 游戏内 ID <b style="font-family:monospace;">What is Win？</b>（含中文全角问号）· Steam / Dota ID <b style="color:var(--danger);">待解析</b>（5/9 内战 3·1 唯一一局 match <a href="https://www.opendota.com/matches/8803895680" target="_blank" style="font-family:monospace;">8803895680</a>，齐天大圣夜魇 1 号位 4/4/3，本队 10:33 输）· 已向 OpenDota 请求解析（jobId 348776450）· 如解析回来 Joy 拉到 Steam/Dota ID 后回填本行</td><td><span class="b danger">永久拉黑</span></td></tr>
       </tbody>
     </table>
+    <div style="margin-top:12px;padding:10px 14px;background:var(--warn-bg);border-left:3px solid var(--warn);font-size:11px;color:var(--ink-soft);line-height:1.7;">
+      <b style="color:var(--warn);">xp · ID 深挖待办：</b>
+      ① OpenDota parse 队列 jobId <b style="font-family:monospace;">348776450</b>（match 8803895680）已提交，定期查 <a href="https://api.opendota.com/api/matches/8803895680" target="_blank" style="color:var(--warn);">api.opendota.com/api/matches/8803895680</a>，能拉到玩家列表就找夜魇 1 号位齐天大圣 ｜
+      ② 如果 OpenDota 拉不到（match 太老 Valve 已删录像），需要 Joy 本地有 <code>内战3-01.dem</code> 录像跑 <code>tools/parse-replay.ps1</code> 提取 ｜
+      ③ 或 Joy 提供 STRATZ_TOKEN，用 GraphQL 按 personaname "What is Win？" 反查
+    </div>
   </section>
 
   <!-- ====== 野人 / 临时叫人 ====== -->
