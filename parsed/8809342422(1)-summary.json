@@ -1,0 +1,705 @@
+{
+  "source": "parsed/8809342422(1).jsonl",
+  "generated_at": "2026-05-14T09:08:10.314Z",
+  "parser": "odota/parser:latest",
+  "match": {
+    "match_id": 8809342422,
+    "game_mode": 2,
+    "winner": "radiant",
+    "duration_s": 1313,
+    "duration": "21:53",
+    "radiant_score": 27,
+    "dire_score": 13,
+    "total_hero_kills": 40,
+    "end_time_unix": 1778679286
+  },
+  "players": [
+    {
+      "slot": 0,
+      "team": "radiant",
+      "hero_id": 19,
+      "hero": "小小",
+      "hero_en": "Tiny",
+      "hero_npc": "npc_dota_hero_tiny",
+      "name": "Alice",
+      "steam_id": "76561198095303680",
+      "kills": 1,
+      "deaths": 1,
+      "assists": 2,
+      "kda": "1/1/2",
+      "level": 15,
+      "networth": 10939,
+      "last_hits": 180,
+      "denies": 11,
+      "gold_per_min": 520,
+      "xp_per_min": 593,
+      "starting_items": [
+        "Tango",
+        "Magic Stick",
+        "Iron Branch",
+        "Quelling Blade",
+        "Iron Branch",
+        "Iron Branch"
+      ],
+      "final_items": [
+        "Iron Branch",
+        "Quelling Blade",
+        "Magic Stick",
+        "Tango"
+      ],
+      "items_count": 6,
+      "buybacks": 0,
+      "obs_placed": 0,
+      "sen_placed": 0
+    },
+    {
+      "slot": 1,
+      "team": "radiant",
+      "hero_id": 17,
+      "hero": "风暴之灵",
+      "hero_en": "Storm Spirit",
+      "hero_npc": "npc_dota_hero_storm_spirit",
+      "name": "Des1re",
+      "steam_id": "76561198140012780",
+      "kills": 14,
+      "deaths": 0,
+      "assists": 4,
+      "kda": "14/0/4",
+      "level": 18,
+      "networth": 13473,
+      "last_hits": 162,
+      "denies": 9,
+      "gold_per_min": 640,
+      "xp_per_min": 899,
+      "starting_items": [
+        "Iron Branch",
+        "Tango",
+        "Iron Branch",
+        "Iron Branch",
+        "Iron Branch",
+        "Faerie Fire"
+      ],
+      "final_items": [
+        "Tango",
+        "Faerie Fire",
+        "Iron Branch",
+        "Observer Ward"
+      ],
+      "items_count": 7,
+      "buybacks": 0,
+      "obs_placed": 5,
+      "sen_placed": 1
+    },
+    {
+      "slot": 2,
+      "team": "radiant",
+      "hero_id": 28,
+      "hero": "斯拉达",
+      "hero_en": "Slardar",
+      "hero_npc": "npc_dota_hero_slardar",
+      "name": "亚军船长",
+      "steam_id": "76561198818381360",
+      "kills": 8,
+      "deaths": 6,
+      "assists": 7,
+      "kda": "8/6/7",
+      "level": 11,
+      "networth": 8420,
+      "last_hits": 64,
+      "denies": 7,
+      "gold_per_min": 400,
+      "xp_per_min": 381,
+      "starting_items": [
+        "Circlet",
+        "Iron Branch",
+        "Quelling Blade",
+        "Iron Branch",
+        "Gauntlets of Strength",
+        "Tango"
+      ],
+      "final_items": [
+        "Tango",
+        "Gauntlets of Strength",
+        "Iron Branch",
+        "Quelling Blade",
+        "Circlet"
+      ],
+      "items_count": 6,
+      "buybacks": 0,
+      "obs_placed": 0,
+      "sen_placed": 0
+    },
+    {
+      "slot": 3,
+      "team": "radiant",
+      "hero_id": 7,
+      "hero": "撼地者",
+      "hero_en": "Earthshaker",
+      "hero_npc": "npc_dota_hero_earthshaker",
+      "name": "麦子吃蜂蜜",
+      "steam_id": "76561198113897860",
+      "kills": 2,
+      "deaths": 5,
+      "assists": 16,
+      "kda": "2/5/16",
+      "level": 12,
+      "networth": 5689,
+      "last_hits": 27,
+      "denies": 3,
+      "gold_per_min": 270,
+      "xp_per_min": 400,
+      "starting_items": [
+        "Sage's Mask",
+        "Magic Stick",
+        "Sentry Ward",
+        "Iron Branch",
+        "Blood Grenade",
+        "Iron Branch"
+      ],
+      "final_items": [
+        "Iron Branch",
+        "Blood Grenade",
+        "Observer and Sentry Wards",
+        "Magic Stick",
+        "Sage's Mask"
+      ],
+      "items_count": 6,
+      "buybacks": 0,
+      "obs_placed": 3,
+      "sen_placed": 2
+    },
+    {
+      "slot": 4,
+      "team": "radiant",
+      "hero_id": 27,
+      "hero": "暗影萨满",
+      "hero_en": "Shadow Shaman",
+      "hero_npc": "npc_dota_hero_shadow_shaman",
+      "name": "Yalo",
+      "steam_id": "76561198090667090",
+      "kills": 2,
+      "deaths": 1,
+      "assists": 9,
+      "kda": "2/1/9",
+      "level": 11,
+      "networth": 5524,
+      "last_hits": 22,
+      "denies": 0,
+      "gold_per_min": 262,
+      "xp_per_min": 364,
+      "starting_items": [
+        "Tango",
+        "Magic Stick",
+        "Iron Branch",
+        "Iron Branch",
+        "Sentry Ward",
+        "Blood Grenade"
+      ],
+      "final_items": [
+        "Blood Grenade",
+        "Iron Branch",
+        "Magic Stick",
+        "Sentry Ward",
+        "Tango"
+      ],
+      "items_count": 6,
+      "buybacks": 0,
+      "obs_placed": 2,
+      "sen_placed": 7
+    },
+    {
+      "slot": 5,
+      "team": "dire",
+      "hero_id": 97,
+      "hero": "马格纳斯",
+      "hero_en": "Magnus",
+      "hero_npc": "npc_dota_hero_magnataur",
+      "name": "Kimalwaysright",
+      "steam_id": "76561198091059020",
+      "kills": 4,
+      "deaths": 5,
+      "assists": 2,
+      "kda": "4/5/2",
+      "level": 11,
+      "networth": 8448,
+      "last_hits": 109,
+      "denies": 8,
+      "gold_per_min": 401,
+      "xp_per_min": 389,
+      "starting_items": [
+        "Tango",
+        "Gauntlets of Strength",
+        "Quelling Blade",
+        "Iron Branch",
+        "Circlet",
+        "Iron Branch"
+      ],
+      "final_items": [
+        "Iron Branch",
+        "Circlet",
+        "Quelling Blade",
+        "Gauntlets of Strength",
+        "Tango"
+      ],
+      "items_count": 6,
+      "buybacks": 0,
+      "obs_placed": 0,
+      "sen_placed": 0
+    },
+    {
+      "slot": 6,
+      "team": "dire",
+      "hero_id": 98,
+      "hero": "伐木机",
+      "hero_en": "Timbersaw",
+      "hero_npc": "npc_dota_hero_shredder",
+      "name": "攻撃精神！",
+      "steam_id": "76561198156991300",
+      "kills": 0,
+      "deaths": 5,
+      "assists": 1,
+      "kda": "0/5/1",
+      "level": 12,
+      "networth": 6997,
+      "last_hits": 109,
+      "denies": 1,
+      "gold_per_min": 332,
+      "xp_per_min": 434,
+      "starting_items": [
+        "Quelling Blade",
+        "Iron Branch",
+        "Iron Branch",
+        "Circlet",
+        "Tango"
+      ],
+      "final_items": [
+        "Observer Ward",
+        "Tango",
+        "Circlet",
+        "Iron Branch",
+        "Quelling Blade"
+      ],
+      "items_count": 6,
+      "buybacks": 0,
+      "obs_placed": 2,
+      "sen_placed": 0
+    },
+    {
+      "slot": 7,
+      "team": "dire",
+      "hero_id": 20,
+      "hero": "复仇之魂",
+      "hero_en": "Vengeful Spirit",
+      "hero_npc": "npc_dota_hero_vengefulspirit",
+      "name": "幕后煮屎人",
+      "steam_id": "76561198957279760",
+      "kills": 3,
+      "deaths": 5,
+      "assists": 5,
+      "kda": "3/5/5",
+      "level": 13,
+      "networth": 8752,
+      "last_hits": 156,
+      "denies": 15,
+      "gold_per_min": 416,
+      "xp_per_min": 469,
+      "starting_items": [
+        "Iron Branch",
+        "Iron Branch",
+        "Iron Branch",
+        "Iron Branch",
+        "Iron Branch",
+        "Iron Branch",
+        "Tango"
+      ],
+      "final_items": [],
+      "items_count": 0,
+      "buybacks": 0,
+      "obs_placed": 1,
+      "sen_placed": 2
+    },
+    {
+      "slot": 8,
+      "team": "dire",
+      "hero_id": 53,
+      "hero": "先知",
+      "hero_en": "Nature's Prophet",
+      "hero_npc": "npc_dota_hero_furion",
+      "name": "Tcz2Z",
+      "steam_id": "76561199368304530",
+      "kills": 2,
+      "deaths": 5,
+      "assists": 7,
+      "kda": "2/5/7",
+      "level": 10,
+      "networth": 5757,
+      "last_hits": 45,
+      "denies": 1,
+      "gold_per_min": 273,
+      "xp_per_min": 315,
+      "starting_items": [
+        "Iron Branch",
+        "Iron Branch",
+        "Observer and Sentry Wards",
+        "Circlet",
+        "Tango",
+        "Blood Grenade"
+      ],
+      "final_items": [
+        "Smoke of Deceit",
+        "Blood Grenade",
+        "Tango",
+        "Circlet",
+        "Observer and Sentry Wards",
+        "Iron Branch"
+      ],
+      "items_count": 7,
+      "buybacks": 0,
+      "obs_placed": 4,
+      "sen_placed": 7
+    },
+    {
+      "slot": 9,
+      "team": "dire",
+      "hero_id": 5,
+      "hero": "水晶室女",
+      "hero_en": "Crystal Maiden",
+      "hero_npc": "npc_dota_hero_crystal_maiden",
+      "name": "Error 404",
+      "steam_id": "76561198146766670",
+      "kills": 4,
+      "deaths": 7,
+      "assists": 6,
+      "kda": "4/7/6",
+      "level": 9,
+      "networth": 4815,
+      "last_hits": 11,
+      "denies": 4,
+      "gold_per_min": 229,
+      "xp_per_min": 256,
+      "starting_items": [
+        "Tango",
+        "Blood Grenade",
+        "Enchanted Mango",
+        "Sentry Ward",
+        "Iron Branch",
+        "Circlet",
+        "Iron Branch"
+      ],
+      "final_items": [
+        "Sentry Ward",
+        "Circlet",
+        "Iron Branch",
+        "Enchanted Mango",
+        "Blood Grenade",
+        "Tango"
+      ],
+      "items_count": 7,
+      "buybacks": 0,
+      "obs_placed": 3,
+      "sen_placed": 6
+    }
+  ],
+  "first_blood": {
+    "time": 124,
+    "time_min": "2:04",
+    "killer": "马格纳斯",
+    "killer_name": "Kimalwaysright",
+    "victim": "暗影萨满",
+    "victim_name": "Yalo"
+  },
+  "teamfights": [
+    {
+      "start": 538,
+      "end": 555,
+      "start_min": "8:58",
+      "duration_s": 17,
+      "kills": 3,
+      "radiant_kills": 3,
+      "dire_kills": 0,
+      "winner": "radiant",
+      "note": "8:58 团战 17s · 3 死亡 (R3-0D · 天辉占优)"
+    },
+    {
+      "start": 600,
+      "end": 624,
+      "start_min": "10:00",
+      "duration_s": 24,
+      "kills": 3,
+      "radiant_kills": 2,
+      "dire_kills": 1,
+      "winner": "radiant",
+      "note": "10:00 团战 24s · 3 死亡 (R2-1D · 天辉占优)"
+    },
+    {
+      "start": 720,
+      "end": 733,
+      "start_min": "12:00",
+      "duration_s": 13,
+      "kills": 4,
+      "radiant_kills": 3,
+      "dire_kills": 1,
+      "winner": "radiant",
+      "note": "12:00 团战 13s · 4 死亡 (R3-1D · 天辉占优)"
+    },
+    {
+      "start": 1057,
+      "end": 1071,
+      "start_min": "17:37",
+      "duration_s": 14,
+      "kills": 3,
+      "radiant_kills": 3,
+      "dire_kills": 0,
+      "winner": "radiant",
+      "note": "17:37 团战 14s · 3 死亡 (R3-0D · 天辉占优)"
+    },
+    {
+      "start": 1131,
+      "end": 1140,
+      "start_min": "18:51",
+      "duration_s": 9,
+      "kills": 5,
+      "radiant_kills": 3,
+      "dire_kills": 2,
+      "winner": "radiant",
+      "note": "18:51 团战 9s · 5 死亡 (R3-2D · 天辉占优)"
+    },
+    {
+      "start": 1209,
+      "end": 1226,
+      "start_min": "20:09",
+      "duration_s": 17,
+      "kills": 3,
+      "radiant_kills": 3,
+      "dire_kills": 0,
+      "winner": "radiant",
+      "note": "20:09 团战 17s · 3 死亡 (R3-0D · 天辉占优)"
+    }
+  ],
+  "multikills": [
+    {
+      "time_min": "12:04",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "team": "radiant",
+      "count": 2,
+      "label": "双杀"
+    },
+    {
+      "time_min": "12:13",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "team": "radiant",
+      "count": 3,
+      "label": "三杀"
+    },
+    {
+      "time_min": "17:51",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "team": "radiant",
+      "count": 2,
+      "label": "双杀"
+    }
+  ],
+  "streak_kills": [
+    {
+      "time_min": "4:07",
+      "player": "幕后煮屎人",
+      "hero": "复仇之魂",
+      "streak_value": 199
+    },
+    {
+      "time_min": "4:19",
+      "player": "亚军船长",
+      "hero": "斯拉达",
+      "streak_value": 296
+    },
+    {
+      "time_min": "10:24",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 361
+    },
+    {
+      "time_min": "12:00",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 263
+    },
+    {
+      "time_min": "12:04",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 230
+    },
+    {
+      "time_min": "12:13",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 232
+    },
+    {
+      "time_min": "13:26",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 314
+    },
+    {
+      "time_min": "16:13",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 396
+    },
+    {
+      "time_min": "17:37",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 368
+    },
+    {
+      "time_min": "17:51",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 291
+    },
+    {
+      "time_min": "18:33",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 477
+    },
+    {
+      "time_min": "19:00",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 281
+    },
+    {
+      "time_min": "20:21",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 260
+    },
+    {
+      "time_min": "20:53",
+      "player": "Des1re",
+      "hero": "风暴之灵",
+      "streak_value": 434
+    }
+  ],
+  "objectives": {
+    "tower_kills": [
+      {
+        "time_min": "12:54",
+        "destroyer": "斯拉达"
+      },
+      {
+        "time_min": "13:51",
+        "destroyer": "斯拉达"
+      },
+      {
+        "time_min": "18:41",
+        "destroyer": "小小"
+      },
+      {
+        "time_min": "20:59",
+        "destroyer": "斯拉达"
+      }
+    ],
+    "roshan_kills": [],
+    "aegis_pickups": [],
+    "building_kills_count": 6
+  },
+  "vision": {
+    "obs_total": 20,
+    "sen_total": 25,
+    "obs_killed": 15,
+    "sen_killed": 16
+  },
+  "events": {
+    "glyphs": 3,
+    "scans": 5,
+    "courier_lost": 2,
+    "disconnects": [
+      {
+        "time_min": "21:14",
+        "player": "攻撃精神！",
+        "hero": "伐木机"
+      },
+      {
+        "time_min": "21:15",
+        "player": "Error 404",
+        "hero": "水晶室女"
+      },
+      {
+        "time_min": "21:15",
+        "player": "亚军船长",
+        "hero": "斯拉达"
+      },
+      {
+        "time_min": "21:16",
+        "player": "麦子吃蜂蜜",
+        "hero": "撼地者"
+      },
+      {
+        "time_min": "21:19",
+        "player": "幕后煮屎人",
+        "hero": "复仇之魂"
+      }
+    ],
+    "disconnects_after_game": 5
+  },
+  "raw_event_counts": {
+    "DOTA_COMBATLOG_GAME_STATE": 9,
+    "player_slot": 10,
+    "interval": 18490,
+    "draft_start": 1,
+    "draft_timings": 24,
+    "actions": 48396,
+    "CHAT_MESSAGE_ITEM_PURCHASE": 32,
+    "DOTA_COMBATLOG_GOLD": 1279,
+    "DOTA_COMBATLOG_MODIFIER_ADD": 3792,
+    "DOTA_COMBATLOG_PURCHASE": 340,
+    "DOTA_ABILITY_LEVEL": 295,
+    "chatwheel": 14,
+    "DOTA_COMBATLOG_ITEM": 627,
+    "DOTA_COMBATLOG_ABILITY": 863,
+    "DOTA_COMBATLOG_MODIFIER_REMOVE": 3744,
+    "pings": 79,
+    "chat": 11,
+    "obs": 20,
+    "DOTA_COMBATLOG_PLAYERSTATS": 169,
+    "DOTA_COMBATLOG_DAMAGE": 8889,
+    "CHAT_MESSAGE_NO_BATTLE_POINTS": 1,
+    "CHAT_MESSAGE_RUNE_PICKUP": 30,
+    "STARTING_ITEM": 61,
+    "DOTA_COMBATLOG_XP": 1679,
+    "DOTA_COMBATLOG_DEATH": 1558,
+    "sen": 25,
+    "DOTA_COMBATLOG_HEAL": 423,
+    "CHAT_MESSAGE_COURIER_LOST": 2,
+    "CHAT_MESSAGE_HERO_KILL": 40,
+    "CHAT_MESSAGE_FIRSTBLOOD": 1,
+    "DOTA_COMBATLOG_FIRST_BLOOD": 1,
+    "CHAT_MESSAGE_COURIER_RESPAWNED": 2,
+    "CHAT_MESSAGE_RUNE_BOTTLE": 19,
+    "CHAT_MESSAGE_SENTRY_WARD_KILLED": 5,
+    "sen_left": 16,
+    "CHAT_MESSAGE_GLYPH_USED": 3,
+    "CHAT_MESSAGE_STREAK_KILL": 14,
+    "DOTA_COMBATLOG_KILLSTREAK": 13,
+    "obs_left": 15,
+    "neutral_item_history": 39,
+    "DOTA_COMBATLOG_MULTIKILL": 3,
+    "CHAT_MESSAGE_TOWER_KILL": 4,
+    "DOTA_COMBATLOG_TEAM_BUILDING_KILL": 6,
+    "CHAT_MESSAGE_SCAN_USED": 5,
+    "CHAT_MESSAGE_TOWER_DENY": 1,
+    "CHAT_MESSAGE_OBSERVER_WARD_KILLED": 3,
+    "CHAT_MESSAGE_DISCONNECT": 10,
+    "cosmetics": 1,
+    "dotaplus": 1,
+    "epilogue": 1
+  }
+}

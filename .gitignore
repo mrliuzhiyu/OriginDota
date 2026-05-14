@@ -2,10 +2,11 @@
 *.dem
 *.dem.bz2
 
-# 解析中间产物（可重生成）
+# 解析原始事件流（每场 15-20MB，太大不入 git，可重生成）
 parsed/**/*.jsonl
-parsed/**/*-summary.json
-parsed/**/*-lane.json
+
+# 注：parsed/**/*-summary.json 与 *-lane.json 是 AI 友好聚合数据（每场 ~15KB），
+# 入 git 保留供后续深度分析。原始 dem 录像不在仓库时仍可基于这两个文件做战报。
 
 # tools 临时下载产物
 tools/_*.json
