@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="2026.5.13 原点 Dota2 内战 · 赛后结算 — 2 局战报、Steam ID 关联、信誉分增减">
+<meta name="theme-color" content="#1a1a1a">
+<title>2026.5.13 原点 Dota2 内战 · 赛后结算</title>
+<style>
+  :root {
+    --ink: #1a1a1a; --ink-soft: #555; --ink-mute: #999;
+    --line: #e6e6e6; --line-soft: #f0f0f0;
+    --bg: #ffffff; --bg-card: #fafafa; --bg-warn: #fff5f5;
+    --warn: #c00; --good: #096;
+    --radiant: #2d5a3d; --radiant-bg: #f0f7f2;
+    --dire: #8b3a3a; --dire-bg: #fbf3f3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1080px; margin: 0 auto; padding: 56px 40px 80px; }
+
+  .crumb { font-size: 12px; color: var(--ink-mute); letter-spacing: 1px; margin-bottom: 18px; }
+  .crumb a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px dotted var(--ink-mute); }
+
+  .header { text-align: center; padding-bottom: 32px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+  .header .eyebrow { font-size: 12px; letter-spacing: 4px; color: var(--ink-mute); margin-bottom: 12px; }
+  .header h1 { font-size: 30px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  .header .meta { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--ink-soft); }
+  .header .meta span { position: relative; }
+  .header .meta span + span::before { content: "·"; color: var(--ink-mute); position: absolute; left: -14px; }
+
+  .section { margin-bottom: 48px; }
+  .section-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; margin-bottom: 22px; border-bottom: 2px solid var(--ink); flex-wrap: wrap; }
+  .section-head h2 { font-size: 20px; font-weight: 600; letter-spacing: 2px; }
+  .section-head .h-meta { font-size: 12px; color: var(--ink-soft); }
+
+  .matches { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .match { border: 1px solid var(--line); background: var(--bg-card); padding: 18px 20px; }
+  .match-tag { font-size: 11px; letter-spacing: 2px; color: var(--ink-mute); margin-bottom: 6px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .match-result { font-size: 17px; font-weight: 600; margin-bottom: 4px; letter-spacing: 0.5px; }
+  .match-result .winner { color: var(--radiant); }
+  .match-result .vs { color: var(--ink-mute); font-weight: 400; margin: 0 6px; font-size: 13px; }
+  .match-info { font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+  .match-info b { color: var(--ink); font-weight: 500; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+  .stat { border: 1px solid var(--line); background: var(--bg-card); padding: 14px 16px; text-align: center; }
+  .stat .stat-num { font-size: 24px; font-weight: 700; color: var(--ink); font-feature-settings: "tnum"; }
+  .stat.good .stat-num { color: var(--good); }
+  .stat.warn .stat-num { color: var(--warn); }
+  .stat .stat-label { font-size: 11px; letter-spacing: 1.5px; color: var(--ink-mute); margin-top: 4px; }
+
+  .roster { width: 100%; border-collapse: collapse; font-size: 13px; border: 1px solid var(--line); }
+  .roster th, .roster td { padding: 9px 10px; text-align: left; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  .roster th { background: var(--bg-card); font-weight: 600; font-size: 11px; letter-spacing: 1.5px; color: var(--ink-soft); }
+  .roster tr:last-child td { border-bottom: none; }
+  .roster .name-col { font-weight: 600; min-width: 90px; }
+  .roster .id-c { font-size: 12px; color: var(--ink-soft); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .roster .steam { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 10px; color: var(--ink-mute); }
+  .roster .num { font-feature-settings: "tnum"; color: var(--ink-mute); white-space: nowrap; }
+  .roster .delta { font-weight: 700; font-feature-settings: "tnum"; white-space: nowrap; text-align: right; }
+  .roster .delta.plus { color: var(--good); }
+  .roster .delta.zero { color: var(--ink-mute); }
+  .roster .hero-cell { font-size: 12px; }
+  .roster .hero-cell b { color: var(--ink); font-weight: 600; }
+  .roster .hero-cell .kda { color: var(--ink-mute); font-feature-settings: "tnum"; }
+  .roster tr.radiant td:first-child { border-left: 3px solid var(--radiant); }
+  .roster tr.dire td:first-child { border-left: 3px solid var(--dire); }
+
+  .roster-group-head { background: var(--bg-card); padding: 10px 12px; font-size: 12px; letter-spacing: 2px; font-weight: 600; }
+  .roster-group-head.radiant-h { color: var(--radiant); background: var(--radiant-bg); }
+  .roster-group-head.dire-h { color: var(--dire); background: var(--dire-bg); }
+
+  .notes { border: 1px solid var(--line); background: var(--bg-card); padding: 18px 22px; font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .notes h3 { font-size: 13px; color: var(--ink); font-weight: 600; letter-spacing: 2px; margin-bottom: 10px; }
+  .notes ul { list-style: none; padding: 0; }
+  .notes li { padding: 4px 0 4px 14px; position: relative; }
+  .notes li::before { content: "—"; position: absolute; left: 0; color: var(--ink-mute); }
+  .notes b { color: var(--ink); }
+
+  .footer { margin-top: 40px; text-align: center; font-size: 11px; color: var(--ink-mute); letter-spacing: 2px; }
+
+  @media (max-width: 720px) {
+    .page { padding: 24px 14px 48px; }
+    .header h1 { font-size: 22px; }
+    .matches { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .roster th:nth-child(3), .roster td:nth-child(3) { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="crumb"><a href="index.html">← 返回首页</a> · <a href="20260513-内战对战表.html">5/13 对战表</a> · <a href="花名册.html">全员花名册</a></div>
+
+  <header class="header">
+    <div class="eyebrow">原点 DOTA2 内战 · 赛后结算</div>
+    <h1>2026.5.13 内战赛后结算</h1>
+    <div class="meta">
+      <span>2026.5.13 周三 21:00</span>
+      <span>单桌 5v5 · 2 局</span>
+      <span>10 主力出席 / 2 替补未上 / 0 失信</span>
+      <span>OpenDota 录像解析</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>两局战报</h2>
+      <span class="h-meta">天辉两局连胜 · 总比分 54 : 21</span>
+    </div>
+    <div class="matches">
+      <div class="match">
+        <div class="match-tag">第 1 局 · match 8809342422</div>
+        <div class="match-result"><span class="winner">天辉胜</span><span class="vs">vs</span><span>夜魇</span> · 27 — 13</div>
+        <div class="match-info">时长 <b>21:53</b> · 天辉中单贾xy 风暴之灵 14/0 carry mid 碾压</div>
+        <div class="match-info" style="margin-top:6px; font-size:11px; color:var(--ink-mute);">麦子撼地者 16 助攻全场最高 ｜ 攻击精神伐木机 0/5 mid 失利</div>
+      </div>
+      <div class="match">
+        <div class="match-tag">第 2 局 · match 8809391814</div>
+        <div class="match-result"><span class="winner">天辉胜</span><span class="vs">vs</span><span>夜魇</span> · 27 — 8</div>
+        <div class="match-info">时长 <b>15:45</b> · 速通局 · 全队 0 死位 4 人（贾xy / Alice / 麦子 / Yalo / 陆柒）</div>
+        <div class="match-info" style="margin-top:6px; font-size:11px; color:var(--ink-mute);">Yalo 干扰者 7/2/10 + 陆柒暗夜魔王 6/2/10 ｜ 夜魇方 0 杀位 3 人（攻击精神 / 老杨 / Tc)</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>信誉分变动</h2>
+      <span class="h-meta">本期合计 +20 分 ｜ 协调到位无失信</span>
+    </div>
+    <div class="stats">
+      <div class="stat good">
+        <div class="stat-num">+20</div>
+        <div class="stat-label">10 主力 各 +2</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">失信扣分</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">替补未上扣分</div>
+      </div>
+      <div class="stat good">
+        <div class="stat-num">3</div>
+        <div class="stat-label">永久拉黑生效（13 / 带把少女 / xp）</div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-card); border-left:3px solid var(--good); padding:12px 16px; font-size:13px; color:var(--ink-soft); line-height:1.7; margin-bottom:14px;">
+      <b style="color:var(--good);">协调到位：</b>5/13 当晚群内已协调好阵位，<b>Patrick</b>（原 4 号位）让出主力转替补由<b>贾xy</b>顶中单，<b>麦子</b>从中单协调到 4 号位 ｜ Patrick + 大鱼两替补未顶上场，但提前协调过 <b>不算违约，0 扣分</b>。
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>出席名单</h2>
+      <span class="h-meta">10 人 · 各 +2 信誉</span>
+    </div>
+
+    <table class="roster">
+      <thead>
+        <tr>
+          <th style="width:70px;">阵位</th>
+          <th style="width:90px;">群名</th>
+          <th style="width:130px;">游戏 ID</th>
+          <th style="width:150px;">Steam ID · Dota ID</th>
+          <th>第 1 局</th>
+          <th>第 2 局</th>
+          <th style="width:60px; text-align:right;">变动</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="7" class="roster-group-head radiant-h">天辉 RADIANT · 双局连胜 · 综合分 11500</td></tr>
+        <tr class="radiant">
+          <td>1 号位</td>
+          <td class="name-col">爱丽丝<br><span style="font-weight:400;font-size:11px;color:var(--ink-mute);">Alice</span></td>
+          <td class="id-c">Alice</td>
+          <td>
+            <div class="steam">76561198095303680</div>
+            <div class="steam"><a href="https://www.opendota.com/players/135037952" target="_blank" style="color:var(--ink-mute);">135037952</a></div>
+          </td>
+          <td class="hero-cell"><b>小小</b> <span class="kda">1/1/2</span> · GPM 520</td>
+          <td class="hero-cell"><b>幽鬼</b> <span class="kda">5/2/11</span> · GPM 419</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr class="radiant">
+          <td>2 号位 中</td>
+          <td class="name-col">贾xy<br><span style="font-weight:400;font-size:11px;color:var(--good);">⭐ MVP</span></td>
+          <td class="id-c">Des1re</td>
+          <td>
+            <div class="steam">76561198140012780</div>
+            <div class="steam"><a href="https://www.opendota.com/players/179747052" target="_blank" style="color:var(--ink-mute);">179747052</a></div>
+          </td>
+          <td class="hero-cell"><b>风暴之灵</b> <span class="kda" style="color:var(--good);font-weight:600;">14/0/4</span> · GPM 640</td>
+          <td class="hero-cell"><b>石鳞剑士</b> <span class="kda">3/0/10</span> · GPM 486</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr class="radiant">
+          <td>3 号位</td>
+          <td class="name-col">陆柒</td>
+          <td class="id-c">亚军船长</td>
+          <td>
+            <div class="steam">76561198818381360</div>
+            <div class="steam"><a href="https://www.opendota.com/players/858115632" target="_blank" style="color:var(--ink-mute);">858115632</a></div>
+          </td>
+          <td class="hero-cell"><b>斯拉达</b> <span class="kda">8/6/7</span> · GPM 400</td>
+          <td class="hero-cell"><b>暗夜魔王</b> <span class="kda">6/2/10</span> · GPM 449</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr class="radiant">
+          <td>4 号位 → 5</td>
+          <td class="name-col">麦子</td>
+          <td class="id-c">麦子吃蜂蜜</td>
+          <td>
+            <div class="steam">76561198113897860</div>
+            <div class="steam"><a href="https://www.opendota.com/players/153632132" target="_blank" style="color:var(--ink-mute);">153632132</a></div>
+          </td>
+          <td class="hero-cell"><b>撼地者</b> <span class="kda">2/5/16</span> · 16 助攻全场最高</td>
+          <td class="hero-cell"><b>水晶室女</b> <span class="kda">6/2/11</span> · GPM 318</td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr class="radiant">
+          <td>5 号位</td>
+          <td class="name-col">Yalo</td>
+          <td class="id-c">Yalo</td>
+          <td>
+            <div class="steam">76561198090667090</div>
+            <div class="steam"><a href="https://www.opendota.com/players/130401362" target="_blank" style="color:var(--ink-mute);">130401362</a></div>
+          </td>
+          <td class="hero-cell"><b>暗影萨满</b> <span class="kda">2/1/9</span></td>
+          <td class="hero-cell"><b>干扰者</b> <span class="kda">7/2/10</span> · GPM 319</td>
+          <td class="delta plus">+2</td>
+        </tr>
+
+        <tr><td colspan="7" class="roster-group-head dire-h">夜魇 DIRE · 双局连败 · 综合分 10000</td></tr>
+        <tr class="dire">
+          <td>1 号位</td>
+          <td class="name-col">鱼头<br><span style="font-weight:400;font-size:11px;color:var(--ink-mute);">=LittleKim 同人</span></td>
+          <td class="id-c">Kimalwaysright</td>
+          <td>
+            <div class="steam">76561198091059020</div>
+            <div class="steam"><a href="https://www.opendota.com/players/130793292" target="_blank" style="color:var(--ink-mute);">130793292</a></div>
+          </td>
+          <td class="hero-cell"><b>马格纳斯</b> <span class="kda">4/5/2</span></td>
+          <td class="hero-cell"><b>谜团</b> <span class="kda">1/5/2</span></td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr class="dire">
+          <td>2 号位 中</td>
+          <td class="name-col">攻击精神</td>
+          <td class="id-c">攻撃精神！</td>
+          <td>
+            <div class="steam">76561198156991300</div>
+            <div class="steam"><a href="https://www.opendota.com/players/196725572" target="_blank" style="color:var(--ink-mute);">196725572</a></div>
+          </td>
+          <td class="hero-cell"><b>伐木机</b> <span class="kda" style="color:var(--warn);">0/5/1</span> · mid 失利</td>
+          <td class="hero-cell"><b>龙骑士</b> <span class="kda" style="color:var(--warn);">0/5/2</span></td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr class="dire">
+          <td>3 号位</td>
+          <td class="name-col">老杨<br><span style="font-weight:400;font-size:11px;color:var(--ink-mute);">房主</span></td>
+          <td class="id-c">幕后煮屎人</td>
+          <td>
+            <div class="steam">76561198957279760</div>
+            <div class="steam"><a href="https://www.opendota.com/players/996814032" target="_blank" style="color:var(--ink-mute);">996814032</a></div>
+          </td>
+          <td class="hero-cell"><b>复仇之魂</b> <span class="kda">3/5/5</span></td>
+          <td class="hero-cell"><b>斯拉克</b> <span class="kda" style="color:var(--warn);">0/6/3</span></td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr class="dire">
+          <td>4 号位</td>
+          <td class="name-col">Tc</td>
+          <td class="id-c">Tcz2Z</td>
+          <td>
+            <div class="steam">76561199368304530</div>
+            <div class="steam"><a href="https://www.opendota.com/players/1408038802" target="_blank" style="color:var(--ink-mute);">1408038802</a></div>
+          </td>
+          <td class="hero-cell"><b>先知</b> <span class="kda">2/5/7</span></td>
+          <td class="hero-cell"><b>暗影恶魔</b> <span class="kda">5/5/1</span></td>
+          <td class="delta plus">+2</td>
+        </tr>
+        <tr class="dire">
+          <td>5 号位</td>
+          <td class="name-col">Error 404<br><span style="font-weight:400;font-size:11px;color:var(--ink-mute);">=狗儿请继续</span></td>
+          <td class="id-c">Error 404</td>
+          <td>
+            <div class="steam">76561198146766670</div>
+            <div class="steam"><a href="https://www.opendota.com/players/186500942" target="_blank" style="color:var(--ink-mute);">186500942</a></div>
+          </td>
+          <td class="hero-cell"><b>水晶室女</b> <span class="kda">4/7/6</span></td>
+          <td class="hero-cell"><b>莱恩</b> <span class="kda">2/7/4</span></td>
+          <td class="delta plus">+2</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>替补 · 提前协调未上场</h2>
+      <span class="h-meta">2 人 · 0 扣分</span>
+    </div>
+    <table class="roster">
+      <thead>
+        <tr>
+          <th style="width:90px;">群名</th>
+          <th style="width:120px;">原阵位</th>
+          <th>协调说明</th>
+          <th style="width:60px; text-align:right;">变动</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name-col">Patrick</td>
+          <td>原天辉 4 号位</td>
+          <td>贾xy 热情感化 Pat 后由 xy 顶天辉中单，Pat 主动让出主力位转替补 ｜ 已群内协调，不算违约</td>
+          <td class="delta zero">0</td>
+        </tr>
+        <tr>
+          <td class="name-col">大鱼<br><span style="font-weight:400;font-size:11px;color:var(--ink-mute);">DDDash</span></td>
+          <td>替补预备</td>
+          <td>10 主力全部到位，无需顶上 ｜ 替补待命属正常履约，不算违约</td>
+          <td class="delta zero">0</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section-head" style="border-bottom-color:var(--warn);">
+      <h2 style="color:var(--warn);">⚠ 永久拉黑生效</h2>
+      <span class="h-meta" style="color:var(--warn);">3 人 · 5/13 未参赛 = 拉黑正常生效</span>
+    </div>
+    <table class="roster">
+      <thead>
+        <tr>
+          <th>玩家</th>
+          <th>Steam / Dota ID</th>
+          <th>5/13 状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name-col" style="color:var(--warn);">玩家「13」</td>
+          <td class="steam">—</td>
+          <td>不再安排，本期无报名</td>
+        </tr>
+        <tr>
+          <td class="name-col" style="color:var(--warn);">带把少女李狗蛋</td>
+          <td class="steam">76561198238437890 / 278172162</td>
+          <td>不再安排，本期无野人形式参与</td>
+        </tr>
+        <tr>
+          <td class="name-col" style="color:var(--warn);">xp</td>
+          <td class="steam">游戏 ID「What is Win？」/ 待解析</td>
+          <td>不再安排，本期无报名 ｜ 5/9 唯一一局 match 8803895680 仍待 OpenDota 解析</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="notes">
+      <h3>5/13 录像数据新解析的 ID（首次入库）</h3>
+      <ul>
+        <li><b>贾xy</b>（游戏 ID「Des1re」）· Steam <span style="font-family:monospace;">76561198140012780</span> / Dota <a href="https://www.opendota.com/players/179747052" target="_blank">179747052</a></li>
+        <li><b>陆柒</b>（游戏 ID「亚军船长」）· Steam <span style="font-family:monospace;">76561198818381360</span> / Dota <a href="https://www.opendota.com/players/858115632" target="_blank">858115632</a></li>
+        <li><b>麦子</b>（游戏 ID「麦子吃蜂蜜」）· Steam <span style="font-family:monospace;">76561198113897860</span> / Dota <a href="https://www.opendota.com/players/153632132" target="_blank">153632132</a></li>
+        <li><b>老杨</b>（游戏 ID「幕后煮屎人」）· Steam <span style="font-family:monospace;">76561198957279760</span> / Dota <a href="https://www.opendota.com/players/996814032" target="_blank">996814032</a> · 5/13 房主</li>
+        <li><b>鱼头</b>（游戏 ID「Kimalwaysright」）· Steam <span style="font-family:monospace;">76561198091059020</span> / Dota <a href="https://www.opendota.com/players/130793292" target="_blank">130793292</a> · <b>同 5/9「LittleKim」</b>（同 Steam ID 已确认）</li>
+      </ul>
+      <h3 style="margin-top:18px;">关键观察</h3>
+      <ul>
+        <li><b>贾xy mid 双场 0 死</b>：风暴之灵 14/0/4 + 石鳞剑士 3/0/10 ｜ 报 3500 东南亚 mid 实战属实，特批超分段安排到位</li>
+        <li><b>麦子 4→5 切换无碍</b>：M1 撼地者 4 号 16 助攻 + M2 水晶室女 5 号 6/2/11 ｜ 报 2·4·5 三号位全能，让位贾xy 后协调成功</li>
+        <li><b>夜魇 mid 大塌</b>：攻击精神 5/9 痛苦女王神级表现 vs 5/13 伐木机 0/5/1 + 龙骑士 0/5/2 mid 双场 0 杀 ｜ 状态明显不佳，跟 5/9 落差大</li>
+        <li><b>BO2 速通</b>：第 2 局 15:45 投降，天辉一边倒 ｜ 单桌 2 局总时长不到 40 分钟</li>
+        <li><b>永久拉黑生效</b>：13、带把少女、xp 均未在 5/13 出现，按 ID 匹配生效</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="footer">2026.5.13 · 原点 DOTA2 内战 · 单桌 5v5 · 周三晚 21:00 · OpenDota 解析 + Steam ID 关联</div>
+
+</div>
+</body>
+</html>
